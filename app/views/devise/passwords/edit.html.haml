@@ -1,0 +1,25 @@
+%h2.center-align{style: 'margin-top: 15px; margin-bottom: 15px;'}
+  = t('devise.passwords.title')
+
+.row.password__change
+  .col.s12
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, "data-turbo": "false" }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      = f.hidden_field :reset_password_token
+
+      .field.label.border
+        = f.password_field :password, autofocus: true, autocomplete: "off"
+        = f.label :password
+        - if @minimum_password_length
+          %em= "(#{@minimum_password_length} characters minimum)"
+
+      .field.label.border
+        = f.password_field :password_confirmation, autocomplete: "off"
+        = f.label :password_confirmation
+
+      .field
+        .row
+          .col.s12.center-align
+            %button.small-elevate.s12{type: 'submit'}
+              %i lock_reset
+              %span= t('devise.passwords.change_my_pw')

@@ -1,0 +1,44 @@
+-# pc & tablet view:
+%nav.left.m.l
+  = link_to root_path, class: (@section == 'welcome' ? 'active' : '') do
+    //blup %img.circle.small-margin{:src => asset_path("OxocareMini.png")}
+  - if current_user.present?
+    = link_to contacts_path, class: (@section == 'contacts' ? 'active' : '') do
+      %i contact_phone
+      %div= t('contacts.title')
+    - if current_user.admin?
+      = link_to devices_path, class: (@section == 'devices' ? 'active' : '') do
+        %i devices
+        %div= t('devices.title')
+    = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
+      %i settings
+      %div= t('settings.title')
+  - else
+    = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
+      %i input
+      %div= t('login')
+  .modal.large.left.no-scroll
+  .modal.left
+
+-# mobile view:
+%nav.bottom.s
+  = link_to root_path, class: (@section == 'welcome' ? 'active' : '') do
+    %i info
+    %div= t('welcome.info')
+  - if current_user.present?
+    = link_to contacts_path, class: (@section == 'contacts' ? 'active' : '') do
+      %i contact_phone
+      %div= t('contacts.title')
+    - if current_user.admin?
+      = link_to devices_path, class: (@section == 'devices' ? 'active' : '') do
+        %i devices
+        %div= t('devices.title')
+    = link_to settings_path, class: (@section == 'settings' ? 'active' : '') do
+      %i settings
+      %div= t('settings.title')
+  - else
+    = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
+      %i input
+      %div= t('login')
+  .modal.large.left.no-scroll
+  .modal.bottom.medium

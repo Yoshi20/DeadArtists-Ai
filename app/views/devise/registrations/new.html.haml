@@ -1,0 +1,43 @@
+%h2.center-align{style: 'margin-top: 15px; margin-bottom: 15px;'}
+  = t('sign_up')
+
+.row.sign_up
+  .col.s12
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { "data-turbo": "false" }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .field.label.border
+        = f.email_field :email, autocomplete: "email", autofocus: 'true'
+        = f.label :email
+
+      .field.label.border
+        = f.password_field :password, autocomplete: "new-password"
+        = f.label :password
+        - if @minimum_password_length
+          %em= "(#{@minimum_password_length} characters minimum)"
+
+      .field.label.border
+        = f.password_field :password_confirmation, autocomplete: "new-password"
+        = f.label :password_confirmation
+
+      -#blup
+      -# .field.label.border
+      -#   = f.text_field :full_name
+      -#   = f.label :full_name, t('full_name')
+      -#
+      -# .field.label.border
+      -#   = f.text_field :mobile_number
+      -#   = f.label :mobile_number, t('mobile_number')
+
+      .field
+        .row
+          .col.s12.center-align
+            %button.small-elevate.s12{type: 'submit'}
+              %i person_add
+              %span= t('sign_up')
+
+        .row
+          .col.s6.center-align
+            = link_to t('log_in'), session_path(:user)
+          .col.s6.center-align
+            = link_to t('devise.sessions.forgot_pw'), new_password_path(resource_name)

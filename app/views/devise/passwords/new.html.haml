@@ -1,0 +1,24 @@
+%h2.center-align{style: 'margin-top: 15px; margin-bottom: 15px;'}
+  = t('devise.passwords.title_forgot')
+
+.row.password__reset
+  .col.s12
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { "data-turbo": "false" }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .field.label.border
+        = f.email_field :email, autofocus: true
+        = f.label :email
+
+      .field
+        .row
+          .col.s12.center-align
+            %button.small-elevate.s12{type: 'submit'}
+              %i lock_reset
+              %span= t('devise.passwords.reset_pw')
+
+        .row
+          .col.s6.center-align
+            = link_to t('log_in'), session_path(:user)
+          .col.s6.center-align
+            = link_to t('sign_up'), new_user_registration_path

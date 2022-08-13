@@ -1,0 +1,34 @@
+= form_for contact, html: { "data-turbo": "false" } do |f|
+  .row
+    .col.s10
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :name
+        = f.label "#{t('contacts.name')} #{index.to_s}"
+    .col.s2
+      %button.small-elevate{style: 'margin-left: -10px; height: 48px;'}
+        %i delete
+
+    .col.l3.m4.s5
+      .field.label.suffix.border
+        = f.select :call_type, options_for_select(call_types_for_select, contact.call_type)
+        = f.label "Rufart", class: 'active'
+        %i arrow_drop_down
+    .col.l9.m8.s7{style: "display: #{contact.call_type != 'email' ? 'block' : 'none'};"}
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :phone_number
+        = f.label "#{t('contacts.phone_number')} #{index.to_s}"
+    .col.l9.m8.s7{style: "display: #{contact.call_type == 'email' ? 'block' : 'none'};"}
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :email
+        = f.label "E-Mail #{index.to_s}"
+  .row
+    .col.s12{style: 'margin-top: -30px;'}
+      .row
+        .col.s6.center-align
+          %button.small-elevate{type: 'submit'}
+            %i save
+            %span= t('save')
+        .col.s6.center-align
+          %button.small-elevate{type: 'submit'}
+            %i delete
+            %span= t('delete')

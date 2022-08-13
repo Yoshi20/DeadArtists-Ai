@@ -1,0 +1,50 @@
+.row
+  .col.s12.center-align
+    = image_tag 'profile_pic_low_quali.webp', style: 'width: 71px; height: 75px; border-radius: 50%;'
+
+  .col.s12.center-align{style: 'margin-top: -10rem;'}
+    %span{style: 'font: normal normal normal 16px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif; font-size: 16px; font-weight: bold;'}= 'Art by Artificial Intelligence'
+
+.row
+  .col.s12.center-align
+    %span{style: 'font: normal normal normal 100px/1.4em cinzel,serif; font-size: 32px; font-weight: bold; letter-spacing: 0.2em;'}= 'Welcome to the DeadArtists-AI Gallery'
+
+.row
+  .col.s12.center-align
+    #picasso-frame.center-align{onclick: "this.style.display = 'none'; document.getElementById('hidden-picasso-frame').style.display = 'inline-block';", style: 'display: inline-block; border: solid 1px black; box-shadow: 0 1px 3px rgba(0,0,0,.5); border-width: 0px; overflow: hidden; width: 360px; height: 355px; padding-top: 5px; cursor: pointer;'}
+      = image_tag 'pablo_picasso.webp', style: 'width: 350px; height: 350px;'
+      %span{style: 'font: normal normal normal 20px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif; color: white; margin: 62px auto 0px auto; position: absolute; left: 0; right: 0; text-align: center; font-size: 32px; padding: 0 20px;'}= 'Click me to turn me into a moving artwork'
+      %span{style: 'font: normal normal normal 20px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif; color: white; margin: 178px auto 0px auto; position: absolute; left: 0; right: 0; text-align: center; font-size: 25px;'}= 'TRY IT!'
+    #hidden-picasso-frame{onclick: "this.style.display = 'none'; document.getElementById('picasso-frame').style.display = 'inline-block';", style: 'display: none; border: solid 1px black; box-shadow: 0 1px 3px rgba(0,0,0,.5); border-width: 0px; overflow: hidden; width: 360px; height: 355px; padding-top: 5px; cursor: pointer;'}
+      = image_tag 'pablo_picasso.gif', style: 'width: 350px; height: 350px;'
+
+
+.row
+  -# .col.s12.center-align
+  -#   = link_to '#' do
+  -#     = image_tag 'brush_stroke_black.png', style: 'display: block; width: 300px; height: 100px;'
+
+  .col.s12.center-align
+    = link_to 'ENTER', '#', {id: 'brush_stroke', style: 'width: 300px; height: 100px; background-image: url(brush_stroke_black.png); font-weight: 700; color: white; font-family: cinzel,serif; font-size: 20px; padding-top: 4px;'}
+    -# = link_to '#', {id: 'brush_stroke', style: 'width: 300px; height: 100px; background-image: url(brush_stroke_black.png);'} do
+    -#   %span{style: 'font-weight: 700; color: white; font-family: cinzel,serif; font-size: 20px; margin-top: 8px;'} ENTER
+
+
+.row
+  .col.s12
+    %p
+      = t('welcome.body0')
+
+
+
+-# --font_0: normal normal normal 100px/1.4em cinzel,serif;
+-# --font_1: normal normal normal 16px/1.4em din-next-w01-light,din-next-w02-light,din-next-w10-light,sans-serif;
+-# --font_2: normal normal normal 50px/1.4em 'playfair display',serif;
+-# --font_3: normal normal normal 30px/1.4em cinzel,serif;
+-# --font_4: normal normal normal 24px/1.4em cinzel,serif;
+-# --font_5: normal normal normal 20px/1.4em cinzel,serif;
+-# --font_6: normal normal normal 16px/1.4em cinzel,serif;
+-# --font_7: normal normal normal 20px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
+-# --font_8: normal normal normal 16px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
+-# --font_9: normal normal normal 14px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
+-# --font_10: normal normal normal 12px/1.4em din-next-w01-light,din-next-w02-light,din-next-w10-light,sans-serif;

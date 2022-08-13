@@ -1,0 +1,14 @@
+- if flash.any?
+  - toast_colors_hash = { alert: 'pink', warn: 'orange', notice: 'green' }
+  - toast_icons_hash = { alert: 'error', warn: 'warning', notice: 'done' }
+  - flash.each do |key, value|
+    - if value.present?
+      .toast.white-text{class: toast_colors_hash[key.to_sym]}
+        %i= toast_icons_hash[key.to_sym]
+        %span= value.html_safe
+  :javascript
+    document.addEventListener("turbo:load", function (e) {
+      if (document.getElementsByClassName('toast').length > 0 && ui != undefined) {
+        ui('.toast', 6000);
+      }
+    })

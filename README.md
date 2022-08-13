@@ -1,2 +1,7 @@
-# DeadArtists-Ai
-DeadArtists Ai website (Rails application)
+# DeadArtists AI
+
+## Start rails server (puma) and esbuild
+
+```
+bin/dev
+```

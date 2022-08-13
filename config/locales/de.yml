@@ -1,0 +1,21 @@
+de:
+  welcome:
+    title: "DeadArtists AI"
+    body0: "Das ist ein Text."
+
+  contacts:
+    title: "Kontakte"
+    first: "1"
+    second: "2"
+    third: "3"
+    fourth: "4"
+    fifth: "5"
+    sixth: "6"
+    name: "Name"
+    phone_number: "Telefonnummer"
+
+  devices:
+    title: "Geräte"
+
+  settings:
+    title: "Settings"

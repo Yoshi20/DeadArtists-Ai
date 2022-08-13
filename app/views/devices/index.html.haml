@@ -1,0 +1,29 @@
+%h2.center-align
+  = t('devices.title')
+
+.row
+  .col.s12
+    - #blup: mit divs anstatt table
+    %table.border.large-space
+      %thead
+        %tr
+          %th DevEUI
+          %th Typ
+          %th Battery
+          %th Last seen
+      %tbody.with-show
+        %tr{'data-id': 1, 'data-component': 'device'}
+          %td{style: 'font-size: smaller;'} ...E6CE
+          %td{style: 'font-size: smaller;'} Uhr
+          %td{style: 'font-size: smaller;'} 100 %
+          %td{style: 'font-size: smaller;'} 25.07.22
+        %tr{'data-id': 1, 'data-component': 'device'}
+          %td{style: 'font-size: smaller;'} ...E6CE
+          %td{style: 'font-size: smaller;'} Knopf
+          %td{style: 'font-size: smaller;'} 100 %
+          %td{style: 'font-size: smaller;'} 25.07.22
+        %tr{'data-id': 1, 'data-component': 'device'}
+          %td{style: 'font-size: smaller;'} ...E6CE
+          %td{style: 'font-size: smaller;'} PIR
+          %td{style: 'font-size: smaller;'} 100 %
+          %td{style: 'font-size: smaller;'} 25.07.22
