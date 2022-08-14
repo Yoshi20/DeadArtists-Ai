@@ -20,7 +20,7 @@
         = image_tag 'pablo_picasso.gif'
 
     .col.s12.center-align
-      = link_to 'ENTER', '#', {id: 'brush-stroke'}
+      = link_to 'ENTER', home_path, {id: 'brush-stroke'}
 
   .row
     .col.s12.center-align
@@ -33,10 +33,10 @@
   .row{style: 'margin-top: 0;'}
     .col.s0.m2.l3
     .col.s6.m4.l3.center-align
-      = link_to 'https://twitter.com/DeadArtistsAI', class: 'social-media-button' do
+      = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
         = image_tag 'twitter_logo.webp'
     .col.s6.m4.l3.center-align
-      = link_to 'https://discord.gg/JN9Rhxmhgv', class: 'social-media-button' do
+      = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
         = image_tag 'discord_logo.webp'
     .col.s0.m2.l3
 

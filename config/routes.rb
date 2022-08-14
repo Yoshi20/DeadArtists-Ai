@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :contacts, only: [:index, :new, :create, :update, :destroy]
+  get 'welcome' => 'welcome#index'
 
-  resources :devices, only: [:index]
+  get 'home' => 'home#index'
 
   resources :settings, only: [:index]
 
@@ -10,9 +10,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index]#, :update, :destroy]
 
   root "welcome#index"
-  #blup
-  # devise_scope :user do
-  #   root to: "devise/sessions#new"
-  # end
 
 end

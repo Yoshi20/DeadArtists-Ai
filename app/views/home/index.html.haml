@@ -1,0 +1,69 @@
+.home
+  .row
+    .col.s12.center-align
+      = video_tag 'home_title.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
+
+  .row{style: 'margin-top: 0;'}
+    .col.s12.center-align{style: 'margin-top: -40rem;'}
+      %p.home-text-paragraph
+        Yeah, you should absolutely own your personal Van Gogh, Picasso or DaVinci!
+
+  .row
+    .col.s4.center-align
+      .artist-frame
+        = image_tag 'vincent_van_gogh.gif'
+    .col.s4.center-align
+      .artist-frame
+        = image_tag 'pablo_picasso.gif'
+    .col.s4.center-align
+      .artist-frame
+        = image_tag 'leonardo_da_vinci.gif'
+
+  .row
+    .col.s12.center-align
+      %p.home-text-paragraph
+        Thanks to our Artifical Intelligence its possible
+
+  -#     = image_tag 'profile_pic_low_quali.webp', class: 'profile-pic-low-quali'
+  -#
+  -#   .col.s12.center-align{style: 'margin-top: -10rem;'}
+  -#     %span.text-below-profile-pic= 'Art by Artificial Intelligence'
+  -#
+  -# .row
+  -#   .col.s12.center-align
+  -#     %span.home-text-title= 'Welcome to the DeadArtists-AI Gallery'
+  -#
+  -# .row
+  -#   .col.s12.center-align
+  -#     .picasso-frame#visible-picasso-frame.center-align{onclick: "this.style.display = 'none'; document.getElementById('hidden-picasso-frame').style.display = 'inline-block';"}
+  -#       = image_tag 'pablo_picasso.webp'
+  -#       %span.picasso-frame-text#picasso-frame-text1= 'Click me to turn me into a moving artwork'
+  -#       %span.picasso-frame-text#picasso-frame-text2= 'TRY IT!'
+  -#     .picasso-frame#hidden-picasso-frame{onclick: "this.style.display = 'none'; document.getElementById('visible-picasso-frame').style.display = 'inline-block';"}
+  -#       = image_tag 'pablo_picasso.gif'
+  -#
+  -#   .col.s12.center-align
+  -#     = link_to 'ENTER', '#', {id: 'brush-stroke'}
+  -#
+  -# .row
+  -#   .col.s12.center-align
+  -#     %p.home-text-paragraph
+  -#       We bring dead artists back to life and let them join web3
+  -#   .col.s12.center-align
+  -#     %p.home-text-paragraph
+  -#       Follow us for updates:
+  -#
+  -# .row{style: 'margin-top: 0;'}
+  -#   .col.s0.m2.l3
+  -#   .col.s6.m4.l3.center-align
+  -#     = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
+  -#       = image_tag 'twitter_logo.webp'
+  -#   .col.s6.m4.l3.center-align
+  -#     = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
+  -#       = image_tag 'discord_logo.webp'
+  -#   .col.s0.m2.l3
+  -#
+  -# .row
+  -#   .col.s12.center-align
+  -#     %p.home-text-paragraph
+  -#       The drop will be announced very soon!

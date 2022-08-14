@@ -1,8 +1,11 @@
 !!!
 %html
   %head
-    %title DeadArtists AI
+    %title= "#{@section.capitalize} | DeadArtists AI"
+    =#blup display_meta_tags(default_meta_tags)
+    %meta{charset: "utf-8"}
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}
+    = favicon_link_tag 'favicon.png'
     = csrf_meta_tags
     = csp_meta_tag
     -# https://www.beercss.com/
@@ -11,13 +14,19 @@
     -# ------------------------
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+
   %body
-    .background-image
-      = image_tag 'welcome_background.jpg'
+    - if @section == 'welcome'
+      .background-image
+        = image_tag 'welcome_background.jpg'
+      %main.responsive
+        = yield
 
-    - if @section != 'welcome'
-      = render "/layouts/navigation"
-
-    %main.responsive
-      = yield
-    = render '/layouts/flashes'
+    - else
+      .background-image
+        = video_tag 'home_background.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%'
+      .navigation
+        = render "/layouts/navigation"
+      %main.responsive.main-home
+        = yield
+      = render '/layouts/flashes'

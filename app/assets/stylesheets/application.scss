@@ -18,7 +18,11 @@
  @import "./_includes/variables";
 
  @import "./_modules/welcome";
+ @import "./_modules/home";
 
+.main-home {
+  background: $color-black;
+}
 
 .background-image {
   position: fixed;

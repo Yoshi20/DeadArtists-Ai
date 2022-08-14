@@ -1,7 +1,7 @@
 -# pc & tablet view:
 %nav.left.m.l
   = link_to root_path, class: (@section == 'welcome' ? 'active' : '') do
-    //blup %img.circle.small-margin{:src => asset_path("OxocareMini.png")}
+    = image_tag 'profile_pic_low_quali.webp', class: 'profile-pic-low-quali circle small-margin'
   - if current_user.present?
     = link_to contacts_path, class: (@section == 'contacts' ? 'active' : '') do
       %i contact_phone
