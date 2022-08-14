@@ -12,18 +12,52 @@
  *
  */
 
-// body {
-//   background-image: url('img_girl.jpg');
-//   background-repeat: no-repeat;
-//   background-attachment: fixed;
-//   background-size: 100% 100%;
-// }
 
-#picasso-frame:hover {
-  opacity: 0.9;
+ @import "./_includes/colors";
+ @import "./_includes/fonts";
+ @import "./_includes/variables";
+
+ @import "./_modules/welcome";
+
+
+.background-image {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 140vh;
+  min-width: 1090px;
+  z-index: -10;
+  img {
+    object-fit: cover;
+    object-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+  };
+  @media only screen and (min-width: $min-widths-m) {
+    min-height: 120vh;
+  }
+  @media only screen and (min-width: $min-widths-l) {
+    min-height: 100vh;
+  }
 }
 
-#brush_stroke:hover {
-  background-image: url(brush_stroke_white.png) !important;
-  color: black !important;
+.row .col.s0 {
+  display: none;
+}
+.row .col.m0 {
+  display: none;
+}
+@media only screen and (min-width: $min-widths-m) {
+  .row .col.s0 {
+    display: block;
+  }
+}
+@media only screen and (min-width: $min-widths-l) {
+  .row .col.s0 {
+    display: block;
+  }
+  .row .col.m0 {
+    display: block;
+  }
 }
