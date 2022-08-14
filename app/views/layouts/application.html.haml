@@ -25,8 +25,7 @@
     - else
       .background-image
         = video_tag 'home_background.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%'
-      .navigation
-        = render "/layouts/navigation"
+      = render "/layouts/navigation"
       %main.responsive.main-home
         = yield
       = render '/layouts/flashes'

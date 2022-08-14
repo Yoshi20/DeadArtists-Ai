@@ -34,4 +34,31 @@
     }
   }
 
+  .faq-title {
+    text-align: center;
+    font: bold 37px / 1.2em cinzel;
+  }
+
+  .faq-question {
+    font: 18px / 1.2em proxima-n-w01-reg;
+    line-height: 1.2em;
+  }
+
+  .faq-answer {
+    padding-left: 10%;
+    font: 16px / 1.2em proxima-n-w01-reg;
+  }
+
+
+  #play-svg {
+    position: absolute;
+    left: 25%;
+    top: 25%;
+    transition: transform .2s;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
 }
