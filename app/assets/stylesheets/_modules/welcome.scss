@@ -34,10 +34,12 @@
     width: 360px;
     height: 355px;
     padding-top: 5px;
+    max-width: 100%;
     cursor: pointer;
     img {
       width: 350px;
       height: 350px;
+      max-width: 97% !important;
     }
     &#visible-picasso-frame {
       .picasso-frame-text {
@@ -49,6 +51,7 @@
         text-align: center;
         padding: 0 20px;
         &#picasso-frame-text1 {
+          line-height: normal;
           margin: 62px auto 0px auto;
           font-size: 32px;
         }

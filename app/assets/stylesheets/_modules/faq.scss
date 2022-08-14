@@ -1,0 +1,20 @@
+.faq {
+  padding: 0px 10px;
+  color: $color-white;
+
+  .faq-text-title {
+    text-align: center;
+    font: bold 37px / 1.2em cinzel;
+  }
+
+  .faq-question {
+    font: 18px / 1.2em proxima-n-w01-reg;
+    line-height: 1.2em;
+  }
+
+  .faq-answer {
+    padding-left: 10%;
+    font: 16px / 1.2em proxima-n-w01-reg;
+  }
+
+}

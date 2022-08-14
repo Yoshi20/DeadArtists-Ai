@@ -1,5 +1,10 @@
 .home {
+  padding: 0px 10px;
   color: $color-white;
+
+  .title-row {
+    margin-top: 60px;
+  }
 
   #home-title-video {
     height: 180px;
@@ -9,11 +14,18 @@
     }
   }
 
+  .home-text-title {
+    text-align: center;
+    font: bold 37px / 1.2em cinzel;
+  }
+
   .home-text-paragraph {
     font: $font_7;
-    text-align: center;
-    font-size: 20px;
-    padding: 0 30rem;
+    font-size: 16px;
+    @media only screen and (min-width: $min-widths-m) {
+      padding: 0 30rem;
+      font-size: 20px;
+    }
   }
 
   .artist-frame {
@@ -34,26 +46,20 @@
     }
   }
 
-  .faq-title {
-    text-align: center;
-    font: bold 37px / 1.2em cinzel;
-  }
-
-  .faq-question {
-    font: 18px / 1.2em proxima-n-w01-reg;
-    line-height: 1.2em;
-  }
-
-  .faq-answer {
-    padding-left: 10%;
-    font: 16px / 1.2em proxima-n-w01-reg;
-  }
-
+  // .faq-question {
+  //   font: 18px / 1.2em proxima-n-w01-reg;
+  //   line-height: 1.2em;
+  // }
+  //
+  // .faq-answer {
+  //   padding-left: 10%;
+  //   font: 16px / 1.2em proxima-n-w01-reg;
+  // }
 
   #play-svg {
     position: absolute;
     left: 25%;
-    top: 25%;
+    top: 5%;
     transition: transform .2s;
     cursor: pointer;
     &:hover {

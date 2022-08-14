@@ -19,9 +19,11 @@
 
  @import "./_modules/welcome";
  @import "./_modules/home";
+ @import "./_modules/faq";
 
 .main-home {
   background: $color-black;
+  padding: 8rem 20rem;
 }
 
 .background-image {
@@ -85,22 +87,12 @@
   }
 }
 
-.row .col.s0 {
-  display: none;
-}
-.row .col.m0 {
-  display: none;
-}
-@media only screen and (min-width: $min-widths-m) {
-  .row .col.s0 {
-    display: block;
-  }
-}
 @media only screen and (min-width: $min-widths-l) {
-  .row .col.s0 {
-    display: block;
+  nav.l.left ~ main.responsive {
+    padding-left: 8rem;
   }
-  .row .col.m0 {
-    display: block;
-  }
+}
+
+.footer {
+  color: $color-white;
 }

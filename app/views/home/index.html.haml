@@ -24,81 +24,121 @@
       %p.home-text-paragraph
         Thanks to our AI its possible with just a click on the Minting button
 
-  -# .row
+  .row
+    .col.s12.center-align
+      %iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&amp;chainId=5", style: "max-width:100%;", width: "100%", height: "fit-content", frameborder: "0"}
+
+  -# .row.title-row#FAQs
   -#   .col.s12.center-align
-  -#     %iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&amp;chainId=5", style: "max-width:100%;", width: "100%", height: "fit-content", frameborder: "0"}
+  -#     %span.home-text-title= 'FAQs'
+  -#
+  -# .row{style: 'margin-top: 0;'}
+  -#   .col.s12.center-align
+  -#     = render 'Q&A', question: "How many DeadArtists NFT can be minted and what's the price?", answer: 'A maximum of 5000 NFT at a price of 0.02 ETH each'
+  -#     .small-divider
+  -#     = render 'Q&A', question: 'How often can a painting occur?', answer: 'Each painting of an artist can only occur once as DeadArtists NFT! This also ensures the conservation of value'
+  -#     .small-divider{style: 'margin-top: 0;'}
+  -#     = render 'Q&A', question: 'What intellectual property rights do holders have?', answer: 'Owners of DeadArtists NFT have full commercial art rights for the NFT they own'
+  -#     .small-divider{style: 'margin-top: 0;'}
+  -#     = render 'Q&A', question: 'What are the funds being used for?', answer: '100% of proceeds go directly to DeadArtists-AI holding.<br>This funding will be used to expand our team, launch new products and to create additional value for our community'
+  -#     .small-divider{style: 'margin-top: 0;'}
+  -#     -# = render 'Q&A', question: 'Do you have a roadmap?', answer: 'Sure, just scroll a little bit further'
+  -#     -# .small-divider{style: 'margin-top: 0;'}
+  -#     = render 'Q&A', question: 'How are the 5000 DeadArtists NFT distributed?', answer: '3800: Public sale<br>1000: DeadArtists Collector Members<br>200: DeadArtists-AI wallet for future airdrops, collaborations, marketing and advisors'
+  -#     .small-divider{style: 'margin-top: 0;'}
+  -#     = render 'Q&A', question: 'What rarity grade can a DeadArtists NFT have?', answer: 'Common<br>Uncommon<br>Rare<br>Epic<br>Legendary'
+  -#     .small-divider{style: 'margin-top: 0;'}
 
-  .row
+  .row.title-row#Roadmap
     .col.s12.center-align
-      %span.faq-title= 'FAQs'
-
-  .row{style: 'margin-top: 0;'}
-    .col.s12.center-align
-      = render 'Q&A', question: "How many DeadArtists NFT can be minted?", answer: 'A maximum of 5000 NFT at a price of 0.02 ETH each'
-      .small-divider
-      = render 'Q&A', question: 'How often can a painting occur?', answer: 'Each painting of an artist can only occur once as DeadArtists NFT! This also ensures the conservation of value'
-      .small-divider{style: 'margin-top: 0;'}
-      = render 'Q&A', question: 'What intellectual property rights do holders have?', answer: 'Owners of DeadArtists NFT have full commercial art rights for the NFT they own'
-      .small-divider{style: 'margin-top: 0;'}
-      = render 'Q&A', question: 'What are the funds being used for?', answer: '100% of proceeds go directly to DeadArtists-AI holding.<br>This funding will be used to expand our team, launch new products and to create additional value for our community'
-      .small-divider{style: 'margin-top: 0;'}
-      = render 'Q&A', question: 'Do you have a roadmap?', answer: 'Sure, just scroll a little bit further'
-      .small-divider{style: 'margin-top: 0;'}
-      = render 'Q&A', question: 'How are the 5000 DeadArtists NFT distributed?', answer: '3800: Public sale<br>1000: DeadArtists Collector Members<br>200: DeadArtists-AI wallet for future airdrops, collaborations, marketing and advisors'
-      .small-divider{style: 'margin-top: 0;'}
-      = render 'Q&A', question: 'What rarity grade can a DeadArtists NFT have?', answer: 'Common<br>Uncommon<br>Rare<br>Epic<br>Legendary'
-      .small-divider{style: 'margin-top: 0;'}
-
-  .row
-    .col.s12.center-align
-      %span.faq-title= 'Roadmap'
+      %span.home-text-title= 'Roadmap'
 
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align
       = image_tag 'roadmap.jpg', width: '100%'
 
-  .row
+  .row.title-row#How-it-Works
     .col.s12.center-align
-      %span.faq-title= 'How it Works'
+      %span.home-text-title= 'How it Works'
 
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -25px;'}
       = video_tag 'how_it_works.mp4', preload: 'auto', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
 
-  .row
+  .row.title-row#The-Community
     .col.s12.center-align
-      %span.faq-title= 'The Community'
+      %span.home-text-title= 'The Community'
 
   .row{style: 'margin-top: 0;'}
-    .col.s6.center-align
-      %p
+    .col.s6.left-align
+      %p.home-text-paragraph
         The DeadArtists community gets frequent updates about the project on Discord, Instagram and Twitter.
+      %p.home-text-paragraph.m.l
+        We will give you a platform to talk about your favorite Paintings, Artists or NFTs.
+      %p.home-text-paragraph.l
+        Join our Discord and get in touch with the Team.
     .col.s6.center-align
-      = image_tag 'community_image.webp', width: '100%'
+      = image_tag 'community_image.webp', width: '100%', style: 'max-width: 428px !important;'
 
   .row{style: 'margin-top: 0;'}
-    .col.s0.m2.l3
+    .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
         = image_tag 'twitter_logo.webp'
     .col.s6.m4.l3.center-align
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
         = image_tag 'discord_logo.webp'
-    .col.s0.m2.l3
+    .col.m.m2.l.l3
 
-  .row
+  .row.title-row#The-DeadArtists-AI-Club
     .col.s12.center-align
-      %span.faq-title= 'The DeadArtists-AI Club'
+      %span.home-text-title= 'The DeadArtists-AI Club'
 
   .row{style: 'margin-top: 0;'}
-    .col.s6.center-align
-      %p
+    .col.s6.m8.left-align
+      %p.home-text-paragraph
         The DeadArtists NFT is the key to an exclusive art club with many benefits.
-      %p
+      %p.home-text-paragraph
         As a holder YOU can decide which dead artist or painting will become the next DeadArtists NFT.
         %br
         You will be the first to get informed about cooperations and get whitelists from other interesting art related projects, exclusively selected by the DeadArtists-AI team.
+    .col.s6.m4.center-align
+      = image_tag 'club_image.webp', width: '100%', style: 'max-height: 361px !important; max-width: 241px !important;'
 
-    .col.s6.center-align
-      = image_tag 'club_image.webp', width: '100%'
+  .row.title-row#The-Artist-Database
+    .col.s12.center-align
+      %span.home-text-title= 'The Artist Database'
+
+  .row{style: 'margin-top: 0;'}
+    .col.s8.l9.left-align
+      %p.home-text-paragraph
+        Here you can search the database for artists who already became a DeadArtistsAI NFT.
+      %p.home-text-paragraph
+        You miss someone?
+      %p.home-text-paragraph
+        Get your DeadArtistsAI NFT and decide with the Community which artist and painting will be next to become a NFT!
+      .row
+        .col.s12.center-align{style: 'margin-top: 20px;'}
+          = link_to artists_path do
+            %button.border.round.large{style: 'color: white; border-color: white;'}
+              %span Click to go to the database
+              = image_tag 'database.svg'
+      .row.middle-align.m.l
+        .col.s4.center-align
+          = image_tag 'pablo_picasso2.webp', width: '100%', style: 'max-width: 202px !important;'
+        .col.s8.left-align
+          %p.home-text-paragraph{style: 'font-style: italic; font-family: playfair display,serif; letter-spacing: 0em;'}
+            “Art washes away from the soul the dust of everyday life.”
+            %br
+            ― Pablo Picasso
+    .col.s4.l3.center-align
+      = image_tag 'artist_database_image_right.jpg', width: '100%'
+
+  .row.title-row#The-Team
+    .col.s12.center-align
+      %span.home-text-title= 'The Team'
+
+  .row{style: 'margin-top: 0;'}
+    .col.s12.center-align
+      = image_tag 'the_team.svg', width: '100%'

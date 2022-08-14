@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index'
 
-  resources :settings, only: [:index]
+  get 'faq' => 'faq#index'
+
+  resources :artists, only: [:index]#, :update, :destroy]
 
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
   resources :users, only: [:index]#, :update, :destroy]
