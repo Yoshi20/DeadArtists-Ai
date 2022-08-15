@@ -11,6 +11,9 @@
   = link_to artists_path, class: (@section == 'artists' ? 'active' : '') do
     %i storage
     %div= 'Artists'
+  = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
+    %i storage
+    %div= 'Paintings'
   - if current_user.present?
     = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
       %i settings
@@ -33,6 +36,9 @@
   = link_to artists_path, class: (@section == 'artists' ? 'active' : '') do
     %i storage
     %div= 'Artists'
+  = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
+    %i storage
+    %div= 'Paintings'
   - if current_user.present?
     = link_to settings_path, class: (@section == 'settings' ? 'active' : '') do
       %i settings

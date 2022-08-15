@@ -1,0 +1,18 @@
+%article.no-padding
+  .row.no-space
+    .col.s5.center-align
+      = link_to painting_path(painting) do
+        %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
+    .col.s7
+      = link_to painting_path(painting) do
+        .padding
+          %p.bold.large-text= painting.name
+          %p.s= painting.description.truncate(90)
+          %p.m= painting.description.truncate(320)
+          %p.l= painting.description.truncate(900)
+    -# - if current_user.present? && current_user.admin?
+    -#   = link_to edit_painting_path(painting), style: 'position: absolute; right: 5px;' do
+    -#     %i edit
+    -# - if painting.wiki_link.present?
+    -#   = link_to painting.wiki_link, target: '_blank', style: 'position: absolute; right: 5px; bottom: 5px;' do
+    -#     %i info_outline

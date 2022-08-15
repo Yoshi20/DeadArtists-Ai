@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :artists
 
+  resources :paintings
+
   resources :settings, only: [:index]
 
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
