@@ -18,9 +18,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
+  def user_root_path
+    home_path
+  end
+
   def after_sign_in_path_for(resource)
     if request.referer.nil? or request.referer.include?('/users/')
-     root_path
+     home_path
     else
      request.referer
     end
@@ -33,7 +37,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(resource_or_scope)
-    root_path
+    home_path
   end
 
   def after_sign_out_path_for(resource_or_scope)
@@ -69,7 +73,7 @@ class ApplicationController < ActionController::Base
 
   def render_forbidden
     respond_to do |format|
-      format.html { redirect_to root_path, alert: t('flash.alert.unauthorized') }
+      format.html { redirect_to home_path, alert: t('flash.alert.unauthorized') }
       format.json { render json: { status: 'error', message: t('flash.alert.unauthorized') }, status: :forbidden }
     end
   end

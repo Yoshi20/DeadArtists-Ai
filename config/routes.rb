@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   get 'faq' => 'faq#index'
 
-  resources :artists, only: [:index]#, :update, :destroy]
+  resources :artists
+
+  resources :settings, only: [:index]
 
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
   resources :users, only: [:index]#, :update, :destroy]

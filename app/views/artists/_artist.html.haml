@@ -1,0 +1,16 @@
+%article.no-padding
+  .row.no-space
+    .col.s5
+      %img.responsive{src: artist.image_link, style: 'height: 265px;'}
+    .col.s7
+      .padding
+        %p.bold.large-text= artist.name
+        %p.s= artist.description.truncate(90)
+        %p.m= artist.description.truncate(700)
+        %p.l= artist.description.truncate(1950)
+    - if current_user.present? && current_user.admin?
+      = link_to edit_artist_path(artist), style: 'position: absolute; right: 5px;' do
+        %i edit
+    - if artist.wiki_link.present?
+      = link_to artist.wiki_link, target: '_blank', style: 'position: absolute; right: 5px; bottom: 5px;' do
+        %i info_outline

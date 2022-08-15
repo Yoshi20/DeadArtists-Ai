@@ -12,18 +12,22 @@
  *
  */
 
+@import "./_includes/colors";
+@import "./_includes/fonts";
+@import "./_includes/variables";
 
- @import "./_includes/colors";
- @import "./_includes/fonts";
- @import "./_includes/variables";
-
- @import "./_modules/welcome";
- @import "./_modules/home";
- @import "./_modules/faq";
+@import "./_modules/artists";
+@import "./_modules/faq";
+@import "./_modules/home";
+@import "./_modules/welcome";
 
 .main-black {
   background: $color-black;
   padding: 8rem 20rem;
+}
+
+#error_explanation {
+  margin-left: 15px;
 }
 
 .background-image {
