@@ -4,7 +4,8 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.1.0",
     "@hotwired/turbo-rails": "^7.1.3",
-    "esbuild": "^0.14.53"
+    "esbuild": "^0.14.53",
+    "tom-select": "^2.1.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
