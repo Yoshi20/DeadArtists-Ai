@@ -95,7 +95,7 @@ gem 'http_accept_language'
 # # See https://github.com/svenfuchs/rails-i18n
 gem 'rails-i18n', '~> 7.0.0' # (rails locale data collection)
 
-# # See https://devcenter.heroku.com/articles/getting-started-with-rails4#visit-your-application
-# group :staging, :production do
-#   gem 'rails_12factor' # (Heroku integration)
-# end
+# See https://devcenter.heroku.com/articles/getting-started-with-rails4#visit-your-application
+group :staging, :production do
+  gem 'rails_12factor' # (Heroku integration)
+end
