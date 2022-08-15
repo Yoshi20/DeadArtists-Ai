@@ -21,6 +21,9 @@
 @import "./_modules/home";
 @import "./_modules/welcome";
 
+@import "tom-select/dist/css/tom-select.default";
+// @import "tom-select/dist/css/tom-select.bootstrap4";
+
 .main-black {
   background: $color-black;
   padding: 8rem 20rem;
