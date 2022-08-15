@@ -1,4 +1,4 @@
-class Painting < ApplicationRecord
+class Nft < ApplicationRecord
   belongs_to :artist
   belongs_to :painting
 

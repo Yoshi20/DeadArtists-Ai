@@ -5,19 +5,6 @@
 
   .row
     .col.s12.center-align
-
-      %select#select-beast{:autocomplete => "off", :placeholder => "Select a person...", data: { controller: 'tom-select' }}
-        %option{:value => ""} Select a person...
-        %option{:value => "4"} Thomas Edison
-        %option{:value => "1"} Nikola
-        %option{:value => "3"} Nikola Tesla
-        %option{:value => "5"} Arnold Schwarzenegger
-
-
-      %select#select-artist{autocomplete: "off", placeholder: "Select a person...", data: { controller: 'tom-select' }}
-        - @artists.each do |artist|
-          %option{value: artist.id.to_s}= artist.name
-
       .field.suffix.border
         %select#select-artist{autocomplete: "off", placeholder: "Select an artist...", data: { controller: 'tom-select' }}
           %option{value: ""} Select an artist...
