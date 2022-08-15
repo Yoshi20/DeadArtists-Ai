@@ -2,6 +2,9 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
   before_action { @section = 'artists' }
 
+  before_action :authenticate_admin!, except: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @artists = Artist.all
   end
@@ -22,7 +25,7 @@ class ArtistsController < ApplicationController
     @artist = Artist.new(artist_params)
     respond_to do |format|
       if @artist.save
-        format.html { redirect_to artists_path, notice: t('flash.notice.creating_artist') }
+        format.html { redirect_to artist_path(@artist), notice: t('flash.notice.creating_artist') }
         format.json { render :show, status: :created, location: @artist }
       else
         format.html { render :new }
@@ -34,7 +37,7 @@ class ArtistsController < ApplicationController
   def update
     respond_to do |format|
       if @artist.update(artist_params)
-        format.html { redirect_to artists_path, notice: t('flash.notice.updating_artist') }
+        format.html { redirect_to artist_path(@artist), notice: t('flash.notice.updating_artist') }
         format.json { render :show, status: :ok, location: @artist }
       else
         format.html { render :edit }

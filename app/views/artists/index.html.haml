@@ -6,8 +6,8 @@
   .row
     .col.s12.center-align
       .field.suffix.border
-        %select#select-artist{autocomplete: "off", placeholder: "Select an artist...", data: { controller: 'tom-select' }}
-          %option{value: ""} Select an artist...
+        %select#select-artist{autocomplete: "off", placeholder: "Search for an artist...", data: { controller: 'tom-select' }}
+          %option{value: ""} Search for an artist...
           - @artists.each do |artist|
             %option{value: artist.id.to_s}= artist.name
         %i arrow_drop_down

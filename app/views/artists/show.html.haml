@@ -1,0 +1,21 @@
+.artists
+  .row
+    .col.s12.center-align
+      %span.artists-text-title= @artist.name
+  .row
+    .col.s12.center-align
+      %img.responsive{src: @artist.image_link, style: 'max-height: 265px !important; width: auto !important;'}
+  .row{style: 'margin-top: 0;'}
+    .col.s12
+      .padding
+        %p= @artist.description
+  - if @artist.wiki_link.present?
+    .row{style: 'margin-top: 0;'}
+      .col.s12.center-align
+        = link_to @artist.wiki_link, target: '_blank' do
+          %button.round.large
+            %span Read more on Wikipedia
+
+  - if current_user.present? && current_user.admin?
+    = link_to edit_artist_path(@artist), style: 'position: absolute; right: 5px; top: 5px;' do
+      %i edit
