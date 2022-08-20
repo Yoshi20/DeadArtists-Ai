@@ -18,7 +18,7 @@
         - @nfts.each do |nft|
           = render nft
       - else
-        %p No nfts yet...
+        %p No nfts found...
 
   - if current_user.present? && current_user.admin?
     .row

@@ -6,7 +6,9 @@ class PaintingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @artists = Artist.all.select(:id, :name)
     @paintings = Painting.all
+    @paintings = @paintings.where(artist_id: params[:artist_id]) if params[:artist_id].present?
   end
 
   def show
