@@ -17,10 +17,10 @@
   = link_to nfts_path, class: (@section == 'nfts' ? 'active' : '') do
     %i auto_awesome
     %div= 'NFTs'
-  -# - if current_user.present?
-  -#   = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
-  -#     %i settings
-  -#     %div= t('settings.title')
+  - if current_user.present?
+    = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
+      %i settings
+      %div= t('settings.title')
   -# - else
   -#   = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
   -#     %i input

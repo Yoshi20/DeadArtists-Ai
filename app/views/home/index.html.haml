@@ -2,7 +2,6 @@
   .row
     .col.s12.center-align
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
-
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -40rem;'}
       %p.home-text-paragraph
@@ -23,8 +22,7 @@
   .row
     .col.s12.center-align
       %p.home-text-paragraph
-        Thanks to Dead Artists AI its possible with just a click on the Minting button:
-
+        Thanks to Dead Artists AI its possible to get one of 5000 such artworks with just a click on the Minting button:
   .row
     .col.s12.center-align
       -# blup: dark theme
@@ -33,7 +31,6 @@
   .row.title-row#How-it-Works
     .col.s12.center-align
       %span.home-text-title= 'How it Works'
-
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -25px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
@@ -42,18 +39,16 @@
   .row.title-row#The-Community
     .col.s12.center-align
       %span.home-text-title= 'The Community'
-
   .row{style: 'margin-top: 0;'}
     .col.s6.left-align
       %p.home-text-paragraph
         The Dead Artists community gets frequent project updates on Twitter and Discord.
       %p.home-text-paragraph.m.l
-        We will give you a platform to talk about your favorite Paintings, Artists or NFTs.
+        We will give you a platform to talk about your favorite paintings, artists or NFTs.
       %p.home-text-paragraph.l
-        Join our Discord and get in touch with the Team.
+        Join our Discord and get in touch with the team.
     .col.s6.center-align
       = image_tag 'community_image.webp', width: '100%', style: 'max-width: 428px !important;'
-
   .row{style: 'margin-top: 0;'}
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
@@ -67,7 +62,6 @@
   .row.title-row#The-Dead-Artists-AI-Club
     .col.s12.center-align
       %span.home-text-title= 'The Club'
-
   .row{style: 'margin-top: 0;'}
     .col.s6.m8.left-align
       %p.home-text-paragraph
@@ -82,7 +76,6 @@
   .row.title-row#The-Artist-Database
     .col.s12.center-align
       %span.home-text-title= 'The Database'
-
   .row{style: 'margin-top: 0;'}
     .col.s8.l9.left-align
       %p.home-text-paragraph
@@ -92,7 +85,7 @@
         .col.s12.center-align{style: 'margin-top: 20px;'}
           = link_to paintings_path do
             %button.border.round.large
-              %span Click to go to the database
+              %span Click here to go to the database
               = image_tag 'database.svg', class: 'color-default'
       .row.middle-align
         .col.s4.center-align
@@ -108,7 +101,6 @@
   .row.title-row#The-Team
     .col.s12.center-align
       %span.home-text-title= 'The Team'
-
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align
       = image_tag 'the_team.jpg', width: '100%'
