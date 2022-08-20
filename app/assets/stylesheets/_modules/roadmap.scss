@@ -7,4 +7,104 @@
     font: bold 37px / 1.2em cinzel;
   }
 
+  /* Timeline Container */
+  .timeline {
+    padding: 20px;
+  }
+
+  /* Card container */
+  .roadmap-card {
+    position: relative;
+    max-width: 100%;
+    margin-top: 0px;
+    padding: 30px;
+  }
+
+  /* Global ::before */
+  .roadmap-card::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    border: solid $color-default;
+  }
+
+  /* Setting the border of top, bottom, left */
+  .roadmap-card:nth-child(odd)::before {
+    left: 0px;
+    top: -5px;
+    bottom: -5px;
+    border-width: 5px 0 5px 5px;
+    border-radius: 50px 0 0 50px;
+  }
+
+  /* Setting the border of top, bottom, right */
+  .roadmap-card:nth-child(even)::before {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-width: 5px 5px 5px 0;
+    border-radius: 0 50px 50px 0;
+  }
+
+  /* Removing the border if it is the first roadmap-card */
+  .roadmap-card:first-child::before {
+    border-top: 0;
+    border-top-left-radius: 0;
+  }
+
+  /* Removing the border if it is the last roadmap-card  and it's odd */
+  .roadmap-card:last-child:nth-child(odd)::before {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    z-index: 1;
+  }
+
+  /* Removing the border if it is the last roadmap-card  and it's even */
+  .roadmap-card:last-child:nth-child(even)::before {
+    border-bottom: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* Information about the timeline */
+  .info {
+    display: flex;
+    flex-direction: column;
+    background: #333;
+    color: gray;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  /* Title of the roadmap-card */
+  .title {
+    color: $color-default;
+    position: relative;
+  }
+
+  /* Timeline dot  */
+  .title::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 999px;
+    border: 3px solid $color-default;
+  }
+
+  /* text right if the roadmap-card is even  */
+  .roadmap-card:nth-child(even) > .info > .title {
+    text-align: right;
+  }
+
+  /* setting dot to the left if the roadmap-card is odd */
+  .roadmap-card:nth-child(odd) > .info > .title::before {
+    left: -45px;
+  }
+
+  /* setting dot to the right if the roadmap-card is odd */
+  .roadmap-card:nth-child(even) > .info > .title::before {
+    right: -45px;
+  }
+
 }
