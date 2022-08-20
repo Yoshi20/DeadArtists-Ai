@@ -1,13 +1,13 @@
 class PaintingsController < ApplicationController
   before_action :set_painting, only: [:show, :edit, :update, :destroy]
-  before_action { @section = 'paintings' }
+  before_action { @section = 'database' }
 
   before_action :authenticate_admin!, except: [:index, :show]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @artists = Artist.all.select(:id, :name)
-    @paintings = Painting.all
+    @paintings = Painting.includes(:artist).all
     @paintings = @paintings.where(artist_id: params[:artist_id]) if params[:artist_id].present?
   end
 

@@ -11,10 +11,22 @@
         %p= @artist.description
   - if @artist.wiki_link.present?
     .row{style: 'margin-top: 0;'}
-      .col.s12.center-align
+      .col.s12.center-align{style: 'margin-top: -10px;'}
         = link_to @artist.wiki_link, target: '_blank' do
           %button.round.large
             %span Read more on Wikipedia
+
+  - paintings = @artist.paintings
+  - if paintings.any?
+    .row{style: 'margin-top: 0;'}
+      .col.s12
+        .padding
+          %span.artists-text-title= "Painting#{paintings.count > 1 ? 's' : ''}"
+    .row{style: 'margin-top: 0;'}
+      - paintings.each do |painting|
+        .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
+          = link_to painting do
+            %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
 
   - if current_user.present? && current_user.admin?
     .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}

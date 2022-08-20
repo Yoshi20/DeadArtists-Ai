@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
-  before_action { @section = 'artists' }
+  before_action { @section = 'database' }
 
   before_action :authenticate_admin!, except: [:index, :show]
   skip_before_action :authenticate_user!, only: [:index, :show]
