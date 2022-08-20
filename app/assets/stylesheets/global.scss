@@ -29,6 +29,24 @@
   }
 }
 
+#pixel-grid {
+  background-image: url(grid.webp);
+  background-size: auto;
+  background-repeat: repeat;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  --bg-position: fixed;
+  --bg-overlay-color: rgb(153,153,153);
+  --bg-gradient: none;
+  --fill-layer-image-opacity: 1;
+  --fill-layer-video-opacity: 1;
+  --fill-layer-background-overlay-color: transparent;
+  --fill-layer-background-overlay-position: absolute;
+}
+
 .social-media-button {
   border-radius: 20px;
   box-shadow: 0 0 3px rgba(0,0,0,.5);

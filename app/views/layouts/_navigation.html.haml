@@ -8,20 +8,25 @@
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i question_answer
     %div= 'FAQs'
-  = link_to artists_path, class: (@section == 'artists' ? 'active' : '') do
-    %i storage
-    %div= 'Artists'
+  -# blup
+  = link_to artists_path, class: (@section == 'roadmap' ? 'active' : '') do
+    %i route
+    %div= 'Roadmap'
   = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
-    %i storage
-    %div= 'Paintings'
-  - if current_user.present?
-    = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
-      %i settings
-      %div= t('settings.title')
-  - else
-    = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
-      %i input
-      %div= t('login')
+    %i collections
+    %div= 'Database'
+  -# blup
+  = link_to artists_path, class: (@section == 'nfts' ? 'active' : '') do
+    %i auto_awesome
+    %div= 'NFTs'
+  -# - if current_user.present?
+  -#   = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
+  -#     %i settings
+  -#     %div= t('settings.title')
+  -# - else
+  -#   = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
+  -#     %i input
+  -#     %div= t('login')
   .modal.large.left.no-scroll
   .modal.left
 
@@ -33,19 +38,24 @@
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i question_answer
     %div= 'FAQs'
-  = link_to artists_path, class: (@section == 'artists' ? 'active' : '') do
-    %i storage
-    %div= 'Artists'
+  -# blup
+  = link_to artists_path, class: (@section == 'roadmap' ? 'active' : '') do
+    %i route
+    %div= 'Roadmap'
   = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
-    %i storage
-    %div= 'Paintings'
-  - if current_user.present?
-    = link_to settings_path, class: (@section == 'settings' ? 'active' : '') do
-      %i settings
-      %div= t('settings.title')
-  - else
-    = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
-      %i input
-      %div= t('login')
+    %i collections
+    %div= 'Database'
+  -# blup
+  = link_to artists_path, class: (@section == 'nfts' ? 'active' : '') do
+    %i auto_awesome
+    %div= 'NFTs'
+  -# - if current_user.present?
+  -#   = link_to settings_path, class: (@section == 'settings' ? 'active' : '') do
+  -#     %i settings
+  -#     %div= t('settings.title')
+  -# - else
+  -#   = link_to session_path(:user), class: (@section == 'login' ? 'active' : ''), style: 'margin-top: auto;' do
+  -#     %i input
+  -#     %div= t('login')
   .modal.large.left.no-scroll
   .modal.bottom.medium

@@ -2,9 +2,9 @@
 %html
   %head
     - if @section.present?
-      %title= "#{@section.capitalize} | DeadArtists AI"
+      %title= "#{@section.capitalize} | Dead Artists AI"
     - else
-      %title= "DeadArtists AI"
+      %title= "Dead Artists AI"
     =#blup display_meta_tags(default_meta_tags)
     %meta{charset: "utf-8"}
     %meta{content: "width=device-width,initial-scale=1", name: "viewport"}
@@ -32,6 +32,7 @@
           = image_tag 'paper_background.jpg'
         - else
           = video_tag 'home_background.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%'
+          #pixel-grid
       = render "/layouts/navigation"
       %main.responsive.main-black
         = yield
