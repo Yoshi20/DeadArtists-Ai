@@ -1,0 +1,33 @@
+= form_for nft, html: { "data-turbo": "false" } do |f|
+  .row
+    .col.s12
+      - if nft.errors.any?
+        #error_explanation
+          %ul
+            - nft.errors.full_messages.each do |message|
+              %li= message
+  .row
+    .col.s12
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :name
+        = f.label :name
+  .row{style: 'margin-top: 0;'}
+    .col.s12
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :description
+        = f.label :description
+  .row{style: 'margin-top: 0;'}
+    .col.s12
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :image_link
+        = f.label :image_link
+  .row{style: 'margin-top: 0;'}
+    .col.s12
+      .field.label.border{style: 'margin-bottom: 0px;'}
+        = f.text_field :wiki_link
+        = f.label :wiki_link
+  .row{style: 'margin-top: 0;'}
+    .col.s12.center-align
+      %button.small-elevate{type: 'submit'}
+        %i save
+        %span= t('save')

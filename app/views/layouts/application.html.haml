@@ -26,12 +26,12 @@
         = yield
     - else
       .background-image
-        - if @section == 'artists'
+        - if @section == 'paintings'
           = image_tag 'pl_background.jpg'
         - elsif @section == 'faq'
           = image_tag 'paper_background.jpg'
         - else
-          = video_tag 'home_background.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%'
+          = video_tag 'home_background.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%'
           #pixel-grid
       = render "/layouts/navigation"
       %main.responsive.main-black

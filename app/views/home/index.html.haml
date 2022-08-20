@@ -1,7 +1,7 @@
 .home
   .row
     .col.s12.center-align
-      = video_tag 'home_title.mp4', preload: 'auto', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
+      = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
 
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -40rem;'}
@@ -44,7 +44,7 @@
 
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -25px;'}
-      = video_tag 'how_it_works.mp4', preload: 'auto', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
+      = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
 
   .row.title-row#The-Community

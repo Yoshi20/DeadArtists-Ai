@@ -17,15 +17,17 @@
 @import "./_includes/fonts";
 @import "./_includes/variables";
 
-// modules
-@import "./_modules/artists";
-@import "./_modules/faq";
-@import "./_modules/home";
-@import "./_modules/paintings";
-@import "./_modules/welcome";
-
 // npm packages
 @import "tom-select/dist/css/tom-select.default";
 
 // global
 @import "./global";
+
+// modules
+@import "./_modules/artists";
+@import "./_modules/faq";
+@import "./_modules/home";
+@import "./_modules/nfts";
+@import "./_modules/paintings";
+@import "./_modules/roadmap";
+@import "./_modules/welcome";

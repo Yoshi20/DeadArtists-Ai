@@ -6,9 +6,13 @@ Rails.application.routes.draw do
 
   get 'faq' => 'faq#index'
 
+  get 'roadmap' => 'roadmap#index'
+
   resources :artists
 
   resources :paintings
+
+  resources :nfts
 
   resources :settings, only: [:index]
 

@@ -8,15 +8,13 @@
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i question_answer
     %div= 'FAQs'
-  -# blup
-  = link_to artists_path, class: (@section == 'roadmap' ? 'active' : '') do
+  = link_to roadmap_path, class: (@section == 'roadmap' ? 'active' : '') do
     %i route
     %div= 'Roadmap'
   = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
     %i collections
     %div= 'Database'
-  -# blup
-  = link_to artists_path, class: (@section == 'nfts' ? 'active' : '') do
+  = link_to nfts_path, class: (@section == 'nfts' ? 'active' : '') do
     %i auto_awesome
     %div= 'NFTs'
   -# - if current_user.present?
@@ -38,15 +36,13 @@
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i question_answer
     %div= 'FAQs'
-  -# blup
-  = link_to artists_path, class: (@section == 'roadmap' ? 'active' : '') do
+  = link_to roadmap_path, class: (@section == 'roadmap' ? 'active' : '') do
     %i route
     %div= 'Roadmap'
   = link_to paintings_path, class: (@section == 'paintings' ? 'active' : '') do
     %i collections
     %div= 'Database'
-  -# blup
-  = link_to artists_path, class: (@section == 'nfts' ? 'active' : '') do
+  = link_to nfts_path, class: (@section == 'nfts' ? 'active' : '') do
     %i auto_awesome
     %div= 'NFTs'
   -# - if current_user.present?

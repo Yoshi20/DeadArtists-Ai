@@ -1,0 +1,18 @@
+%article.no-padding
+  .row.no-space
+    .col.s5.center-align
+      = link_to nft_path(nft) do
+        %img.responsive{src: nft.image_link, style: 'max-height: 265px !important;'}
+    .col.s7
+      = link_to nft_path(nft) do
+        .padding
+          %p.bold.large-text= nft.name
+          %p.s= nft.description.truncate(90)
+          %p.m= nft.description.truncate(320)
+          %p.l= nft.description.truncate(900)
+    -# - if current_user.present? && current_user.admin?
+    -#   = link_to edit_nft_path(nft), style: 'position: absolute; right: 5px;' do
+    -#     %i edit
+    -# - if nft.wiki_link.present?
+    -#   = link_to nft.wiki_link, target: '_blank', style: 'position: absolute; right: 5px; bottom: 5px;' do
+    -#     %i info_outline
