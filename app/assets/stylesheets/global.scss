@@ -97,12 +97,12 @@
 }
 
 .footer {
-  color: $color-white;
+  color: $color-text;
 }
 
 // beercss colors
 body.dark {
-  --primary: #6750A4; //blup $color-default;
+  --primary: #B0903D; // = $color-default;
   --on-primary: #FFFFFF;
   // --primary: #D0BCFF;
   // --on-primary: #371E73;
