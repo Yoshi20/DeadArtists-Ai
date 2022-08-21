@@ -2,11 +2,18 @@
   .row
     .col.s12.center-align
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
+  -# .row{style: 'margin-top: 0;'}
+  -#   .col.s12.center-align{style: 'margin-top: -40rem;'}
+  -#     %p.home-text-paragraph
+  -#       -# Yeah, you should absolutely own your personal Van Gogh, Picasso or Da Vinci!
+  -#       -# Yes, you should without a doubt own your personal Van Gogh, Picasso or Da Vinci!
+  -#       Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
+  -# blup
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -40rem;'}
-      %p.home-text-paragraph
-        Yes, you should without a doubt own your personal Van Gogh, Picasso or Da Vinci!
-        -#blup Yeah, you should absolutely own your personal Van Gogh, Picasso or Da Vinci!
+      %p.home-text-paragraph{style: 'font-family: BungeeShade; transform: rotate(-1deg); font-size: 26px;'}
+        Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
+
 
   .row
     .col.s4.center-align
@@ -25,14 +32,17 @@
         Thanks to Dead Artists AI its possible to get one of 5000 such artworks with just a click on the Minting button:
   .row
     .col.s12.center-align
-      -# blup: dark theme
-      %iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5", width: "600px", height: "600px", style: "max-width:100%;", frameborder: "0"}
+      %iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", width: "400px", height: "400px", style: "max-width:100%;", frameborder: "0"}
+
+  .row
+    .col.s12.center-align
+      = render 'text_band', text: '5000 unique NFTs as GIFs • Over 250 different Artists • 20 Movements • Unlockable content'
 
   .row.title-row#How-it-Works
     .col.s12.center-align
       %span.home-text-title= 'How it Works'
   .row{style: 'margin-top: 0;'}
-    .col.s12.center-align{style: 'margin-top: -25px;'}
+    .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
 
@@ -58,6 +68,10 @@
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
         = image_tag 'discord_logo.webp'
     .col.m.m2.l.l3
+
+  .row
+    .col.s12.center-align
+      = render 'text_band', text: 'Claude Monet • Gustav Klimt • Edvard Munch • Pablo Picasso • Francis Bacon • Willem de Kooning • Vincent van Gogh • Andy Warhol • Leonora Carrington • Alla Horska • Cy Twombly • Leonardo da Vinci • Hilma af Klint • Wassily Kandinsky • Henri Matisse • Salvador Dali'
 
   .row.title-row#The-Dead-Artists-AI-Club
     .col.s12.center-align
