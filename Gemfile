@@ -95,6 +95,9 @@ gem 'haml-rails' # (HAML)
 # See https://github.com/iain/http_accept_language
 gem 'http_accept_language'
 
+# See: https://github.com/jnunemaker/httparty
+gem 'httparty'
+
 # # See https://github.com/svenfuchs/rails-i18n
 gem 'rails-i18n', '~> 7.0.0' # (rails locale data collection)
 
