@@ -4,17 +4,16 @@
 
   .faq-text-title {
     text-align: center;
-    font: bold 37px / 1.2em cinzel;
+    font: $font-title;
   }
 
   .faq-question {
-    font: 18px / 1.2em proxima-n-w01-reg;
-    line-height: 1.2em;
+    font: 18px / 1.2em Roboto;
   }
 
   .faq-answer {
     padding-left: 10%;
-    font: 16px / 1.2em proxima-n-w01-reg;
+    font: 16px / 1.2em Roboto;
   }
 
 }

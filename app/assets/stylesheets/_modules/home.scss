@@ -16,11 +16,11 @@
 
   .home-text-title {
     text-align: center;
-    font: bold 37px / 1.2em cinzel;
+    font: $font-title;
   }
 
   .home-text-paragraph {
-    font: $font_7;
+    font-family: Roboto;
     font-size: 16px;
     @media only screen and (min-width: $min-widths-m) {
       padding: 0 30rem;
@@ -45,16 +45,6 @@
       height: 97%;
     }
   }
-
-  // .faq-question {
-  //   font: 18px / 1.2em proxima-n-w01-reg;
-  //   line-height: 1.2em;
-  // }
-  //
-  // .faq-answer {
-  //   padding-left: 10%;
-  //   font: 16px / 1.2em proxima-n-w01-reg;
-  // }
 
   #play-svg {
     position: absolute;

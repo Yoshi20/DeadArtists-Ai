@@ -1,11 +1,22 @@
-$font_0: normal normal normal 100px/1.4em cinzel,serif;
-$font_1: normal normal normal 16px/1.4em din-next-w01-light,din-next-w02-light,din-next-w10-light,sans-serif;
-$font_2: normal normal normal 50px/1.4em 'playfair display',serif;
-$font_3: normal normal normal 30px/1.4em cinzel,serif;
-$font_4: normal normal normal 24px/1.4em cinzel,serif;
-$font_5: normal normal normal 20px/1.4em cinzel,serif;
-$font_6: normal normal normal 16px/1.4em cinzel,serif;
-$font_7: normal normal normal 20px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
-$font_8: normal normal normal 16px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
-$font_9: normal normal normal 14px/1.4em proxima-n-w01-reg,proxima-n-w05-reg,sans-serif;
-$font_10: normal normal normal 12px/1.4em din-next-w01-light,din-next-w02-light,din-next-w10-light,sans-serif;
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto-Bold';
+  src: url('Roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CarterOne';
+  src: url('Carter_One/CarterOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-title: bold 37px / 1.2em CarterOne;
