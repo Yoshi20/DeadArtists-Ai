@@ -7,12 +7,13 @@
   -#     %p.home-text-paragraph
   -#       -# Yeah, you should absolutely own your personal Van Gogh, Picasso or Da Vinci!
   -#       -# Yes, you should without a doubt own your personal Van Gogh, Picasso or Da Vinci!
-  -#       Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
+  -#       -# Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
+  -#       Yes, you should definitely own a Van Gogh, Picasso or Da Vinci!
   -# blup
   .row{style: 'margin-top: 0;'}
     .col.s12.center-align{style: 'margin-top: -40rem;'}
-      %p.home-text-paragraph{style: 'font-family: BungeeShade; transform: rotate(-1deg); font-size: 26px;'}
-        Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
+      %p.home-text-paragraph{style: 'font-family: CarterOne; transform: rotate(-1deg); font-size: 26px;'}
+        Yes, you should definitely own a Van Gogh, Picasso or Da Vinci!
 
 
   .row
@@ -32,7 +33,7 @@
         Thanks to Dead Artists AI its possible to get one of 5000 such artworks with just a click on the Minting button:
   .row
     .col.s12.center-align
-      %iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", width: "400px", height: "400px", style: "max-width:100%;", frameborder: "0"}
+      %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
 
   .row
     .col.s12.center-align
@@ -45,6 +46,10 @@
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
+
+  .row
+    .col.s12.center-align
+      = render 'text_band', text: 'Claude Monet • Gustav Klimt • Edvard Munch • Pablo Picasso'
 
   .row.title-row#The-Community
     .col.s12.center-align
@@ -71,7 +76,7 @@
 
   .row
     .col.s12.center-align
-      = render 'text_band', text: 'Claude Monet • Gustav Klimt • Edvard Munch • Pablo Picasso • Francis Bacon • Willem de Kooning • Vincent van Gogh • Andy Warhol • Leonora Carrington • Alla Horska • Cy Twombly • Leonardo da Vinci • Hilma af Klint • Wassily Kandinsky • Henri Matisse • Salvador Dali'
+      = render 'text_band', text: 'Francis Bacon • Willem de Kooning • Vincent van Gogh • Andy Warhol'
 
   .row.title-row#The-Dead-Artists-AI-Club
     .col.s12.center-align
@@ -86,6 +91,10 @@
         You will be the first to get informed about cooperations and get whitelists from other interesting art related projects, exclusively selected by the Dead Artists AI team.
     .col.s6.m4.center-align
       = image_tag 'club_image.webp', width: '100%', style: 'max-height: 361px !important; max-width: 241px !important;'
+
+  .row
+    .col.s12.center-align
+      = render 'text_band', text: 'Leonora Carrington • Alla Horska • Cy Twombly • Leonardo da Vinci'
 
   .row.title-row#The-Artist-Database
     .col.s12.center-align
@@ -111,6 +120,10 @@
             ― Pablo Picasso
     .col.s4.l3.center-align
       = image_tag 'artist_database_image_right.jpg', width: '100%'
+
+  .row
+    .col.s12.center-align
+      = render 'text_band', text: 'Hilma af Klint • Wassily Kandinsky • Henri Matisse • Salvador Dali'
 
   .row.title-row#The-Team
     .col.s12.center-align
