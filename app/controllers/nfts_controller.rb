@@ -6,7 +6,7 @@ class NftsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @nfts = Nft.all
+    @nfts = Nft.all.limit(30)
   end
 
   def show
