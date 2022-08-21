@@ -11,27 +11,27 @@
       .field.label.border{style: 'margin-bottom: 0px;'}
         = f.text_field :name
         = f.label :name
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .field.label.border{style: 'margin-bottom: 0px;'}
         = f.text_field :description
         = f.label :description
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .field.label.border{style: 'margin-bottom: 0px;'}
         = f.text_field :image_link
         = f.label :image_link
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .field.label.border{style: 'margin-bottom: 0px;'}
         = f.text_field :wiki_link
         = f.label :wiki_link
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .field.label.border{style: 'margin-bottom: 0px;'}
         = f.select :artist_id, Artist.all.collect {|a| [ a.name, a.id ] }, {include_blank: ''}
         = f.label :artist_id, 'Artist'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12.center-align
       %button.small-elevate{type: 'submit'}
         %i save

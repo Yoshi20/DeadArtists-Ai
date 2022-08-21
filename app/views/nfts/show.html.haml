@@ -5,12 +5,12 @@
   .row
     .col.s12.center-align
       %img.responsive{src: @nft.image_link, style: 'max-height: 265px !important; width: auto !important;'}
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .padding
         %p= @nft.description
   - if @nft.wiki_link.present?
-    .row{style: 'margin-top: 0;'}
+    .row.mt-0
       .col.s12.center-align
         = link_to @nft.wiki_link, target: '_blank' do
           %button.round.large

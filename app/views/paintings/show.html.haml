@@ -5,12 +5,12 @@
   .row
     .col.s12.center-align
       %img.responsive{src: @painting.image_link, style: 'max-height: 265px !important; width: auto !important;'}
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12
       .padding
         %p= @painting.description
   - if @painting.wiki_link.present?
-    .row{style: 'margin-top: 0;'}
+    .row.mt-0
       .col.s12.center-align
         = link_to @painting.wiki_link, target: '_blank' do
           %button.round.large
@@ -18,11 +18,11 @@
 
   - artist = @painting.artist
   - if artist.present?
-    .row{style: 'margin-top: 0;'}
+    .row.mt-0
       .col.s12
         .padding
           %span.paintings-text-title= "Artist"
-    .row{style: 'margin-top: 0;'}
+    .row.mt-0
       .col.s12.center-align
         - if artist.image_link.present?
           = link_to artist do

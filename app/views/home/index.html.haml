@@ -2,7 +2,7 @@
   .row
     .col.s12.center-align
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
-  -# .row{style: 'margin-top: 0;'}
+  -# .row.mt-0
   -#   .col.s12.center-align{style: 'margin-top: -40rem;'}
   -#     %p.home-text-paragraph
   -#       -# Yeah, you should absolutely own your personal Van Gogh, Picasso or Da Vinci!
@@ -10,7 +10,7 @@
   -#       -# Yes, you should definitely own your personal Van Gogh, Picasso or Da Vinci!
   -#       Yes, you should definitely own a Van Gogh, Picasso or Da Vinci!
   -# blup
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12.center-align{style: 'margin-top: -40rem;'}
       %p.home-text-paragraph{style: 'font-family: CarterOne; transform: rotate(-1deg); font-size: 26px;'}
         Yes, you should definitely own a Van Gogh, Picasso or Da Vinci!
@@ -42,7 +42,7 @@
   .row.title-row#How-it-Works
     .col.s12.center-align
       %span.home-text-title= 'How it Works'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
@@ -54,7 +54,7 @@
   .row.title-row#The-Community
     .col.s12.center-align
       %span.home-text-title= 'The Community'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s6.left-align
       %p.home-text-paragraph
         The Dead Artists community gets frequent project updates on Twitter and Discord.
@@ -64,7 +64,7 @@
         Join our Discord and get in touch with the team.
     .col.s6.center-align
       = image_tag 'community_image.webp', width: '100%', style: 'max-width: 428px !important;'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
@@ -81,7 +81,7 @@
   .row.title-row#The-Dead-Artists-AI-Club
     .col.s12.center-align
       %span.home-text-title= 'The Club'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s6.m8.left-align
       %p.home-text-paragraph
         The Dead Artists NFT is the key to an exclusive art club with many benefits.
@@ -99,7 +99,7 @@
   .row.title-row#The-Artist-Database
     .col.s12.center-align
       %span.home-text-title= 'The Database'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s8.l9.left-align
       %p.home-text-paragraph
         In the database you can find all paintings and their respective artist that became a Dead Artists NFT.
@@ -128,6 +128,6 @@
   .row.title-row#The-Team
     .col.s12.center-align
       %span.home-text-title= 'The Team'
-  .row{style: 'margin-top: 0;'}
+  .row.mt-0
     .col.s12.center-align
       = image_tag 'the_team.jpg', width: '100%'
