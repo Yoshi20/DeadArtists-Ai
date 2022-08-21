@@ -1,21 +1,22 @@
 %article.no-padding
   .row.no-space
     .col.s5.center-align
-      = link_to painting do
-        %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
+      %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
     .col.s7
-      = link_to painting do
-        .padding{style: 'padding-bottom: 0 !important;'}
+      .row.no-space
+        .col.s12.center-align
           %p.bold.large-text= painting.name
-          %p.s= painting.description.truncate(90)
-          %p.m= painting.description.truncate(320)
-          %p.l= painting.description.truncate(900)
-      .row.no-space{style: 'margin-top: 0;'}
-        .col.s12.right-align.color-default{style: 'padding-right: 16rem;'}
-          = link_to artist_path(painting.artist) do
-            %span.s= painting.artist.name.truncate(20)
-            %span.m= painting.artist.name.truncate(30)
-            %span.l= painting.artist.name.truncate(60)
+          -# %p.s= painting.description.truncate(90)
+          -# %p.m= painting.description.truncate(320)
+          -# %p.l= painting.description.truncate(900)
+      .row
+        .col.s12.center-align
+          Artist
+          .color-default
+            = link_to artist_path(painting.artist) do
+              %span.s= painting.artist.name.truncate(20)
+              %span.m= painting.artist.name.truncate(30)
+              %span.l= painting.artist.name.truncate(60)
     -# - if current_user.present? && current_user.admin?
     -#   = link_to edit_painting_path(painting), style: 'position: absolute; right: 5px;' do
     -#     %i edit
