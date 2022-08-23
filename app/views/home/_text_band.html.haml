@@ -1,6 +1,7 @@
 .text-band
   .zigzag.zigzag-top
-  %marquee{behavior: "scroll", direction: "left"}
-    %span.home-text-paragraph
-      = text
+  - if text.present?
+    %marquee{behavior: "scroll", direction: "left"}
+      %span.text-band-text
+        = text
   .zigzag
