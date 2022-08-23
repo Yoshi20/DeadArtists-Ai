@@ -12,9 +12,13 @@
  *
  */
 
+// beercss@2.1.3
+@import "./beer.min.css"; // https://cdn.jsdelivr.net/npm/beercss@2.1.3/dist/cdn/beer.min.css
+
 // includes
 @import "./_includes/colors";
 @import "./_includes/fonts";
+@import "./_includes/icons";
 @import "./_includes/variables";
 
 // npm packages

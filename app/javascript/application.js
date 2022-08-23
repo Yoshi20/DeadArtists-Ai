@@ -1,4 +1,8 @@
 // Entry point for the build script in your package.json
+
+// beercss@2.1.3
+import "./beer.min.js"  // https://cdn.jsdelivr.net/npm/beercss@2.1.3/dist/cdn/beer.min.js
+
 import "@hotwired/turbo-rails"
 import "./controllers"
 
@@ -9,7 +13,10 @@ document.addEventListener("turbo:load", function (e) {
   }
 
   // background video: set random start time
-  document.getElementById("background-video").currentTime = Math.floor(Math.random()*5); // 5 = max video duration
+  let vid = document.getElementById("background-video")
+  if (vid != undefined) {
+    vid.currentTime = Math.floor(Math.random()*5); // 5 = max video duration
+  }
 })
 
 // Uncomment to disable hotwire
