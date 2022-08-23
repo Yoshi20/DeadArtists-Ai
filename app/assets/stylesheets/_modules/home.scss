@@ -44,15 +44,6 @@
     }
   }
 
-  .mint-iframe {
-    width: 400px;
-    height: 500px;
-    @media only screen and (min-width: $min-widths-m) {
-      width: 600px;
-      height: 600px;
-    }
-  }
-
   .artist-frame {
     display: inline-block;
     background: $color-default;

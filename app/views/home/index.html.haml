@@ -13,7 +13,7 @@
   .row.mt-0
     .col.s12.center-align{style: 'margin-top: -40rem;'}
       %p.home-text-paragraph{style: 'font-family: CarterOne; transform: rotate(-1deg); font-size: 26px;'}
-        Yes, you should definitely own a Van Gogh, Picasso or Da Vinci!
+        Yes, you should definitely own a Van Gogh, Picasso or Da Vinci for yourself!
 
 
   .row
@@ -30,10 +30,13 @@
   .row
     .col.s12.center-align
       %p.home-text-paragraph
-        Thanks to Dead Artists AI its possible to get one of 5000 such artworks with just a click on the Minting button:
+        Thanks to Dead Artists AI its possible to obtain a limited number of the 5000 unique artworks:
   .row
     .col.s12.center-align
-      %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
+      = link_to mint_path do
+        %button.round.large
+          %span Click here to go to the Mint page
+          %i auto_awesome
 
   .row
     .col.s12.center-align
@@ -111,7 +114,7 @@
           = link_to paintings_path do
             %button.border.round.large
               %span Click here to go to the database
-              = image_tag 'database.svg', class: 'color-default'
+              %i filter
       .row.middle-align
         .col.s4.center-align
           = image_tag 'pablo_picasso2.webp', width: '100%', style: 'max-width: 202px !important;'

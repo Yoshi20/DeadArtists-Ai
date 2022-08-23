@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'home' => 'home#index'
 
+  get 'mint' => 'mint#index'
+
   get 'faq' => 'faq#index'
 
   get 'roadmap' => 'roadmap#index'

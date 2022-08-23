@@ -5,6 +5,9 @@
   = link_to home_path, class: (@section == 'home' ? 'active' : '') do
     %i home
     %div= 'Home'
+  = link_to mint_path, class: (@section == 'mint' ? 'active' : '') do
+    %i auto_awesome
+    %div= 'Mint'
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i live_help
     %div= 'FAQs'
@@ -14,9 +17,6 @@
   = link_to paintings_path, class: (@section == 'database' ? 'active' : '') do
     %i filter
     %div= 'Database'
-  = link_to nfts_path, class: (@section == 'nfts' ? 'active' : '') do
-    %i auto_awesome
-    %div= 'NFTs'
   - if current_user.present?
     = link_to settings_path, class: (@section == 'settings' ? 'active' : ''), style: 'margin-top: auto;' do
       %i settings
@@ -33,6 +33,9 @@
   = link_to home_path, class: (@section == 'home' ? 'active' : '') do
     %i home
     %div= 'Home'
+  = link_to mint_path, class: (@section == 'mint' ? 'active' : '') do
+    %i auto_awesome
+    %div= 'Mint'
   = link_to faq_path, class: (@section == 'faq' ? 'active' : '') do
     %i live_help
     %div= 'FAQs'
@@ -42,9 +45,6 @@
   = link_to paintings_path, class: (@section == 'database' ? 'active' : '') do
     %i filter
     %div= 'Database'
-  = link_to nfts_path, class: (@section == 'nfts' ? 'active' : '') do
-    %i auto_awesome
-    %div= 'NFTs'
   -# - if current_user.present?
   -#   = link_to settings_path, class: (@section == 'settings' ? 'active' : '') do
   -#     %i settings
