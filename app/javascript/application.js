@@ -1,7 +1,7 @@
 // Entry point for the build script in your package.json
 
 // beercss@2.1.3
-import "./beer.min.js"  // https://cdn.jsdelivr.net/npm/beercss@2.1.3/dist/cdn/beer.min.js
+import "beercss/dist/cdn/beer.min.js"
 
 import "@hotwired/turbo-rails"
 import "./controllers"
