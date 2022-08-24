@@ -9,12 +9,6 @@
     .col.s12
       .padding
         %p= @nft.description
-  - if @nft.wiki_link.present?
-    .row.mt-0
-      .col.s12.center-align
-        = link_to @nft.wiki_link, target: '_blank' do
-          %button.round.large
-            %span Read more on Wikipedia
 
   - if current_user.present? && current_user.admin?
     .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}

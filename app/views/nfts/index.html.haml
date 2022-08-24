@@ -1,24 +1,28 @@
 .nfts
   .row
     .col.s12.center-align
-      %span.nfts-text-title= 'NFTs'
+      %span.nfts-text-title= 'NFT Database'
 
   .row
     .col.s12.center-align
+      .field.suffix.border{style: 'margin-bottom: 5px;'}
+        %select#select-artist{autocomplete: "off", placeholder: "Search for an artist...", data: { controller: 'tom-select', resource: 'artists' }}
+          %option{value: ""} Search for an artist...
+          - @artists.each do |artist|
+            %option{value: artist.id.to_s, selected: (params[:artist_id] == artist.id.to_s)}= artist.name
+
       .field.suffix.border
-        %select#select-nft{autocomplete: "off", placeholder: "Search for an nft...", data: { controller: 'tom-select', resource: 'nfts'  }}
-          %option{value: ""} Search for an nft...
-          - @nfts.each do |nft|
-            %option{value: nft.id.to_s}= nft.name
-        %i arrow_drop_down
+        %select#select-painting{autocomplete: "off", placeholder: "Search for a painting...", data: { controller: 'tom-select', resource: 'paintings' }}
+          %option{value: ""} Search for a painting...
+          - @paintings.each do |painting|
+            %option{value: painting.id.to_s}= painting.name
 
   .row
-    .col.s12.center-align
-      - if @nfts.any?
-        - @nfts.each do |nft|
-          = render nft
-      - else
-        %p No nfts found...
+    - if @nfts.any?
+      - @nfts.each do |nft|
+        = render nft
+    - else
+      %p No nfts found...
 
   - if current_user.present? && current_user.admin?
     .row

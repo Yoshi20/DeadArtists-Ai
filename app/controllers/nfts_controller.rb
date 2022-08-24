@@ -1,12 +1,16 @@
 class NftsController < ApplicationController
   before_action :set_nft, only: [:show, :edit, :update, :destroy]
-  before_action { @section = 'nfts' }
+  before_action { @section = 'database' }
 
   before_action :authenticate_admin!, except: [:index, :show]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @nfts = Nft.all.limit(30)
+    @artists = Artist.all.select(:id, :name)
+    @paintings = Painting.all.select(:id, :name)
+    @nfts = Nft.includes(:artist, :painting).all.limit(30)
+    @nfts = @nfts.where(artist_id: params[:artist_id]) if params[:artist_id].present?
+    @nfts = @nfts.where(painting_id: params[:painting_id]) if params[:painting_id].present?
   end
 
   def show

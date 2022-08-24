@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_15_093328) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_194919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_15_093328) do
     t.datetime "updated_at", null: false
     t.bigint "artist_id"
     t.bigint "painting_id"
+    t.string "name"
+    t.string "description"
+    t.string "image_link"
+    t.bigint "opensea_asset_id"
+    t.string "opensea_permalink"
+    t.string "trait_artist"
+    t.string "trait_painting"
+    t.string "trait_main_style"
+    t.string "trait_year_of_death"
+    t.string "trait_gender"
+    t.string "trait_origin"
   end
 
   create_table "paintings", force: :cascade do |t|

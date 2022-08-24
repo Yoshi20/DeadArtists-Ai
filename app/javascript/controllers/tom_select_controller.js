@@ -8,9 +8,9 @@ export default class extends Controller {
     var eventHandler = function(name, element) {
       return function() {
         if (element.dataset.resource == 'artists') {
-          Turbo.visit('/paintings?artist_id=' + arguments[0], { action: "replace" });
+          Turbo.visit('/nfts?artist_id=' + arguments[0], { action: "replace" });
         } else {
-          Turbo.visit('/' + element.dataset.resource + '/' + arguments[0], { action: "replace" });
+          Turbo.visit('/nfts?painting_id=' + arguments[0], { action: "replace" });
         }
       };
     };

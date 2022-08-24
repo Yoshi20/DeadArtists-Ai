@@ -14,7 +14,7 @@
   = link_to roadmap_path, class: (@section == 'roadmap' ? 'active' : '') do
     %i map
     %div= 'Roadmap'
-  = link_to paintings_path, class: (@section == 'database' ? 'active' : '') do
+  = link_to nfts_path, class: (@section == 'database' ? 'active' : '') do
     %i filter
     %div= 'Database'
   - if current_user.present?
@@ -42,7 +42,7 @@
   = link_to roadmap_path, class: (@section == 'roadmap' ? 'active' : '') do
     %i map
     %div= 'Roadmap'
-  = link_to paintings_path, class: (@section == 'database' ? 'active' : '') do
+  = link_to nfts_path, class: (@section == 'database' ? 'active' : '') do
     %i filter
     %div= 'Database'
   -# - if current_user.present?
