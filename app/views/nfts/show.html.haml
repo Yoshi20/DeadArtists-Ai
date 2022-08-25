@@ -2,9 +2,22 @@
   .row
     .col.s12.center-align
       %span.nfts-text-title= @nft.name.gsub('vs.', '&')
-  .row
-    .col.s12.center-align
+  .row.mt-0.s
+    .col.s6.center-align
+      = link_to @nft.artist do
+        %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+    .col.s6.center-align
+      = link_to @nft.painting do
+        %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+  .row{style: 'display: flex;'}
+    .col.m.m4.l.center-align.middle-align
+      = link_to @nft.artist do
+        %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+    .col.s12.m3.center-align.middle-align
       %img.responsive{src: @nft.image_link + '=w265', style: 'max-height: 265px !important; width: auto !important;'}
+    .col.m.m4.l.center-align.middle-align
+      = link_to @nft.painting do
+        %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
   .row.mt-0
     .col.s12
       .padding

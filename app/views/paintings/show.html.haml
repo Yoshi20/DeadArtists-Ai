@@ -17,18 +17,35 @@
             %span Read more on Wikipedia
 
   - artist = @painting.artist
-  - if artist.present?
+  - nft = @painting.nft
+  - if artist.present? || nft.present?
     .row.mt-0
-      .col.s12
-        .padding
-          %span.paintings-text-title= "Artist"
-    .row.mt-0
-      .col.s12.center-align
-        - if artist.image_link.present?
-          = link_to artist do
-            %img.responsive{src: artist.image_link, style: 'max-height: 265px !important;'}
-        - else
-          = link_to artist.name, artist
+      - if artist.present?
+        .col.s6
+          .row.no-space.mt-0
+            .col.s12.center-align
+              .padding
+                %span.paintings-text-title= "Artist"
+          .row.no-space.mt-0
+            .col.s12.center-align
+              - if artist.image_link.present?
+                = link_to artist do
+                  %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
+              - else
+                = link_to artist.name, artist, class: 'color-default'
+      - if nft.present?
+        .col.s6
+          .row.no-space.mt-0
+            .col.s12.center-align
+              .padding
+                %span.paintings-text-title= "NFT"
+          .row.no-space.mt-0
+            .col.s12.center-align
+              - if nft.image_link.present?
+                = link_to nft do
+                  %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
+              - else
+                = link_to nft.name, nft, class: 'color-default'
 
   - if current_user.present? && current_user.admin?
     .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
