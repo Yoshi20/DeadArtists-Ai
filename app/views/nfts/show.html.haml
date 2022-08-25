@@ -1,7 +1,7 @@
 .nfts
   .row
     .col.s12.center-align
-      %span.nfts-text-title= @nft.name
+      %span.nfts-text-title= @nft.name.gsub('vs.', '&')
   .row
     .col.s12.center-align
       %img.responsive{src: @nft.image_link + '=w265', style: 'max-height: 265px !important; width: auto !important;'}
