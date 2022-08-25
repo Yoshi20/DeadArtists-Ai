@@ -15,16 +15,24 @@
         %select#select-painting{autocomplete: "off", placeholder: "Search for a painting...", data: { controller: 'tom-select', resource: 'paintings' }}
           %option{value: ""} Search for a painting...
           - @paintings.each do |painting|
-            %option{value: painting.id.to_s}= painting.name
+            %option{value: painting.id.to_s, selected: (params[:painting_id] == painting.id.to_s)}= painting.name
 
-  .row
-    - if @nfts.any?
-      - @nfts.each do |nft|
-        .col.s6.m4.center-align{class: "#{@nfts.count == 1 ? 's12 m12' : ''} #{@nfts.count == 2 ? 's6 m6' : ''}"}
-          = link_to nft_path(nft) do
-            %img.responsive{src: nft.image_link + '=w265', style: 'max-height: 265px !important;'}
-    - else
-      %p No nfts found...
+  -# - if params[:artist_id].present? || params[:painting_id].present?
+  -#   .row.mt-0
+  -#     .col.s12.center-align{style: 'margin-top: -30px;'}
+  -#       = link_to nfts_path do
+  -#         %button.border.round.small
+  -#           %span Reset filter
+
+  %turbo-frame#database-view
+    .row
+      - if @nfts.any?
+        - @nfts.each do |nft|
+          .col.s6.m4.center-align{class: "#{@nfts.count == 1 ? 's12 m12' : ''} #{@nfts.count == 2 ? 's6 m6' : ''}"}
+            = link_to nft_path(nft) do
+              %img.responsive{src: nft.image_link + '=w265', style: 'max-height: 265px !important;'}
+      - else
+        %p No nfts found...
 
   - if current_user.present? && current_user.admin?
     .row

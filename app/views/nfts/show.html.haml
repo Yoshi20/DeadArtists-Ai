@@ -1,33 +1,34 @@
-.nfts
-  .row
-    .col.s12.center-align
-      %span.nfts-text-title= @nft.name.gsub('vs.', '&')
-  .row.mt-0.s
-    .col.s6.center-align
-      = link_to @nft.artist do
-        %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
-    .col.s6.center-align
-      = link_to @nft.painting do
-        %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
-  .row{style: 'display: flex;'}
-    .col.m.m4.l.center-align.middle-align
-      = link_to @nft.artist do
-        %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
-    .col.s12.m3.center-align.middle-align
-      %img.responsive{src: @nft.image_link + '=w265', style: 'max-height: 265px !important; width: auto !important;'}
-    .col.m.m4.l.center-align.middle-align
-      = link_to @nft.painting do
-        %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
-  .row.mt-0
-    .col.s12
-      .padding
-        %p= @nft.description
+%turbo-frame#database-view
+  .nfts
+    .row
+      .col.s12.center-align
+        %span.nfts-text-subtitle= @nft.name.gsub('vs.', '&')
+    .row.mt-0.s
+      .col.s6.center-align
+        = link_to @nft.artist do
+          %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+      .col.s6.center-align
+        = link_to @nft.painting do
+          %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+    .row{style: 'display: flex;'}
+      .col.m.m4.l.center-align.middle-align
+        = link_to @nft.artist do
+          %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+      .col.s12.m3.center-align.middle-align
+        %img.responsive{src: @nft.image_link + '=w265', style: 'max-height: 265px !important; width: auto !important;'}
+      .col.m.m4.l.center-align.middle-align
+        = link_to @nft.painting do
+          %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important; width: auto !important;'}
+    .row.mt-0
+      .col.s12
+        .padding
+          %p= @nft.description
 
-  - if current_user.present? && current_user.admin?
-    .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
-      = link_to edit_nft_path(@nft) do
-        %i edit
-    .delete-icon{style: 'position: absolute; right: 5px; top: 45px;'}
-      = form_with url: nft_path(@nft), id: "delete-nft-form", method: :delete do |f|
-        = link_to '#', data: { controller: 'submit-closest-form' } do
-          %i delete
+    - if current_user.present? && current_user.admin?
+      .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
+        = link_to edit_nft_path(@nft) do
+          %i edit
+      .delete-icon{style: 'position: absolute; right: 5px; top: 45px;'}
+        = form_with url: nft_path(@nft), id: "delete-nft-form", method: :delete do |f|
+          = link_to '#', data: { controller: 'submit-closest-form' } do
+            %i delete

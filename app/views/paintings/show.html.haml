@@ -1,57 +1,58 @@
-.paintings
-  .row
-    .col.s12.center-align
-      %span.paintings-text-title= @painting.name
-  .row
-    .col.s12.center-align
-      %img.responsive{src: @painting.image_link, style: 'max-height: 265px !important; width: auto !important;'}
-  .row.mt-0
-    .col.s12
-      .padding
-        %p= @painting.description
-  - if @painting.wiki_link.present?
-    .row.mt-0
+%turbo-frame#database-view
+  .paintings
+    .row
       .col.s12.center-align
-        = link_to @painting.wiki_link, target: '_blank' do
-          %button.round.large
-            %span Read more on Wikipedia
-
-  - artist = @painting.artist
-  - nft = @painting.nft
-  - if artist.present? || nft.present?
+        %span.paintings-text-title= @painting.name
+    .row
+      .col.s12.center-align
+        %img.responsive{src: @painting.image_link, style: 'max-height: 265px !important; width: auto !important;'}
     .row.mt-0
-      - if artist.present?
-        .col.s6
-          .row.no-space.mt-0
-            .col.s12.center-align
-              .padding
-                %span.paintings-text-title= "Artist"
-          .row.no-space.mt-0
-            .col.s12.center-align
-              - if artist.image_link.present?
-                = link_to artist do
-                  %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
-              - else
-                = link_to artist.name, artist, class: 'color-default'
-      - if nft.present?
-        .col.s6
-          .row.no-space.mt-0
-            .col.s12.center-align
-              .padding
-                %span.paintings-text-title= "NFT"
-          .row.no-space.mt-0
-            .col.s12.center-align
-              - if nft.image_link.present?
-                = link_to nft do
-                  %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
-              - else
-                = link_to nft.name, nft, class: 'color-default'
+      .col.s12
+        .padding
+          %p= @painting.description
+    - if @painting.wiki_link.present?
+      .row.mt-0
+        .col.s12.center-align
+          = link_to @painting.wiki_link, target: '_blank' do
+            %button.round.large
+              %span Read more on Wikipedia
 
-  - if current_user.present? && current_user.admin?
-    .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
-      = link_to edit_painting_path(@painting) do
-        %i edit
-    .delete-icon{style: 'position: absolute; right: 5px; top: 45px;'}
-      = form_with url: painting_path(@painting), id: "delete-painting-form", method: :delete do |f|
-        = link_to '#', data: { controller: 'submit-closest-form' } do
-          %i delete
+    - artist = @painting.artist
+    - nft = @painting.nft
+    - if artist.present? || nft.present?
+      .row.mt-0
+        - if artist.present?
+          .col.s6
+            .row.no-space.mt-0
+              .col.s12.center-align
+                .padding
+                  %span.paintings-text-title= "Artist"
+            .row.no-space.mt-0
+              .col.s12.center-align
+                - if artist.image_link.present?
+                  = link_to artist do
+                    %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
+                - else
+                  = link_to artist.name, artist, class: 'color-default'
+        - if nft.present?
+          .col.s6
+            .row.no-space.mt-0
+              .col.s12.center-align
+                .padding
+                  %span.paintings-text-title= "NFT"
+            .row.no-space.mt-0
+              .col.s12.center-align
+                - if nft.image_link.present?
+                  = link_to nft do
+                    %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
+                - else
+                  = link_to nft.name, nft, class: 'color-default'
+
+    - if current_user.present? && current_user.admin?
+      .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
+        = link_to edit_painting_path(@painting) do
+          %i edit
+      .delete-icon{style: 'position: absolute; right: 5px; top: 45px;'}
+        = form_with url: painting_path(@painting), id: "delete-painting-form", method: :delete do |f|
+          = link_to '#', data: { controller: 'submit-closest-form' } do
+            %i delete

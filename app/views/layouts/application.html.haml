@@ -22,7 +22,7 @@
         = yield
     - else
       .background-image
-        = video_tag "background.mp4#t=#{rand(5)}", controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%', id: 'background-video'
+        = video_tag "background.mp4#t=#{rand(5)}", controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%', id: 'background-video', 'data-turbo-permanent': true
         #pixel-grid
       = render "/layouts/navigation"
       %main.responsive.main-black
