@@ -26,7 +26,7 @@
       .row.mt-0
         - paintings.each do |painting|
           .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
-            = link_to painting do
+            = link_to painting, "data-turbo-action": "advance" do
               %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
 
     - if current_user.present? && current_user.admin?
