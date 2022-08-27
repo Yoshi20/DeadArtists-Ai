@@ -2,7 +2,7 @@
   .nfts
     .row
       .col.s12.center-align
-        %span.nfts-text-subtitle= @nft.name.gsub('vs.', '&')
+        %span.nfts-text-title= @nft.name.gsub('vs.', '&')
     .row.mt-0.s
       .col.s6.center-align
         = link_to artist_path(artist_id: @nft.artist, nft_id: @nft.id) do
@@ -33,6 +33,8 @@
           = link_to '#', data: { controller: 'submit-closest-form' } do
             %i delete
 
-    -# back arrow
+    -# back arrows
+    = link_to nfts_path, class: 'back-arrow back-arrow-top color-default' do
+      %i keyboard_backspace
     = link_to nfts_path, class: 'back-arrow color-default' do
       %i keyboard_backspace
