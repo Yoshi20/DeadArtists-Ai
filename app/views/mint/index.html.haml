@@ -31,7 +31,11 @@
       = "2"
       %button{:class => "mx-[4rem]"} +
       .mb-4{:style => "color: red; font-size: 23px;"} insufficient Fund
-      %button.button{:disabled => "disabled"} Mint
+
+    .row
+      .col.s12.center-align{data: { controller: "mint" }}
+        %button.round.large#mint-button{data: { action: "click->mint#mint" }}
+          Mint
 
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align

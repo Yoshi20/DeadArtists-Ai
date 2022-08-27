@@ -3,18 +3,19 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 // let userAddress = window.ethereum.selectedAddress
 
-let showWalletConnectedButton = (userAddress) => {
+const showWalletConnectedButton = (userAddress) => {
   document.getElementById('connect-wallet-button').style.display = 'none';
   let wallet_connected_button = document.getElementById('wallet-connected-button')
   let userAddressShort = userAddress.substring(0, 5) + "..." + userAddress.slice(-4);
   wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
   wallet_connected_button.style.display = '';
 }
-let showWalletConnected = () => {
+
+const showWalletConnected = () => {
   document.getElementById('wallet-connected').style.display = '';
 }
 
-let showInvalidNetwork = () => {
+const showInvalidNetwork = () => {
   document.getElementById('invalid-network').style.display = '';
 }
 
@@ -33,7 +34,7 @@ export default class extends Controller {
         const addressArray = await window.ethereum.request({ method: "eth_accounts" });
         if (addressArray.length > 0) {
           showWalletConnectedButton(addressArray[0]);
-          const chainId = await ethereum.request({ method: 'eth_chainId' });
+          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
             showWalletConnected();
           } else {
@@ -63,7 +64,7 @@ export default class extends Controller {
         const addressArray = await window.ethereum.request({ method: "eth_requestAccounts" });
         if (addressArray.length > 0) {
           showWalletConnectedButton(addressArray[0]);
-          const chainId = await ethereum.request({ method: 'eth_chainId' });
+          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
           if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
             showWalletConnected();
           } else {
@@ -83,6 +84,7 @@ export default class extends Controller {
       }
     }
   }
+
 }
 
 // Chain IDs:

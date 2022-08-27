@@ -12,3 +12,6 @@ application.register("submit-closest-form", SubmitClosestFormController)
 
 import WalletController from "./wallet_controller"
 application.register("wallet", WalletController)
+
+import MintController from "./mint_controller"
+application.register("mint", MintController)
