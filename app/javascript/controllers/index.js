@@ -9,3 +9,6 @@ application.register("tom-select", TomSelectController)
 
 import SubmitClosestFormController from "./submit_closest_form_controller"
 application.register("submit-closest-form", SubmitClosestFormController)
+
+import WalletController from "./wallet_controller"
+application.register("wallet", WalletController)

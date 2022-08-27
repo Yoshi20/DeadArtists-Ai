@@ -3,6 +3,26 @@
     .col.s12.center-align
       %span.mint-text-title= 'Mint'
 
-  .row.mt-0
+  .row
+    .col.s12.center-align{data: { controller: "wallet" }}
+      -# connect wallet button
+      %button.round.large#connect-wallet-button{data: { action: "click->wallet#connect_wallet" }}
+        %span Connect your wallet
+        = image_tag 'metamask_fox.svg', width: '20px';
+      -# wallet connected button
+      %button.round.large#wallet-connected-button{disabled: true, style: 'display: none;'}
+        %span
+        = image_tag 'metamask_fox.svg', width: '20px';
+      -# download metamask button
+      = link_to 'https://metamask.io/download.html', target: '_blank', class: 'color-default', id: 'download-metamask-button', style: 'display: none;' do
+        %button.round.large
+          %span No wallet found -> Go get MetaMask!
+          = image_tag 'metamask_fox.svg', width: '20px';
+
+  .row#wallet-connected{style: 'display: none;'}
     .col.s12.center-align
-      %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
+      %p Lorem ipsum...
+
+
+
+  -# %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
