@@ -34,7 +34,10 @@ export default class extends Controller {
         const addressArray = await window.ethereum.request({ method: "eth_accounts" });
         if (addressArray.length > 0) {
           showWalletConnectedButton(addressArray[0]);
-          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          let chainId = window.ethereum.chainId;
+          if (!chainId) {
+            chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          }
           if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
             showWalletConnected();
           } else {

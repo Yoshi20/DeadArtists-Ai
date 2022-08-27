@@ -4,6 +4,10 @@
       %span.mint-text-title= 'Mint Dead Artist NFT'
 
   .row
+    .col.s12.center-align
+      %p Lorem ipsum...
+
+  .row
     .col.s12.center-align{data: { controller: "wallet" }}
       -# connect wallet button
       %button.round.large#connect-wallet-button{data: { action: "click->wallet#connect_wallet" }}
@@ -20,22 +24,30 @@
           = image_tag 'metamask_fox.svg', width: '20px';
 
   .row#wallet-connected{style: 'display: none;'}
-    .col.s12.center-align
-      %p Lorem ipsum...
+    .col.s12.center-align{data: { controller: "mint" }}
+      .row
+        .col.s12.center-align
+          .balance{style: 'font-size: 16px;'}
+            %strong My balance:
+            %span#user-balance ?
+            %span ETH
+          .price{style: 'font-size: 16px;'}
+            %strong Total price:
+            %span#total-price ?
+            %span ETH
+          .number-of-nft-selection{style: "margin-top: 10px"}
+            %button{data: { action: "click->mint#sub" }, style: 'font-size: 20px; width: 16px;'} -
+            .field.border{style: 'display: inline;'}
+              = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft', style: 'display: inline; width: 76px; font-size: 24px; font-weight: 800;'}
+            %button{data: { action: "click->mint#add" }, style: 'margin-top: 0; font-size: 20px; width: 16px;'} +
+            #mint-error-message{style: "display: none; color: red; font-size: 16px; margin-top: 10px;"} insufficient funds
 
-    .col.s12.center-align
-      .price{:class => "text-[1.4rem]"}
-        %strong Total price:
-        0.07 ETH
-      %button{:class => "mx-[4rem]"} -
-      = "2"
-      %button{:class => "mx-[4rem]"} +
-      .mb-4{:style => "color: red; font-size: 23px;"} insufficient Fund
-
-    .row
-      .col.s12.center-align{data: { controller: "mint" }}
-        %button.round.large#mint-button{data: { action: "click->mint#mint" }}
-          Mint
+      .row.mt-0
+        .col.s12.center-align{data: { controller: "mint" }}
+          %button.large#mint-button{data: { action: "click->mint#mint" }, style: 'margin-top: 0; font-size: 20px;'}
+            %i{style: 'transform: rotateY(180deg); margin-right: 5px;'} auto_awesome
+            %span Mint
+            %i{style: 'margin-left: 10px;'} auto_awesome
 
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align
