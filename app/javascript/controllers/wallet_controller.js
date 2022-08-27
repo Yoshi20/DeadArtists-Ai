@@ -1,11 +1,19 @@
 import { Controller } from "@hotwired/stimulus"
 import detectEthereumProvider from '@metamask/detect-provider'
 
-let userAddress = undefined;
+// let userAddress = window.ethereum.selectedAddress
+
+let showWalletConnected = (userAddress) => {
+  document.getElementById('connect-wallet-button').style.display = 'none';
+  let wallet_connected_button = document.getElementById('wallet-connected-button')
+  let userAddressShort = userAddress.substring(0, 5) + "..." + userAddress.slice(-4);
+  wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
+  wallet_connected_button.style.display = '';
+  document.getElementById('wallet-connected').style.display = '';
+}
 
 // Connects to -> data: { controller: 'wallet' }
 export default class extends Controller {
-
   async connect() {
     // Check if MetaMask is installed, show download-metamask-button otherwise
     const provider = await detectEthereumProvider();
@@ -16,13 +24,7 @@ export default class extends Controller {
           method: "eth_accounts",
         });
         if (addressArray.length > 0) {
-          userAddress = addressArray[0];
-          document.getElementById('connect-wallet-button').style.display = 'none';
-          let wallet_connected_button = document.getElementById('wallet-connected-button')
-          let userAddressShort = addressArray[0].substring(0, 5) + "..." + addressArray[0].slice(-4);
-          wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
-          wallet_connected_button.style.display = '';
-          document.getElementById('wallet-connected').style.display = '';
+          showWalletConnected(addressArray[0]);
         }
       } catch (err) {
         console.error(err.message);
@@ -51,13 +53,7 @@ export default class extends Controller {
           method: "eth_requestAccounts",
         });
         if (addressArray.length > 0) {
-          userAddress = addressArray[0]; // -> window.ethereum.selectedAddress
-          document.getElementById('connect-wallet-button').style.display = 'none';
-          let wallet_connected_button = document.getElementById('wallet-connected-button')
-          let userAddressShort = addressArray[0].substring(0, 5) + "..." + addressArray[0].slice(-4);
-          wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
-          wallet_connected_button.style.display = '';
-          document.getElementById('wallet-connected').style.display = '';
+          showWalletConnected(addressArray[0]);
         }
       } catch (err) {
         console.error(err.message);

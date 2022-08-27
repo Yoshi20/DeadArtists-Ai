@@ -1,13 +1,13 @@
 .mint
   .row.title-row#Mint
     .col.s12.center-align
-      %span.mint-text-title= 'Mint'
+      %span.mint-text-title= 'Mint Dead Artist NFT'
 
   .row
     .col.s12.center-align{data: { controller: "wallet" }}
       -# connect wallet button
       %button.round.large#connect-wallet-button{data: { action: "click->wallet#connect_wallet" }}
-        %span Connect your wallet
+        %span Connect your Wallet
         = image_tag 'metamask_fox.svg', width: '20px';
       -# wallet connected button
       %button.round.large#wallet-connected-button{disabled: true, style: 'display: none;'}
@@ -16,7 +16,7 @@
       -# download metamask button
       = link_to 'https://metamask.io/download.html', target: '_blank', class: 'color-default', id: 'download-metamask-button', style: 'display: none;' do
         %button.round.large
-          %span No wallet found -> Go get MetaMask!
+          %span No Wallet found -> Go get MetaMask!
           = image_tag 'metamask_fox.svg', width: '20px';
 
   .row#wallet-connected{style: 'display: none;'}
@@ -24,5 +24,14 @@
       %p Lorem ipsum...
 
 
+      .price{:class => "text-[1.4rem]"}
+        %strong Total price:
+        0.07 ETH
+      %button{:class => "mx-[4rem]"} -
+      = "2"
+      %button{:class => "mx-[4rem]"} +
+      .mb-4{:style => "color: red; font-size: 23px;"} insufficient Fund
+      %button.button{:disabled => "disabled"} Mint
 
-  -# %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
+
+  %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
