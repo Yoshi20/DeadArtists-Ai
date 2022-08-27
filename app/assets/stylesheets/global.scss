@@ -11,6 +11,18 @@
   margin-top: 0 !important;
 }
 
+.back-arrow {
+  position: absolute;
+  z-index: 1;
+  i {
+    font-size: 60px;
+    width: 100%;
+  }
+  @media only screen and (min-width: $min-widths-m) {
+    left: 5px;
+    top: -8px;
+  }
+}
 
 #error_explanation {
   margin-left: 15px;

@@ -29,7 +29,7 @@
       - if @nfts.any?
         - @nfts.each do |nft|
           .col.s6.m4.center-align{class: "#{@nfts.count == 1 ? 's12 m12' : ''} #{@nfts.count == 2 ? 's6 m6' : ''}"}
-            = link_to nft_path(nft), "data-turbo-action": "advance" do
+            = link_to nft_path(nft) do
               %img.responsive{src: nft.image_link + '=w265', style: 'max-height: 265px !important;'}
       - else
         %p No nfts found...

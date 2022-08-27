@@ -26,7 +26,7 @@
       .row.mt-0
         - paintings.each do |painting|
           .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
-            = link_to painting, "data-turbo-action": "advance" do
+            = link_to painting do
               %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
 
     - if current_user.present? && current_user.admin?
@@ -37,3 +37,7 @@
         = form_with url: artist_path(@artist), id: "delete-artist-form", method: :delete do |f|
           = link_to '#', data: { controller: 'submit-closest-form' } do
             %i delete
+
+    -# back arrow
+    = link_to nft_path(params[:nft_id]), class: 'back-arrow color-default' do
+      %i keyboard_backspace
