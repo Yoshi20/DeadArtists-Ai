@@ -21,7 +21,6 @@
 
   .row#wallet-connected{style: 'display: none;'}
     .col.s12.center-align
-      %p Lorem ipsum...
 
 
       .price{:class => "text-[1.4rem]"}
@@ -33,5 +32,12 @@
       .mb-4{:style => "color: red; font-size: 23px;"} insufficient Fund
       %button.button{:disabled => "disabled"} Mint
 
+  .row#invalid-network{style: 'display: none;'}
+    .col.s12.center-align
+      %p Invalid Network! Please change to the Ethereum Mainnet.
 
-  %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
+
+
+
+
+  -# %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}

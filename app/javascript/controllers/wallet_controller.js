@@ -3,13 +3,19 @@ import detectEthereumProvider from '@metamask/detect-provider'
 
 // let userAddress = window.ethereum.selectedAddress
 
-let showWalletConnected = (userAddress) => {
+let showWalletConnectedButton = (userAddress) => {
   document.getElementById('connect-wallet-button').style.display = 'none';
   let wallet_connected_button = document.getElementById('wallet-connected-button')
   let userAddressShort = userAddress.substring(0, 5) + "..." + userAddress.slice(-4);
   wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
   wallet_connected_button.style.display = '';
+}
+let showWalletConnected = () => {
   document.getElementById('wallet-connected').style.display = '';
+}
+
+let showInvalidNetwork = () => {
+  document.getElementById('invalid-network').style.display = '';
 }
 
 // Connects to -> data: { controller: 'wallet' }
@@ -20,24 +26,25 @@ export default class extends Controller {
     if (provider) {
       // Check if there's already an active account
       try {
-        const addressArray = await window.ethereum.request({
-          method: "eth_accounts",
-        });
+        const addressArray = await window.ethereum.request({ method: "eth_accounts" });
         if (addressArray.length > 0) {
-          showWalletConnected(addressArray[0]);
+          showWalletConnectedButton(addressArray[0]);
+          const chainId = await ethereum.request({ method: 'eth_chainId' });
+          if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
+            showWalletConnected();
+          } else {
+            showInvalidNetwork();
+          }
         }
       } catch (err) {
         console.error(err.message);
       }
-
-      // add event listener
+      // add event listeners
       window.ethereum.on("accountsChanged", (accounts) => {
-        if (accounts.length > 0) {
-          document.getElementById('connect-wallet-button').style.display = 'none';
-          //blup...
-        } else {
-          window.location.reload(); // reload page in this case
-        }
+        window.location.reload(); // reload page in this case
+      });
+      window.ethereum.on("chainChanged", (accounts) => {
+        window.location.reload(); // reload page in this case
       });
     } else {
       document.getElementById('connect-wallet-button').style.display = 'none';
@@ -49,11 +56,15 @@ export default class extends Controller {
   async connect_wallet() {
     if (window.ethereum) {
       try {
-        const addressArray = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
+        const addressArray = await window.ethereum.request({ method: "eth_requestAccounts" });
         if (addressArray.length > 0) {
-          showWalletConnected(addressArray[0]);
+          showWalletConnectedButton(addressArray[0]);
+          const chainId = await ethereum.request({ method: 'eth_chainId' });
+          if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
+            showWalletConnected();
+          } else {
+            showInvalidNetwork();
+          }
         }
       } catch (err) {
         console.error(err.message);
