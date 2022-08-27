@@ -24,6 +24,10 @@ export default class extends Controller {
     // Check if MetaMask is installed, show download-metamask-button otherwise
     const provider = await detectEthereumProvider();
     if (provider) {
+      if (provider !== window.ethereum) {
+        console.error('Do you have multiple wallets installed?');
+        return;
+      }
       // Check if there's already an active account
       try {
         const addressArray = await window.ethereum.request({ method: "eth_accounts" });
