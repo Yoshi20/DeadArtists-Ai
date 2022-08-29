@@ -3,6 +3,82 @@ module Request
   require 'httparty'
   require 'json'
 
+  # def self.mintNFT(userAddress)
+  #   PRIVATE_KEY = 'our-metamask-private-key'
+  #   PUBLIC_KEY = 'our-contract-address'
+  #   nonce = self.alchemy_get_transaction_count(PUBLIC_KEY)
+  #   return false if nonce.nil?
+  #   tx = {
+  #     from: PUBLIC_KEY,
+  #     to: userAddress,
+  #     nonce: nonce,
+  #     gas: 500000,
+  #     data: nftContract.methods.mintNFT(PUBLIC_KEY, tokenURI).encodeABI(),
+  #   }
+  # end
+
+  # def self.alchemy_get_code()
+  #
+  # end
+
+  # get latest nonce:
+  # Request.alchemy_get_transaction_count("0xc94770007dda54cF92009BFF0dE90c06F603a09f")
+  # or in the frontend:
+  # const nonce = await window.ethereum.request({ method: 'eth_getTransactionCount', params: [address, "latest"] });
+  def self.alchemy_get_transaction_count(address)
+    transaction_count = nil
+    url = "https://eth-goerli.g.alchemy.com/v2/#{ENV['ALCHEMY_API_KEY']}" #blup: goerli for now
+    puts "Requesting: POST #{url}"
+    begin
+      resp = HTTParty.post(url,
+        body: {
+          id: 1,
+          jsonrpc: "2.0",
+          method: "eth_getTransactionCount",
+          params: [address, "latest"],
+        }.to_json,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      )
+      if resp.success?
+        puts resp.parsed_response #blup
+        transaction_count = resp.parsed_response['result'].to_i(16)
+      end
+    rescue OpenURI::HTTPError => ex
+      puts ex
+    end
+    transaction_count
+  end
+
+  # Request.alchemy_get_balance('0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6')
+  def self.alchemy_get_balance(userAddress)
+    balance = nil
+    url = "https://eth-goerli.g.alchemy.com/v2/#{ENV['ALCHEMY_API_KEY']}" #blup: goerli for now
+    puts "Requesting: POST #{url}"
+    begin
+      resp = HTTParty.post(url,
+        body: {
+          id: 1,
+          jsonrpc: "2.0",
+          method: "eth_getBalance",
+          params: [userAddress, "latest"],
+        }.to_json,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      )
+      if resp.success?
+        balance = (resp.parsed_response['result'].to_i(16).to_f / 1000000000000000000).round(3)
+      end
+    rescue OpenURI::HTTPError => ex
+      puts ex
+    end
+    balance
+  end
+
   def self.pinata_pin_json_to_ipfs(json_body)
     parsed_response = nil
     url = "https://api.pinata.cloud/pinning/pinJSONToIPFS"
