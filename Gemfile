@@ -101,9 +101,12 @@ gem 'httparty'
 # See https://github.com/svenfuchs/rails-i18n
 gem 'rails-i18n', '~> 7.0.0' # (rails locale data collection)
 
-# See https://github.com/aspgems/web3-eth
-# -> this is a fork of forked repository!
-gem 'web3-eth', git: 'https://github.com/aspgems/web3-eth'
+# # See https://github.com/aspgems/web3-eth
+# # -> this is a fork of forked repository!
+# gem 'web3-eth', git: 'https://github.com/aspgems/web3-eth'
+
+# https://github.com/q9f/eth.rb
+gem "eth"
 
 # See https://devcenter.heroku.com/articles/getting-started-with-rails4#visit-your-application
 group :staging, :production do

@@ -75,7 +75,175 @@ export default class extends Controller {
     // const nonce = await window.ethereum.request({ method: 'eth_getTransactionCount', params: [PUBLIC_KEY, "latest"] });
 
 
+    // const contract = require("../artifacts/contracts/MyNFT.sol/MyNFT.json")
+    // const contractAddress = "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
+    // // const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
+    // window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+    //
+    // async function mintNFT(tokenURI) {
+    //
+    //
+    //     //set up your Ethereum transaction
+    //     const transactionParameters = {
+    //         to: contractAddress, // Required except during contract publications.
+    //         from: window.ethereum.selectedAddress, // must match user's active address.
+    //         'data': window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI() //make call to NFT smart contract
+    //     };
+    //
+    //
+    //     //sign transaction via Metamask
+    //     try {
+    //         const txHash = await window.ethereum
+    //             .request({
+    //                 method: 'eth_sendTransaction',
+    //                 params: [transactionParameters],
+    //             });
+    //         return {
+    //             success: true,
+    //             status: "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" + txHash
+    //         }
+    //     } catch (error) {
+    //         return {
+    //             success: false,
+    //             status: "😥 Something went wrong: " + error.message
+    //         }
+    //     }
+    //   }
 
+
+
+
+
+
+
+    // examples:
+    //-----------
+
+    // async function mint() {
+    //   const mintButton = document.getElementById("mintButton");
+    //   mintButton.disabled = true;
+    //   const spinner = '<div class="dot-elastic"></div><span>Waiting for transaction...</span>';
+    //   mintButton.innerHTML = spinner;
+    //
+    //   const amount = parseInt(document.getElementById("mintInput").value);
+    //   const value = BigInt(info.deploymentConfig.mintPrice) * BigInt(amount);
+    //   const publicMintActive = await contract.methods.mintingActive().call();
+    //   const presaleMintActive = await contract.methods.presaleActive().call();
+    //
+    //   if (publicMintActive) {
+    //     // PUBLIC MINT
+    //     try {
+    //       const mintTransaction = await contract.methods
+    //         .mint(amount)
+    //         .send({ from: window.address, value: value.toString() });
+    //       if(mintTransaction) {
+    //         if(chain === 'rinkeby') {
+    //           const url = `https://rinkeby.etherscan.io/tx/${mintTransaction.transactionHash}`;
+    //           const mintedContainer = document.querySelector('.minted-container');
+    //           const countdownContainer = document.querySelector('.countdown');
+    //           const mintedTxnBtn = document.getElementById("mintedTxnBtn");
+    //           mintedTxnBtn.href = url;
+    //           countdownContainer.classList.add('hidden');
+    //           mintedContainer.classList.remove('hidden');
+    //         }
+    //         console.log("Minted successfully!", `Transaction Hash: ${mintTransaction.transactionHash}`);
+    //       } else {
+    //         const mainText = document.getElementById("mainText");
+    //         mainText.innerText = mint_failed;
+    //         mintButton.innerText = button_public_mint;
+    //         mintButton.disabled = false;
+    //
+    //         console.log("Failed to mint!");
+    //       }
+    //     } catch(e) {
+    //       const mainText = document.getElementById("mainText");
+    //       mainText.innerText = mint_failed;
+    //       mintButton.innerText = button_public_mint;
+    //       mintButton.disabled = false;
+    //
+    //       console.log(e);
+    //     }
+    //   } else if (presaleMintActive) {
+    //     // PRE-SALE MINTING
+    //     try {
+    //       const merkleData = await fetch(
+    //         `/.netlify/functions/merkleProof/?wallet=${window.address}&chain=${chain}&contract=${contractAddress}`
+    //       );
+    //       const merkleJson = await merkleData.json();
+    //       const presaleMintTransaction = await contract.methods
+    //         .presaleMint(amount, merkleJson)
+    //         .send({ from: window.address, value: value.toString() });
+    //       if(presaleMintTransaction) {
+    //         if(chain === 'rinkeby') {
+    //           const url = `https://rinkeby.etherscan.io/tx/${presaleMintTransaction.transactionHash}`;
+    //           const mintedContainer = document.querySelector('.minted-container');
+    //           const countdownContainer = document.querySelector('.countdown');
+    //           const mintedTxnBtn = document.getElementById("mintedTxnBtn");
+    //           mintedTxnBtn.href = url;
+    //           countdownContainer.classList.add('hidden');
+    //           mintedContainer.classList.remove('hidden');
+    //         }
+    //         console.log("Minted successfully!", `Transaction Hash: ${presaleMintTransaction.transactionHash}`);
+    //       } else {
+    //         const mainText = document.getElementById("mainText");
+    //         mainText.innerText = mint_failed;
+    //         mintButton.innerText = button_presale_mint_whitelisted;
+    //         mintButton.disabled = false;
+    //
+    //         console.log("Failed to mint!");
+    //       }
+    //     } catch(e) {
+    //       const mainText = document.getElementById("mainText");
+    //       mainText.innerText = mint_failed;
+    //       mintButton.innerText = button_presale_mint_whitelisted;
+    //       mintButton.disabled = false;
+    //
+    //       // console.log(e);
+    //     }
+    //   }
+    // }
+
+    // --------------
+
+    // const contract = require("../artifacts/contracts/MyNFT.sol/MyNFT.json")
+    // const contractAddress = "0x818F6DAC9F66c2a4AC38322BB7B66609eEbe1C90"
+    // // const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
+    // window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+    //
+    // async function mintNFT(tokenURI) {
+    //
+    //
+    //     //set up your Ethereum transaction
+    //     const transactionParameters = {
+    //         to: contractAddress, // Required except during contract publications.
+    //         from: window.ethereum.selectedAddress, // must match user's active address.
+    //         'data': window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI() //make call to NFT smart contract
+    //     };
+    //
+    //
+    //     //sign transaction via Metamask
+    //     try {
+    //         const txHash = await window.ethereum
+    //             .request({
+    //                 method: 'eth_sendTransaction',
+    //                 params: [transactionParameters],
+    //             });
+    //         return {
+    //             success: true,
+    //             status: "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" + txHash
+    //         }
+    //     } catch (error) {
+    //         return {
+    //             success: false,
+    //             status: "😥 Something went wrong: " + error.message
+    //         }
+    //     }
+    //   }
+
+
+
+
+    //------------------
 
     // const contract = require("../artifacts/contracts/MyNFT.sol/MyNFT.json")
     // const contractAddress = "0x81c587EB0fE773404c42c1d2666b5f557C470eED"

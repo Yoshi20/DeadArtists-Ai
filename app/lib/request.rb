@@ -3,66 +3,72 @@ module Request
   require 'httparty'
   require 'json'
 
-  # def self.mintNFT(userAddress)
-  #   PRIVATE_KEY = 'our-metamask-private-key'
-  #   PUBLIC_KEY = 'our-contract-address'
-  #   nonce = self.alchemy_get_transaction_count(PUBLIC_KEY)
-  #   return false if nonce.nil?
-  #   tx = {
-  #     from: PUBLIC_KEY,
-  #     to: userAddress,
-  #     nonce: nonce,
-  #     gas: 500000,
-  #     data: nftContract.methods.mintNFT(PUBLIC_KEY, tokenURI).encodeABI(),
-  #   }
-  # end
-
-
   def self.blup()
-    web3 = Web3::Eth::Rpc.new(
-      host: 'eth-goerli.g.alchemy.com', #blup
-      port: 443,
-      connect_options: {
-        open_timeout: 20,
-        read_timeout: 140,
-        use_ssl: true,
-        # rpc_path: "/v2/#{ENV['ALCHEMY_API_KEY']}"
-        rpc_path: "/v2/GQ8zXUmkJCyEMZLAIrkKpLAQREVh1iQK" #blup: key von lucca
-      }
-    )
 
-    # get ABI
-    # api = Web3::Eth::Etherscan.new(ENV['ETHERSCAN_API_KEY'])
-    # abi = api.contract_getabi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    abi = self.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    # abi = self.eatherscan_get_abi('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9')
-    return nil if abi.nil?
+    # abi = self.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
+    abi = Request.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0') #blup: mint(amount)
+    abi = Request.eatherscan_get_abi('0x7a5509844F83E5949e8741ba918702bB56E1AdB7') #blup: safeMint(to, uri)
+    contractAddress = "0x7a5509844F83E5949e8741ba918702bB56E1AdB7"
+    name = "DeadArtistsAITestnetV6"
+    contract = Eth::Contract.from_abi(name: name, address: contractAddress, abi: abi)
+    contract.address # => "0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0"
+    cli = Eth::Client.create("https://eth-goerli.g.alchemy.com/v2/GQ8zXUmkJCyEMZLAIrkKpLAQREVh1iQK")
+    cli.call(contract, "totalSupply")
+    cli.call(contract, "balanceOf", '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6')
+    cli.call(contract, 'safeMint', '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6', 'ipfs://')
+    cli.call(contract, 'walletOfOwner', '0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7')
 
 
 
-    # creation of contract object
-    myContract = web3.eth.contract(abi)
-
-    # initiate contract for an address
-    myContractInstance = myContract.at('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0') # contractAddress
-    # myContractInstance = myContract.at('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9') # contractAddress with balance
-    # myContractInstance = myContract.at('0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7') # ownerAddress
-
-
-
-
-    # call constant function
-    result = myContractInstance.mint(price, amount)
-    # result = myContractInstance.safeMint(userAddress, tokenURI)
-
-    # function safeMint(address to, string memory uri) public onlyOwner {
-    #     uint256 tokenId = _tokenIdCounter.current();
-    #     _tokenIdCounter.increment();
-    #     _safeMint(to, tokenId);
-    #     _setTokenURI(tokenId, uri);
-    # }
-
-    # window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI() //make call to NFT smart contract
+    # web3 = Web3::Eth::Rpc.new(
+    #   host: 'eth-goerli.g.alchemy.com', #blup
+    #   port: 443,
+    #   connect_options: {
+    #     open_timeout: 20,
+    #     read_timeout: 140,
+    #     use_ssl: true,
+    #     # rpc_path: "/v2/#{ENV['ALCHEMY_API_KEY']}"
+    #     rpc_path: "/v2/GQ8zXUmkJCyEMZLAIrkKpLAQREVh1iQK" #blup: key von lucca
+    #   }
+    # )
+    #
+    # # get ABI
+    # # api = Web3::Eth::Etherscan.new(ENV['ETHERSCAN_API_KEY'])
+    # # abi = api.contract_getabi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
+    # abi = Request.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
+    # abi = self.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
+    # # abi = self.eatherscan_get_abi('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9')
+    # return nil if abi.nil?
+    #
+    #
+    #
+    # # creation of contract object
+    # myContract = web3.eth.contract(abi)
+    #
+    # # initiate contract for an address
+    # myContractInstance = myContract.at(userAddress) # contractAddress
+    # # myContractInstance = myContract.at('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9') # contractAddress with balance
+    # # myContractInstance = myContract.at('0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7') # ownerAddress
+    #
+    #
+    # myContractInstance.balanceOf('0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7')
+    # # myContractInstance.balanceOf(userAddress) # Returns the number of tokens in userAddress's account
+    #
+    #
+    #
+    # # call constant function
+    # result = myContractInstance.mint(amount)
+    # # result = myContractInstance.saefMint(price, amount)
+    # # result = myContractInstance.safeMint(userAddress, tokenURI)
+    #
+    # # function safeMint(address to, string memory uri) public onlyOwner {
+    # #     uint256 tokenId = _tokenIdCounter.current();
+    # #     _tokenIdCounter.increment();
+    # #     _safeMint(to, tokenId);
+    # #     _setTokenURI(tokenId, uri);
+    # # }
+    #
+    # # window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI() //make call to NFT smart contract
 
     puts result
 
@@ -199,6 +205,7 @@ module Request
         }
       )
       if resp.success?
+        puts resp.parsed_response #blup
         invalid_nfts = []
         # resp.parsed_response['rows'].each do |row|
         row = resp.parsed_response['rows'].first
