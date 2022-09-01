@@ -27,24 +27,24 @@
     .col.s12.center-align{data: { controller: "mint" }}
       .row
         .col.s12.center-align
-          .balance{style: 'font-size: 16px;'}
+          .balance
             %strong My balance:
             %span#user-balance ?
             %span ETH
-          .price{style: 'font-size: 16px;'}
+          .price
             %strong Total price:
             %span#total-price ?
             %span ETH
-          .number-of-nft-selection{style: "margin-top: 10px"}
-            %button#sub-button{data: { action: "click->mint#sub" }, style: 'font-size: 20px; width: 16px;'} -
-            .field.border#set-field{style: 'display: inline;'}
-              = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft', style: 'display: inline; width: 76px; font-size: 24px; font-weight: 800;'}
-            %button#add-button{data: { action: "click->mint#add" }, style: 'margin-top: 0; font-size: 20px; width: 16px;'} +
-            #mint-error-message{style: "display: none; color: red; font-size: 16px; margin-top: 10px;"} insufficient funds
+          .number-of-nft-selection
+            %button#sub-button{data: { action: "click->mint#sub" }} -
+            .field.border#set-field
+              = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft'}
+            %button#add-button{data: { action: "click->mint#add" }} +
+            #mint-error-message{style: "display: none;"} insufficient funds
 
       .row.mt-0
         .col.s12.center-align
-          %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }, style: 'margin-top: 0; font-size: 20px;'}
+          %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }}
             %i{style: 'transform: rotateY(180deg); margin-right: 10px;'} auto_awesome
             %span#mint-button-text Mint
             %i{style: 'margin-left: 10px;'} auto_awesome
