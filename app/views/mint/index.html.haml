@@ -36,31 +36,28 @@
             %span#total-price ?
             %span ETH
           .number-of-nft-selection{style: "margin-top: 10px"}
-            %button{data: { action: "click->mint#sub" }, style: 'font-size: 20px; width: 16px;'} -
-            .field.border{style: 'display: inline;'}
+            %button#sub-button{data: { action: "click->mint#sub" }, style: 'font-size: 20px; width: 16px;'} -
+            .field.border#set-field{style: 'display: inline;'}
               = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft', style: 'display: inline; width: 76px; font-size: 24px; font-weight: 800;'}
-            %button{data: { action: "click->mint#add" }, style: 'margin-top: 0; font-size: 20px; width: 16px;'} +
+            %button#add-button{data: { action: "click->mint#add" }, style: 'margin-top: 0; font-size: 20px; width: 16px;'} +
             #mint-error-message{style: "display: none; color: red; font-size: 16px; margin-top: 10px;"} insufficient funds
 
       .row.mt-0
-        .col.s12.center-align{data: { controller: "mint" }}
-          %button.large#mint-button{data: { action: "click->mint#mint" }, style: 'margin-top: 0; font-size: 20px;'}
-            %i{style: 'transform: rotateY(180deg); margin-right: 5px;'} auto_awesome
-            %span Mint
+        .col.s12.center-align
+          %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }, style: 'margin-top: 0; font-size: 20px;'}
+            %i{style: 'transform: rotateY(180deg); margin-right: 10px;'} auto_awesome
+            %span#mint-button-text Mint
             %i{style: 'margin-left: 10px;'} auto_awesome
 
-      -# blup
       .row.mt-0
-        .col.s12.center-align{data: { controller: "mint" }}
-          %button.large#mint-button{data: { action: "click->mint#signData" }, style: 'margin-top: 0; font-size: 20px;'}
-            %span SignData
+        .col.s12.center-align
+          %span#total-supply ?
+          %span /
+          %span#max-supply ?
 
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align
       %p Invalid Network! Please change to the Ethereum Mainnet.
 
-
-
-
-
-  -# %iframe.mint-iframe{src: "https://gateway.ipfscdn.io/ipfs/QmUfp6thZQTmNKS6tzijJpxdoBe9X7spHwzRjUh3RPTAwF/signature-drop.html?contract=0x8023Be605B9b9f45Bfda56E29c31e4DE5B58eE87&chainId=5&theme=dark", style: "max-width:100%;", frameborder: "0"}
+%span
+  .dot-pulse

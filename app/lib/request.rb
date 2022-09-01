@@ -3,82 +3,6 @@ module Request
   require 'httparty'
   require 'json'
 
-  def self.blup()
-
-    # abi = self.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    abi = Request.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0') #blup: mint(amount)
-    abi = Request.eatherscan_get_abi('0x7a5509844F83E5949e8741ba918702bB56E1AdB7') #blup: safeMint(to, uri)
-    contractAddress = "0x7a5509844F83E5949e8741ba918702bB56E1AdB7"
-    name = "DeadArtistsAITestnetV6"
-    contract = Eth::Contract.from_abi(name: name, address: contractAddress, abi: abi)
-    contract.address # => "0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0"
-    cli = Eth::Client.create("https://eth-goerli.g.alchemy.com/v2/GQ8zXUmkJCyEMZLAIrkKpLAQREVh1iQK")
-    cli.call(contract, "totalSupply")
-    cli.call(contract, "balanceOf", '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6')
-    cli.call(contract, 'safeMint', '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6', 'ipfs://')
-    cli.call(contract, 'walletOfOwner', '0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7')
-
-
-
-    # web3 = Web3::Eth::Rpc.new(
-    #   host: 'eth-goerli.g.alchemy.com', #blup
-    #   port: 443,
-    #   connect_options: {
-    #     open_timeout: 20,
-    #     read_timeout: 140,
-    #     use_ssl: true,
-    #     # rpc_path: "/v2/#{ENV['ALCHEMY_API_KEY']}"
-    #     rpc_path: "/v2/GQ8zXUmkJCyEMZLAIrkKpLAQREVh1iQK" #blup: key von lucca
-    #   }
-    # )
-    #
-    # # get ABI
-    # # api = Web3::Eth::Etherscan.new(ENV['ETHERSCAN_API_KEY'])
-    # # abi = api.contract_getabi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    # abi = Request.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    # abi = self.eatherscan_get_abi('0x8eF68E2B793cB36Ab916ed8049451400b7eeCFF0')
-    # # abi = self.eatherscan_get_abi('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9')
-    # return nil if abi.nil?
-    #
-    #
-    #
-    # # creation of contract object
-    # myContract = web3.eth.contract(abi)
-    #
-    # # initiate contract for an address
-    # myContractInstance = myContract.at(userAddress) # contractAddress
-    # # myContractInstance = myContract.at('0x3764F7D9bdC4F883cd0F27230a4991980Ba079a9') # contractAddress with balance
-    # # myContractInstance = myContract.at('0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7') # ownerAddress
-    #
-    #
-    # myContractInstance.balanceOf('0xe0b696efbf337a37ac62fda5b19cd3ff1e6cd3a7')
-    # # myContractInstance.balanceOf(userAddress) # Returns the number of tokens in userAddress's account
-    #
-    #
-    #
-    # # call constant function
-    # result = myContractInstance.mint(amount)
-    # # result = myContractInstance.saefMint(price, amount)
-    # # result = myContractInstance.safeMint(userAddress, tokenURI)
-    #
-    # # function safeMint(address to, string memory uri) public onlyOwner {
-    # #     uint256 tokenId = _tokenIdCounter.current();
-    # #     _tokenIdCounter.increment();
-    # #     _safeMint(to, tokenId);
-    # #     _setTokenURI(tokenId, uri);
-    # # }
-    #
-    # # window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI() //make call to NFT smart contract
-
-    puts result
-
-
-    # tx = web3.eth.getTransactionByHash '0x83da408b05061a2512fe1abf065b37a6aad9ae96d604b288a3da34bf9f1af9e6'
-    # myContract.parse_call_args tx
-
-  end
-
-
   def self.eatherscan_get_abi(contractAddress)
     abi = nil
     url = "https://api-goerli.etherscan.io/api?module=contract&action=getabi&apikey=#{ENV['ETHERSCAN_API_KEY']}&address=#{contractAddress}"
@@ -86,7 +10,6 @@ module Request
     begin
       resp = HTTParty.get(url)
       if resp.success?
-        puts resp.parsed_response #blup
         abi = resp.parsed_response['result']
       end
     rescue OpenURI::HTTPError => ex
@@ -94,10 +17,6 @@ module Request
     end
     abi
   end
-
-  # def self.alchemy_get_code()
-  #
-  # end
 
   # get latest nonce:
   # Request.alchemy_get_transaction_count("0xc94770007dda54cF92009BFF0dE90c06F603a09f")
@@ -374,10 +293,6 @@ module Request
       puts ex
     end
   end
-
-
-
-
 
   def self.opensea_collection(collection)
     #url = "https://testnets-api.opensea.io/api/v1/assets?collection=#{collection}" blup
