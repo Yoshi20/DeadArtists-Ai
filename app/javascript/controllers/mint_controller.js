@@ -87,8 +87,8 @@ export default class extends Controller {
     document.getElementById('total-supply').innerHTML = totalSupply;
 
 
-    console.log('transactionCount: ', await window.signer.getTransactionCount());//blup
-    console.log(await window.contract.name());//blup
+    console.log('transactionCount: ', await window.signer.getTransactionCount());//blup: not handled yet
+    console.log(await window.contract.name());//blup: i-wo nötig?
   }
 
   add() {
@@ -130,7 +130,7 @@ export default class extends Controller {
       // status: "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" + txHash
     } catch(err) {
       console.warn(err.code);
-      if (err.code != 'ACTION_REJECTED') {
+      if (err.code != 'ACTION_REJECTED' && err.code != '4001') {
         alert("😥 Something went wrong: " + err.code + " 😥");
       }
     }

@@ -7,7 +7,8 @@ const showWalletConnectedButton = (userAddress) => {
   document.getElementById('connect-wallet-button').style.display = 'none';
   let wallet_connected_button = document.getElementById('wallet-connected-button')
   let userAddressShort = userAddress.substring(0, 5) + "..." + userAddress.slice(-4);
-  wallet_connected_button.innerHTML = "Connected wallet: " + userAddressShort + wallet_connected_button.innerHTML;
+  let foxIconHTML = wallet_connected_button.getElementsByTagName('img')[0].outerHTML.repeat(1);
+  wallet_connected_button.innerHTML = "<span>Connected wallet: " + userAddressShort + "</span>" + foxIconHTML;
   wallet_connected_button.style.display = '';
 }
 
