@@ -5,7 +5,7 @@ import { get } from '@rails/request.js'
 let numberOfNft = document.getElementById('number-of-nft').value;
 let userBalance = 0;
 let pricePerNft = 0.05;
-let maxNumberOfMintsPerWallet = 10;
+let maxNumberOfMints = 10;
 let contractAddress = "";
 
 const selectedAddress = async () => {
@@ -76,11 +76,18 @@ export default class extends Controller {
     userBalance = hexWeiToEth(balance._hex);
     console.log('userBalance: ', userBalance);//blup
     document.getElementById('user-balance').innerHTML = userBalance;
-    // Get & set maxNumberOfMintsPerWallet
+
+    // Get & set userNumberOfMints
+    const userNumberOfMints = await window.signer.getTransactionCount();
+    console.log('userNumberOfMints: ', userNumberOfMints);//blup
+    document.getElementById('user-number-of-mints').innerHTML = userNumberOfMints;
+    // Get & set maxNumberOfMints
     // const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
-    // maxNumberOfMintsPerWallet = parseInt(maxMintAmountPerTx._hex, 16);
-    maxNumberOfMintsPerWallet = 10;//blup: can be static
-    console.log('maxNumberOfMintsPerWallet: ', maxNumberOfMintsPerWallet);//blup
+    // maxNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16) - userNumberOfMints;
+    maxNumberOfMints = 10 - userNumberOfMints;//blup: can be static
+    if (maxNumberOfMints < 0) maxNumberOfMints = 0;
+    console.log('remaining maxNumberOfMints: ', maxNumberOfMints);//blup
+    document.getElementById('max-number-of-mints').innerHTML = maxNumberOfMints + userNumberOfMints;
     // Get & set pricePerNft
     const cost = await window.contract.cost();
     pricePerNft = hexWeiToEth(cost._hex);
@@ -95,28 +102,25 @@ export default class extends Controller {
     const totalSupply =  parseInt((await window.contract.totalSupply())._hex, 16);
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
-
-
-    console.log('transactionCount: ', await window.signer.getTransactionCount());//blup: not handled yet
-    console.log(await window.contract.name());//blup: i-wo nötig?
   }
 
   add() {
     numberOfNft++;
-    if (numberOfNft > maxNumberOfMintsPerWallet) numberOfNft = maxNumberOfMintsPerWallet;
+    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints;
     handleNumberOfNft(numberOfNft);
   }
 
   sub() {
     numberOfNft--;
     if (numberOfNft < 1) numberOfNft = 1;
+    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints; // in case max is 0
     handleNumberOfNft(numberOfNft);
   }
 
   set() {
     numberOfNft = document.getElementById('number-of-nft').value;
     if (numberOfNft < 1) numberOfNft = 1;
-    if (numberOfNft > maxNumberOfMintsPerWallet) numberOfNft = maxNumberOfMintsPerWallet;
+    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints;
     handleNumberOfNft(numberOfNft);
   }
 
