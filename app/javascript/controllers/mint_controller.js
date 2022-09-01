@@ -1,4 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
+import { ethers } from "ethers";
+import { FetchRequest } from '@rails/request.js'
 
 const PRICE_PER_NFT = 0.05; // blup: hardcoded for now
 const MAX_NUMBER_OF_MINTS_PER_WALLET = 10;  //blup: is not guaranteed yet!
@@ -10,6 +12,14 @@ const selectedAddress = async () => {
 }
 const totalPrice = (n) => {
   return Math.round(n * PRICE_PER_NFT * 1000) / 1000;
+}
+
+const hexWeiToEth =  (hexWei) => {
+  return Math.round(parseInt(hexWei, 16) / 1000000000000000000 * 1000) / 1000;
+}
+
+const ethStrToWei = (ethStr) => {
+  return ethers.utils.parseEther(ethStr);
 }
 
 let numberOfNft = document.getElementById('number-of-nft').value;
@@ -39,7 +49,7 @@ export default class extends Controller {
     // Get user balance
     try {
       let balance = await window.ethereum.request({ method: 'eth_getBalance', params: [window.ethereum.selectedAddress, "latest"] });
-      balance = Math.round(parseInt(balance, 16) / 1000000000000000000 * 1000) / 1000;
+      balance = hexWeiToEth(balance);
       userBalance = balance;
       console.log(userBalance);//blup
       document.getElementById('user-balance').innerHTML = userBalance;
@@ -69,7 +79,54 @@ export default class extends Controller {
   }
 
   async mint() {
-    alert('Mint test; numberOfNft = ' + numberOfNft + '; totalPrice = ' + totalPrice(numberOfNft));
+    // alert('Mint test; numberOfNft = ' + numberOfNft + '; totalPrice = ' + totalPrice(numberOfNft));
+
+    // const provider = new ethers.providers.Web3Provider(window.ethereum);
+    window.provider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log(provider);//blup
+
+    const CONTRACT_ADDRESS = '0x3E78776897f90D4279a0A64e1ceEbe5fE75028e9';
+
+    let abi = "";
+    const host = window.location.protocol + '//' + window.location.host;
+    const request = new FetchRequest('get', host + '/abi?contractAddress=' + CONTRACT_ADDRESS);
+    const response = await request.perform();
+    if (response.ok) abi = await response.text;
+    else console.erro("Couldn't fetch abi!");
+
+    // const signer = provider.getSigner();
+    window.signer = provider.getSigner();
+    console.log('userAddress: ', await signer.getAddress());
+    console.log('balance: ', hexWeiToEth((await signer.getBalance())._hex));
+    console.log('estimateGas: ', parseInt((await signer.estimateGas())._hex, 16));
+    console.log('gasPrice: ', parseInt((await signer.getGasPrice())._hex, 16));
+    console.log('chainId: ', await signer.getChainId());
+    console.log('transactionCount: ', await signer.getTransactionCount());
+    //await signer.sendTransaction(to, data);
+
+
+    // const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+    window.contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+    console.log(contract);//blup
+
+    console.log(await window.contract.name());
+    console.log();
+    const cost = hexWeiToEth((await contract.cost())._hex);
+    console.log('cost: ', cost);
+    console.log('maxSupply: ', parseInt((await contract.maxSupply())._hex, 16));
+    console.log('totalSupply: ', parseInt((await contract.totalSupply())._hex, 16));
+    console.log('maxMintAmountPerTx: ', parseInt((await contract.maxMintAmountPerTx())._hex, 16));
+
+
+    // console.log(await contract.safeMint('0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6', 'blup'));
+    // console.log('mint: ', await contract.mint(numberOfNft));
+
+
+    const blup = await contract.mint(numberOfNft, {
+        value: ethStrToWei((cost * numberOfNft).toString()), // totalPrice(numberOfNft)
+    });
+    console.log(blup);
+
 
     // const PUBLIC_KEY = '?'; //blup
     // const nonce = await window.ethereum.request({ method: 'eth_getTransactionCount', params: [PUBLIC_KEY, "latest"] });
