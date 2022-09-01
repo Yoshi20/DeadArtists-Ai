@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'home' => 'home#index'
 
   get 'mint' => 'mint#index'
+  get 'contract_address' => 'mint#contract_address'
   get 'abi' => 'mint#abi'
 
   get 'faq' => 'faq#index'

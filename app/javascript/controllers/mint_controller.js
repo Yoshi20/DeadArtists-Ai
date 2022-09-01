@@ -6,7 +6,7 @@ let numberOfNft = document.getElementById('number-of-nft').value;
 let userBalance = 0;
 let pricePerNft = 0.05;
 let maxNumberOfMintsPerWallet = 10;
-const CONTRACT_ADDRESS = '0x3E78776897f90D4279a0A64e1ceEbe5fE75028e9';
+let contractAddress = "";
 
 const selectedAddress = async () => {
   while(!window.ethereum.selectedAddress) {
@@ -14,10 +14,19 @@ const selectedAddress = async () => {
   }
 }
 
+const getContractAddress = async () => {
+  let address = "";
+  const host = window.location.protocol + '//' + window.location.host;
+  const response = await get(host + '/contract_address')
+  if (response.ok) address = await response.text;
+  else console.erro("Couldn't fetch address!");
+  return address;
+}
+
 const getAbi = async () => {
   let abi = "";
   const host = window.location.protocol + '//' + window.location.host;
-  const response = await get(host + '/abi?contractAddress=' + CONTRACT_ADDRESS)
+  const response = await get(host + '/abi?contractAddress=' + contractAddress)
   if (response.ok) abi = await response.text;
   else console.erro("Couldn't fetch abi!");
   return abi;
@@ -59,8 +68,9 @@ export default class extends Controller {
     // Get provider, signer & contract
     window.provider = new ethers.providers.Web3Provider(window.ethereum);
     window.signer = window.provider.getSigner();
+    contractAddress =  await getContractAddress();
     const abi = await getAbi();
-    window.contract = new ethers.Contract(CONTRACT_ADDRESS, abi, window.signer);
+    window.contract = new ethers.Contract(contractAddress, abi, window.signer);
     // Get & set user balance
     const balance = await window.signer.getBalance();
     userBalance = hexWeiToEth(balance._hex);
