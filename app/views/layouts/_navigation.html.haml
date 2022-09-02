@@ -1,7 +1,7 @@
 -# pc & tablet view:
 %nav.left.m.l
   = link_to root_path, class: (@section == 'welcome' ? 'active' : '') do
-    = image_tag 'profile_pic_low_quali.webp', class: 'profile-pic-low-quali circle small-margin'
+    = image_tag 'profile_pic.webp', class: 'profile_pic circle small-margin'
   = link_to home_path, class: (@section == 'home' ? 'active' : '') do
     %i home
     %div= 'Home'

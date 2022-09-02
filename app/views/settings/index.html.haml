@@ -1,19 +1,21 @@
-%h2.center-align
-  = t('settings.title')
-.row
-  .col.s12
-    %p
-      -# = t('settings.body0')
+- set_meta_tags description: meta_tag_description('Settings')
+.settings
+  %h2.center-align
+    = t('settings.title')
+  .row
+    .col.s12
+      %p
+        -# = t('settings.body0')
 
-= link_to 'Edit user', edit_user_registration_path
-%br
-%br
+  = link_to 'Edit user', edit_user_registration_path
+  %br
+  %br
 
-= form_with url: destroy_user_session_path, id: "log_out_form", method: :delete do |f|
-  = link_to t('navigation.account.log_out'), '#'
+  = form_with url: destroy_user_session_path, id: "log_out_form", method: :delete do |f|
+    = link_to t('navigation.account.log_out'), '#'
 
-:javascript
-  document.getElementById("log_out_form").addEventListener("click", function(e) {
-    e.preventDefault();
-    document.getElementById("log_out_form").closest('form').submit()
-  });
+  :javascript
+    document.getElementById("log_out_form").addEventListener("click", function(e) {
+      e.preventDefault();
+      document.getElementById("log_out_form").closest('form').submit()
+    });
