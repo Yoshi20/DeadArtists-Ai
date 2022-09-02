@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  # config.force_ssl = true #blup
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
@@ -63,6 +63,25 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "dead_artists_ai_production"
 
   config.action_mailer.perform_caching = false
+
+  # ActionMailer Config
+  #blup
+  # config.action_mailer.default_url_options = { :host => 'https://www.swisssmash.ch'}
+  # # config.action_mailer.perform_deliveries = false
+  # # config.action_mailer.delivery_method = :smtp
+  # # config.action_mailer.default :charset => "utf-8"
+  # config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.default_options = {from: 'SwissSmash <admin@swisssmash.ch>'}
+  # ActionMailer::Base.delivery_method = :smtp
+  # ActionMailer::Base.smtp_settings = { # This is only a fallback. The smtp_settings are overwritten in the delivery_options of each mail
+  #   address: 'smtp.sendgrid.net',
+  #   port: 587, #or 25,
+  #   domain: 'heroku.com', # must be the same as domain from sender
+  #   user_name: 'apikey',
+  #   password: ENV['SENDGRID_API_KEY'],
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true
+  # }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

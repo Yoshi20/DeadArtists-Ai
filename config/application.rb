@@ -19,9 +19,11 @@ module DeadArtistsAI
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.middleware.insert_before ActionDispatch::Static, Rack::Deflater # to compress (gzip) static assets
+
     config.time_zone = 'Bern'
 
-    config.i18n.available_locales = %w(en de)
+    config.i18n.available_locales = %w(en) #blup: only en for now
 
   end
 end

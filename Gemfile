@@ -83,8 +83,8 @@ gem 'devise' # (flexible authentication solution)
 # See https://github.com/tigrish/devise-i18n
 gem 'devise-i18n' # (devise locale data collection)
 
-# # See https://github.com/smartinez87/exception_notification
-# gem 'exception_notification'
+# See https://github.com/smartinez87/exception_notification
+gem 'exception_notification'
 
 # See https://github.com/laserlemon/figaro
 gem 'figaro' # (ENV file: config/application.yml)
@@ -100,6 +100,14 @@ gem 'httparty'
 
 # See https://github.com/svenfuchs/rails-i18n
 gem 'rails-i18n', '~> 7.0.0' # (rails locale data collection)
+
+# See https://github.com/kpumuk/meta-tags
+gem 'meta-tags'
+
+group :development do
+  gem 'better_errors'
+  gem 'brakeman' # https://github.com/presidentbeef/brakeman
+end
 
 # See https://devcenter.heroku.com/articles/getting-started-with-rails4#visit-your-application
 group :staging, :production do
