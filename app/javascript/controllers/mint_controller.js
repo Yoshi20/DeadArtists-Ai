@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { ethers } from "ethers";
 import { get } from '@rails/request.js'
 
-let numberOfNft = document.getElementById('number-of-nft').value;
+let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
 let userBalance = 0;
 let pricePerNft = 0.05;
 let maxNumberOfMints = 10;
@@ -61,7 +61,10 @@ const handleNumberOfNft = (n) => {
 
 // Connects to -> data: { controller: 'mint' }
 export default class extends Controller {
+
   async connect() {
+    // Set numberOfNft
+    document.getElementById('number-of-nft').value = numberOfNft;
     // Wait until window.ethereum.selectedAddress is defined
     await selectedAddress();
     console.log('userAddress: ', window.ethereum.selectedAddress);//blup
@@ -76,7 +79,6 @@ export default class extends Controller {
     userBalance = hexWeiToEth(balance._hex);
     console.log('userBalance: ', userBalance);//blup
     document.getElementById('user-balance').innerHTML = userBalance;
-
     // Get & set userNumberOfMints
     const userNumberOfMints = await window.signer.getTransactionCount();
     console.log('userNumberOfMints: ', userNumberOfMints);//blup
