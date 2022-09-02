@@ -36,7 +36,7 @@
     .col.s12.center-align
       = link_to mint_path do
         %button.round.large
-          %span Click here to go to the Mint page
+          %span= "Click here to go to the <strong>Mint</strong> page".html_safe
           %i auto_awesome
 
   .row
@@ -57,16 +57,18 @@
         .col.s12.center-align
           = link_to faq_path do
             %button.border.round.large
-              %span.m.l Click here to go to the FAQs page
-              %span.s FAQs
+              %span.m.l= "Click here to go to the <strong>FAQs</strong> page".html_safe
+              %span.s
+                %strong FAQs
               %i live_help
     .col.s6.center-align
       .row.mt-0
         .col.s12.center-align
           = link_to roadmap_path do
             %button.border.round.large
-              %span.m.l Click here to go to the Roadmap page
-              %span.s Roadmap
+              %span.m.l= "Click here to go to the <strong>Roadmap</strong> page".html_safe
+              %span.s
+                %strong Roadmap
               %i map
 
   .row
@@ -132,7 +134,7 @@
         .col.s12.center-align{style: 'margin-top: 20px;'}
           = link_to nfts_path do
             %button.border.round.large
-              %span Click here to go to the database
+              %span= "Click here to go to the <strong>Database</strong> page".html_safe
               %i filter
       .row.middle-align
         .col.s4.center-align
@@ -150,7 +152,7 @@
     .col.s12.center-align
       = link_to nfts_path do
         %button.border.round.large
-          %span Click here to go to the database
+          %span= "Click here to go to the <strong>Database</strong> page".html_safe
           %i filter
 
   .row

@@ -87,4 +87,38 @@
       color: $color-black !important;
     }
   }
+
+  /* Enter arrows from https://freefrontend.com/css-arrows/ */
+  #enter-arrows {
+    color: $color-default;
+    position: absolute;
+    bottom: 30px;
+    left: calc(50% - 180px);
+    width: 360px;
+    height: 60px;
+    display: flex;
+  }
+  #enter-arrows:before,
+  #enter-arrows:after {
+    content: "";
+    flex: 1;
+    margin: 0 5px;
+    background: currentColor;
+    clip-path: polygon(0 10px,calc(100% - 15px) 10px,calc(100% - 15px) 0,100% 50%,calc(100% - 15px) 100%,calc(100% - 15px) calc(100% - 10px),0 calc(100% - 10px));
+    animation: a3 .5s infinite alternate;
+  }
+
+  #enter-arrows:before {
+    margin-right: 130px;
+  }
+
+  #enter-arrows:after {
+    margin-left: 130px;
+    --s:-1;
+  }
+  @keyframes a3 {
+    0%  {transform: scaleX(var(--s,1)) translate(-4px)}
+    100%{transform: scaleX(var(--s,1)) translate( 4px)}
+  }
+
 }
