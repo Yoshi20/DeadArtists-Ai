@@ -15,7 +15,6 @@
       %p.home-text-paragraph{style: 'font-family: CarterOne; transform: rotate(-1deg); font-size: 26px;'}
         Yes, you should definitely own a Van Gogh, Picasso or Da Vinci for yourself!
 
-
   .row
     .col.s4.center-align
       .artist-frame
@@ -49,6 +48,24 @@
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
+
+  .row
+    .col.s6.center-align
+      .row.mt-0
+        .col.s12.center-align
+          = link_to faq_path do
+            %button.border.round.large
+              %span.m.l Click here to go to the FAQs page
+              %span.s FAQs
+              %i live_help
+    .col.s6.center-align
+      .row.mt-0
+        .col.s12.center-align
+          = link_to roadmap_path do
+            %button.border.round.large
+              %span.m.l Click here to go to the Roadmap page
+              %span.s Roadmap
+              %i map
 
   .row
     .col.s12.center-align
