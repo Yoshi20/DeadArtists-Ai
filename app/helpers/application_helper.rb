@@ -17,7 +17,7 @@ module ApplicationHelper
       reverse: true,
       separator: '|',
       description: meta_tag_description(''),
-      keywords: 'dead artists ai, art, nft, mint, ai',
+      keywords: 'dead artists ai, dead artists, nft, blockchain, web3, ai, modern art, traditional art',
       canonical: request.original_url,
       noindex: !Rails.env.production?,
       icon: [
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def meta_tag_description(str)
-    "Dead Artists AI is an NFT art project that brings dead artists back to life and let them join Web3. This is the #{str} page."
+    "Dead Artists AI is a NFT art project on the blockchain. It brings dead artists back to life and let them join Web3. This is the #{str} page."
   end
 
 end
