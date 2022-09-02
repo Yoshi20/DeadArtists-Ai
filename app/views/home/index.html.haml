@@ -2,6 +2,7 @@
 .home
   .row
     .col.s12.center-align
+      %h1.home-text-title{style: 'display: none;'}= 'Dead Artists AI Home'
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
   -# .row.mt-0
   -#   .col.s12.center-align{style: 'margin-top: -40rem;'}
@@ -44,7 +45,7 @@
 
   .row.title-row#How-it-Works
     .col.s12.center-align
-      %span.home-text-title= 'How it Works'
+      %h2.home-text-title= 'How it Works'
   .row.mt-0
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
@@ -74,7 +75,7 @@
 
   .row.title-row#The-Community
     .col.s12.center-align
-      %span.home-text-title= 'The Community'
+      %h2.home-text-title= 'The Community'
   .row.mt-0
     .col.s6.left-align
       %p.home-text-paragraph
@@ -101,7 +102,7 @@
 
   .row.title-row#The-Dead-Artists-AI-Club
     .col.s12.center-align
-      %span.home-text-title= 'The Club'
+      %h2.home-text-title= 'The Club'
   .row.mt-0
     .col.s6.m8.left-align
       %p.home-text-paragraph
@@ -119,7 +120,7 @@
 
   .row.title-row#The-Artist-Database
     .col.s12.center-align
-      %span.home-text-title= 'The Database'
+      %h2.home-text-title= 'The Database'
   .row.mt-0{style: 'display: flex;'}
     .col.s8.m7.l8.left-align
       %p.home-text-paragraph
@@ -158,7 +159,7 @@
 
   .row.title-row#The-Team
     .col.s12.center-align
-      %span.home-text-title= 'The Team'
+      %h2.home-text-title= 'The Team'
   .row.mt-0
     .col.s12.center-align
       = image_tag 'the_team.jpg', width: '100%', alt: 'Team image of the Dead Artists AI team'
