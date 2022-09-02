@@ -18,7 +18,7 @@
   %body.dark
     - if @section == 'welcome'
       .background-image
-        = image_tag 'welcome_background.jpg'
+        = image_tag 'welcome_background.jpg', alt: 'Static background image on the welcome page showing a young man in a gallery'
       %main
         = yield
     - else

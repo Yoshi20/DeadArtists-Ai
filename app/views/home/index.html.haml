@@ -19,13 +19,13 @@
   .row
     .col.s4.center-align
       .artist-frame
-        = image_tag 'vincent_van_gogh.gif'
+        = image_tag 'vincent_van_gogh.gif', alt: 'Vincent Van Gogh NFT GIF'
     .col.s4.center-align
       .artist-frame
-        = image_tag 'pablo_picasso.gif'
+        = image_tag 'pablo_picasso.gif', alt: 'Pablo Picasso NFT GIF'
     .col.s4.center-align
       .artist-frame
-        = image_tag 'leonardo_da_vinci.gif'
+        = image_tag 'leonardo_da_vinci.gif', alt: 'Leonardo da Vinci NFT GIF'
 
   .row
     .col.s12.center-align
@@ -48,7 +48,7 @@
   .row.mt-0
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.mp4', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
-      = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();"
+      = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
 
   .row
     .col.s6.center-align
@@ -84,15 +84,15 @@
       %p.home-text-paragraph.l
         Join our Discord and get in touch with the team.
     .col.s6.center-align
-      = image_tag 'community_image.webp', width: '100%', style: 'max-width: 428px !important;'
+      = image_tag 'community_image.webp', width: '100%', style: 'max-width: 428px !important;', alt: 'Community image'
   .row.mt-0
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
-        = image_tag 'twitter_logo.webp'
+        = image_tag 'twitter_logo.webp', alt: 'twitter logo'
     .col.s6.m4.l3.center-align
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
-        = image_tag 'discord_logo.webp'
+        = image_tag 'discord_logo.webp', alt: 'discord logo'
     .col.m.m2.l.l3
 
   .row
@@ -111,7 +111,7 @@
       %p.home-text-paragraph
         You will be the first to get informed about cooperations and get whitelists from other interesting art related projects, exclusively selected by the Dead Artists AI team.
     .col.s6.m4.center-align
-      = image_tag 'club_image.webp', width: '100%', style: 'max-height: 361px !important; max-width: 241px !important;'
+      = image_tag 'club_image.webp', width: '100%', style: 'max-height: 361px !important; max-width: 241px !important;', alt: 'Club image'
 
   .row
     .col.s12.center-align
@@ -135,16 +135,16 @@
               %i filter
       .row.middle-align
         .col.s4.center-align
-          = image_tag 'pablo_picasso2.webp', width: '100%', style: 'max-width: 202px !important;'
+          = image_tag 'pablo_picasso2.webp', width: '100%', style: 'max-width: 202px !important;', alt: 'Pablo Picasso image beside his quote'
         .col.s8.left-align
           %p.home-text-paragraph{style: 'font-style: italic; font-family: playfair display,serif; letter-spacing: 0em;'}
             “Art washes away from the soul the dust of everyday life.”
             %br
             ― Pablo Picasso
     .col.s.s4.center-align.middle-align
-      = image_tag 'artist_database_image_right.jpg', width: '100%'
+      = image_tag 'artist_database_image_right.jpg', width: '100%', alt: 'Images of different artists within the database section'
     .col.m.m5.l.l4.center-align.middle-align{style: 'padding: 0; margin-left: -8rem;'}
-      = image_tag 'artist_database_image_right.png', width: '100%'
+      = image_tag 'artist_database_image_right.png', width: '100%', alt: 'Images of different artists within the database section'
   .row.mt-0.s
     .col.s12.center-align
       = link_to nfts_path do
@@ -161,4 +161,4 @@
       %span.home-text-title= 'The Team'
   .row.mt-0
     .col.s12.center-align
-      = image_tag 'the_team.jpg', width: '100%'
+      = image_tag 'the_team.jpg', width: '100%', alt: 'Team image of the Dead Artists AI team'

@@ -2,7 +2,7 @@
 .welcome
   .row
     .col.s12.center-align
-      = image_tag 'profile_pic.webp', class: 'profile_pic'
+      = image_tag 'profile_pic.webp', class: 'profile_pic', alt: 'Dead Artists AI profile picture'
 
     .col.s12.center-align{style: 'margin-top: -10rem;'}
       %span.text-below-profile-pic= 'Art by Artificial Intelligence'
@@ -14,11 +14,11 @@
   .row
     .col.s12.center-align
       .picasso-frame#visible-picasso-frame.center-align{onclick: "this.style.display = 'none'; document.getElementById('hidden-picasso-frame').style.display = 'inline-block';"}
-        = image_tag 'pablo_picasso.webp'
+        = image_tag 'pablo_picasso.webp', alt: 'Pablo Picasso image'
         %span.picasso-frame-text#picasso-frame-text1= 'Click me to turn me into a moving artwork'
         %span.picasso-frame-text#picasso-frame-text2= 'TRY IT!'
       .picasso-frame#hidden-picasso-frame{onclick: "this.style.display = 'none'; document.getElementById('visible-picasso-frame').style.display = 'inline-block';"}
-        = image_tag 'pablo_picasso.gif'
+        = image_tag 'pablo_picasso.gif', alt: 'Pablo Picasso NFT GIF'
 
     .col.s12.center-align
       = link_to 'ENTER', home_path, {id: 'brush-stroke'}
@@ -35,8 +35,8 @@
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
-        = image_tag 'twitter_logo.webp'
+        = image_tag 'twitter_logo.webp', alt: 'twitter logo'
     .col.s6.m4.l3.center-align
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
-        = image_tag 'discord_logo.webp'
+        = image_tag 'discord_logo.webp', alt: 'discord logo'
     .col.m.m2.l.l3
