@@ -76,7 +76,7 @@ module Request
     balance
   end
 
-  # Request.alchemy_get_NFTs('0x3E78776897f90D4279a0A64e1ceEbe5fE75028e9', '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6')
+  # Request.alchemy_get_NFTs('0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756', '0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6')
   def self.alchemy_get_NFTs(contractAddress, userAddress)
     nfts = nil
     url = "https://eth-goerli.g.alchemy.com/v2/#{ENV['ALCHEMY_API_KEY']}/getNFTs?contractAddresses[]=#{contractAddress}&withMetadata=true&owner=#{userAddress}" #blup: goerli for now

@@ -80,7 +80,8 @@ export default class extends Controller {
     console.log('userBalance: ', userBalance);//blup
     document.getElementById('user-balance').innerHTML = userBalance;
     // Get & set userNumberOfMints
-    const userNumberOfMints = await window.signer.getTransactionCount();
+    const userTokenBalance = await window.contract.balanceOf(window.ethereum.selectedAddress);
+    const userNumberOfMints = parseInt(userTokenBalance._hex, 16);
     console.log('userNumberOfMints: ', userNumberOfMints);//blup
     document.getElementById('user-number-of-mints').innerHTML = userNumberOfMints;
     // Get & set maxNumberOfMints
@@ -95,6 +96,7 @@ export default class extends Controller {
     pricePerNft = hexWeiToEth(cost._hex);
     console.log('pricePerNft: ', pricePerNft);//blup
     handleNumberOfNft(document.getElementById('number-of-nft').value);
+    // Minting may be enabled from here on -------------------------------------
     // Get & set maxSupply
     // const maxSupply =  parseInt((await window.contract.maxSupply())._hex, 16);
     const maxSupply =  5000;//blup: can be static
