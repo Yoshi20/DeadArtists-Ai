@@ -6,18 +6,11 @@
 
   .row
     .col.s12.center-align
-      .field.suffix.border
-        %select#select-artist{autocomplete: "off", placeholder: "Search for an artist...", data: { controller: 'tom-select', resource: 'artists'  }}
-          %option{value: ""} Search for an artist...
-          - @artists.each do |artist|
-            %option{value: artist.id.to_s}= artist.name
-        %i arrow_drop_down
-
-  .row
-    .col.s12.center-align
       - if @artists.any?
-        - @artists.each do |artist|
-          = render artist
+        .row
+          - @artists.each do |artist|
+            .col.s12
+              = render artist
       - else
         %p No artists found...
 

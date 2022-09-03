@@ -6,24 +6,11 @@
 
   .row
     .col.s12.center-align
-      .field.suffix.border{style: 'margin-bottom: 5px;'}
-        %select#select-artist{autocomplete: "off", placeholder: "Search for an artist...", data: { controller: 'tom-select', resource: 'artists' }}
-          %option{value: ""} Search for an artist...
-          - @artists.each do |artist|
-            %option{value: artist.id.to_s, selected: (params[:artist_id] == artist.id.to_s)}= artist.name
-
-      .field.suffix.border
-        %select#select-painting{autocomplete: "off", placeholder: "Search for a painting...", data: { controller: 'tom-select', resource: 'paintings' }}
-          %option{value: ""} Search for a painting...
-          - @paintings.each do |painting|
-            %option{value: painting.id.to_s}= painting.name
-
-
-  .row
-    .col.s12.l6.center-align
       - if @paintings.any?
-        - @paintings.each do |painting|
-          = render painting
+        .row
+          - @paintings.each do |painting|
+            .col.s12.m6
+              = render painting
       - else
         %p No paintings found...
 

@@ -30,10 +30,10 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 - if artist.image_link.present?
-                  = link_to artist_path(artist, nft_id: nft.id) do
+                  = link_to artist_path(artist, nft_id: nft&.id) do
                     %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
                 - else
-                  = link_to artist.name, artist_path(artist, nft_id: nft.id), class: 'color-default'
+                  = link_to artist.name, artist_path(artist, nft_id: nft&.id), class: 'color-default'
         - if nft.present?
           .col.s6
             .row.no-space.mt-0
@@ -58,7 +58,8 @@
             %i delete
 
     -# back arrows
-    = link_to nft, class: 'back-arrow back-arrow-top color-default' do
-      %i keyboard_backspace
-    = link_to nft, class: 'back-arrow color-default' do
-      %i keyboard_backspace
+    - if nft.present?
+      = link_to nft, class: 'back-arrow back-arrow-top color-default' do
+        %i keyboard_backspace
+      = link_to nft, class: 'back-arrow color-default' do
+        %i keyboard_backspace

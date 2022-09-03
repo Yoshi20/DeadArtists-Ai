@@ -39,7 +39,8 @@
             %i delete
 
     -# back arrows
-    = link_to nft_path(params[:nft_id]), class: 'back-arrow back-arrow-top color-default' do
-      %i keyboard_backspace
-    = link_to nft_path(params[:nft_id]), class: 'back-arrow color-default' do
-      %i keyboard_backspace
+    - if params[:nft_id].present?
+      = link_to nft_path(params[:nft_id]), class: 'back-arrow back-arrow-top color-default' do
+        %i keyboard_backspace
+      = link_to nft_path(params[:nft_id]), class: 'back-arrow color-default' do
+        %i keyboard_backspace

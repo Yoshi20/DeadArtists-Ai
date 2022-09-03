@@ -1,7 +1,8 @@
 %article.no-padding
   .row.no-space
     .col.s5.center-align
-      %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
+      = link_to painting_path(painting) do
+        %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
     .col.s7
       .row.no-space
         .col.s12.center-align
