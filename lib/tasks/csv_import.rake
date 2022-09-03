@@ -2,6 +2,7 @@ require 'csv'
 
 namespace :csv_import do
 
+  # rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/Z_KuenstlerWorkWrite.csv\]
   desc "Imports artists and paintings from given csv"
   task :artists_and_paintings, [:csv_path] => :environment do |t, args|
     args.with_defaults(csv_path: nil)
