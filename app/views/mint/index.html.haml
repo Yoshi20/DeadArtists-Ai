@@ -46,6 +46,7 @@
             .field.border#set-field
               = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft'}
             %button#add-button{data: { action: "click->mint#add" }} +
+
             #mint-error-message{style: "display: none;"} insufficient funds
 
       .row.mt-0
@@ -54,6 +55,10 @@
             %i{style: 'transform: rotateY(180deg); margin-right: 10px;'} auto_awesome
             %span#mint-button-text Mint
             %i{style: 'margin-left: 10px;'} auto_awesome
+
+      .row.mt-0#mint-success-message-row{style: "display: none;"}
+        .col.s12.center-align
+          #mint-success-message-text Mint succeeded!
 
       .row.mt-0
         .col.s12.center-align

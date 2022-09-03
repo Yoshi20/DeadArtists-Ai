@@ -134,6 +134,7 @@ export default class extends Controller {
     document.getElementById("sub-button").disabled = true;
     document.getElementById("add-button").disabled = true;
     document.getElementById("set-field").style.pointerEvents = 'none';
+    document.getElementById('mint-success-message-row').style.display = 'none';
     const mintButtonText = document.getElementById("mint-button-text");
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
@@ -141,11 +142,26 @@ export default class extends Controller {
       const response = await contract.mint(numberOfNft, {
         value: ethStrToWei(totalPrice(numberOfNft).toString()),
       });
-      console.log(response); // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
-      //blup
-      // const url = `https://rinkeby.etherscan.io/tx/${mintTransaction.transactionHash}`;
-      // console.log("Minted successfully!", `Transaction Hash: ${mintTransaction.transactionHash}`);
-      // status: "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" + txHash
+      console.log(response);
+      // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
+      // from: "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
+      // gasLimit: Object { _hex: "0x0146c5", _isBigNumber: true }
+      // gasPrice: Object { _hex: "0x59682f0b", _isBigNumber: true }
+      // hash: "0x54228e71678b0fbec7236b825324299bfe55cf5f4acb758de582dfc54fae002b"
+      // maxFeePerGas: Object { _hex: "0x59682f0b", _isBigNumber: true }
+      // maxPriorityFeePerGas: Object { _hex: "0x59682f00", _isBigNumber: true }
+      // nonce: 3
+      // to: "0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756"
+      // value: Object { _hex: "0x11c37937e08000", _isBigNumber: true }
+
+      // Show "Mint succeeded!"
+      let url = 'https://goerli.etherscan.io/tx/' + response.hash; //blup: goerli for now
+      let p = document.createElement("p");
+      p.innerHTML = 'Check out your transaction on <a target=_blank class=color-default href=' + url + '>Etherscan</a>';
+      let parent = document.getElementById('mint-success-message-text').parentElement;
+      if (parent.lastChild.tagName == "P") { parent.lastChild.remove(); }
+      parent.appendChild(p);
+      document.getElementById('mint-success-message-row').style.display = '';
     } catch(err) {
       console.warn(err.code);
       if (err.code != 'ACTION_REJECTED' && err.code != '4001') {

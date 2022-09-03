@@ -51,12 +51,18 @@
       font-size: 20px;
       width: 16px;
     }
+  }
 
-    #mint-error-message {
-      color: $color-red;
-      font-size: 16px;
-      margin-top: 10px;
-    }
+  #mint-error-message {
+    color: $color-red;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  #mint-success-message-text {
+    color: $color-green;
+    font-size: 16px;
+    margin-top: 10px;
   }
 
   #mint-button {
