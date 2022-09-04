@@ -80,8 +80,10 @@
 
   /* Title of the roadmap-card */
   .title {
-    color: $color-default;
     position: relative;
+    font: $font-title;
+    color: $color-default;
+    font-size: 24px;
   }
 
   /* Timeline dot  */

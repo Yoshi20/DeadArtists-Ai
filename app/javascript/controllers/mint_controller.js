@@ -4,7 +4,7 @@ import { get } from '@rails/request.js'
 
 let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
 let userBalance = 0;
-let pricePerNft = 0.05;
+let pricePerNft = 0.04;
 let maxNumberOfMints = 10;
 let contractAddress = "";
 
