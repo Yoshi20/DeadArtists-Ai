@@ -18,4 +18,5 @@ railway run rake db:migrate
 railway run bin/rails server # -> to test it on http://127.0.0.1:3000
 railway up # -> to deploy
 railway logs
+railway variables
 ```
