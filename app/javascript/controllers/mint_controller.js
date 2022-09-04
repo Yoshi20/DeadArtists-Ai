@@ -16,8 +16,7 @@ const selectedAddress = async () => {
 
 const getContractAddress = async () => {
   let address = "";
-  const host = window.location.protocol + '//' + window.location.host;
-  const response = await get(host + '/contract_address')
+  const response = await get(window.location.origin + '/contract_address')
   if (response.ok) address = await response.text;
   else console.erro("Couldn't fetch address!");
   return address;
@@ -25,11 +24,18 @@ const getContractAddress = async () => {
 
 const getAbi = async () => {
   let abi = "";
-  const host = window.location.protocol + '//' + window.location.host;
-  const response = await get(host + '/abi?contractAddress=' + contractAddress)
+  const response = await get(window.location.origin + '/abi?contractAddress=' + contractAddress)
   if (response.ok) abi = await response.text;
   else console.erro("Couldn't fetch abi!");
   return abi;
+}
+
+const getUserNfts = async (userAddress) => {
+  let user_nfts;
+  const response = await get(window.location.origin + '/user_nfts?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
+  if (response.ok) user_nfts = await response.text;
+  else console.erro("Couldn't fetch user_nfts!");
+  return user_nfts;
 }
 
 const totalPrice = (n) => {
@@ -106,6 +112,8 @@ export default class extends Controller {
     const totalSupply =  parseInt((await window.contract.totalSupply())._hex, 16);
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
+    // Get user NFTs
+    //const user_nfts = await getUserNfts(window.ethereum.selectedAddress); //blup: WIP
   }
 
   add() {
