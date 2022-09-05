@@ -1,7 +1,7 @@
 .text-band
   .zigzag.zigzag-top
   - if text.present?
-    %marquee{behavior: "scroll", direction: "left"}
-      %span.text-band-text
+    .marquee
+      %span.text-band-text{style: "animation-duration: #{duration}"}
         = text
   .zigzag
