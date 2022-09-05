@@ -1,4 +1,3 @@
-- set_meta_tags description: meta_tag_description('Welcome')
 .welcome
   .row
     .col.s12.center-align
@@ -21,8 +20,8 @@
         = image_tag 'pablo_picasso.gif', alt: 'Pablo Picasso NFT GIF'
 
     #enter-arrows{style: 'display: none;'}
-    .col.s12.center-align
-      = link_to 'ENTER', home_path, {id: 'brush-stroke'}
+    .col.s12.center-align{data: { controller: 'welcome' }}
+      = link_to 'ENTER', '#', {id: 'brush-stroke', data: { action: 'click->welcome#enter' } }
 
   .row
     .col.s12.center-align

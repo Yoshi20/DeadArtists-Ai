@@ -15,3 +15,6 @@ application.register("wallet", WalletController)
 
 import MintController from "./mint_controller"
 application.register("mint", MintController)
+
+import WelcomeController from "./welcome_controller"
+application.register("welcome", WelcomeController)

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'welcome' => 'welcome#index'
-
   get 'home' => 'home#index'
 
   get 'mint' => 'mint#index'
@@ -24,6 +22,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
   resources :users, only: [:index]#, :update, :destroy]
 
-  root "welcome#index"
+  root "home#index"
 
 end

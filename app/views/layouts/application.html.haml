@@ -16,12 +16,15 @@
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
   %body.dark
-    - if @section == 'welcome'
-      .background-image
-        = image_tag 'welcome_background.jpg', alt: 'Static background image on the welcome page showing a young man in a gallery'
-      %main
-        = yield
-    - else
+    - showWelcomeOverlay = @section == 'home' && params['overlay'] != 'false'
+    - if showWelcomeOverlay
+      -# show welcome page on top and load the rest in the back
+      #overlay
+        .background-image
+          = image_tag 'welcome_background.jpg', alt: 'Static background image on the welcome page showing a young man in a gallery'
+        %main
+          = render '/welcome/index'
+    #primary{style: "display: #{showWelcomeOverlay ? 'none' : ''}"}
       .background-image
         = video_tag "background.mp4#t=#{rand(5)}", controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, height: 'auto', width: '100%', id: 'background-video', 'data-turbo-permanent': true
         #pixel-grid

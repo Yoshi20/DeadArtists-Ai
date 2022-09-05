@@ -2,7 +2,7 @@
 %nav.left.m.l
   = link_to root_path, class: (@section == 'welcome' ? 'active' : '') do
     = image_tag 'profile_pic.webp', class: 'profile_pic circle small-margin', alt: 'Dead Artists AI profile picture'
-  = link_to home_path, class: (@section == 'home' ? 'active' : '') do
+  = link_to home_path(overlay: false), class: (@section == 'home' ? 'active' : '') do
     %i home
     %div= 'Home'
   = link_to mint_path, class: (@section == 'mint' ? 'active' : '') do
@@ -30,7 +30,7 @@
 
 -# mobile view:
 %nav.bottom.s
-  = link_to home_path, class: (@section == 'home' ? 'active' : '') do
+  = link_to home_path(overlay: false), class: (@section == 'home' ? 'active' : '') do
     %i home
     %div= 'Home'
   = link_to mint_path, class: (@section == 'mint' ? 'active' : '') do
