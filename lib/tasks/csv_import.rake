@@ -12,6 +12,7 @@ namespace :csv_import do
     end
     invalid_artists = []
     invalid_paintings = []
+    invalid_nfts = []
     csv_path = args.csv_path
     csv_text = File.read(csv_path)
     csv = CSV.parse(csv_text, :headers => true)
@@ -54,9 +55,25 @@ namespace :csv_import do
       else
         invalid_paintings << data['painting_name'] + " -> " + painting.errors.full_messages.to_s
       end
+      # Create or update nft
+      nft = Nft.find_by(name: data['nft_name'])
+      nft = Nft.new unless nft.present?
+      is_new_record = nft.new_record?
+      nft.name = data['nft_name']
+      nft.description = data['nft_description']
+      nft.image_link = data['nft_image_link']
+      # blup traits...
+      nft.artist = artist
+      nft.painting = painting
+      if nft.save
+        puts "  -> Nft successfully #{is_new_record ? 'created' : 'updated'}: " + nft.name
+      else
+        invalid_nfts << data['nft_name'] + " -> " + nft.errors.full_messages.to_s
+      end
     end
     puts "  -> Couldn't create the following Artists: " + invalid_artists.to_s if invalid_artists.any?
     puts "  -> Couldn't create the following Paintings: " + invalid_paintings.to_s if invalid_paintings.any?
+    puts "  -> Couldn't create the following NFTs: " + invalid_nfts.to_s if invalid_nfts.any?
   end
 
 end
