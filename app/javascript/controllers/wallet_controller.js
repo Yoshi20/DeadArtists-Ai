@@ -39,7 +39,7 @@ export default class extends Controller {
           if (!chainId) {
             chainId = await window.ethereum.request({ method: 'eth_chainId' });
           }
-          if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
+          if (chainId == 5) { //blup: allow only goerli (5) for now (ethereum = 1)
             showWalletConnected();
           } else {
             showInvalidNetwork();
@@ -69,7 +69,7 @@ export default class extends Controller {
         if (addressArray.length > 0) {
           showWalletConnectedButton(addressArray[0]);
           const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-          if (chainId == 1 || chainId == 5) { //blup: allow ethereum and goerli for now
+          if (chainId == 5) { //blup: allow only goerli (5) for now (ethereum = 1)
             showWalletConnected();
           } else {
             showInvalidNetwork();

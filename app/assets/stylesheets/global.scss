@@ -11,6 +11,10 @@
   margin-top: 0 !important;
 }
 
+.mirror {
+  transform: rotateY(180deg);
+}
+
 .back-arrow {
   position: absolute;
   z-index: 1;
