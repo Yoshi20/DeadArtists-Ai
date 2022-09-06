@@ -6,7 +6,7 @@
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
   .row.mt-0
     .col.s12.center-align{style: 'margin-top: -40rem;'}
-      %p.home-text-paragraph{style: 'font-family: CarterOne; transform: rotate(-1deg); font-size: 26px;'}
+      %p.home-text-subtitle{style: 'transform: rotate(-1deg);'}
         Yes, you should definitely own a famous dead artist like Van Gogh, Picasso or Da Vinci for yourself!
 
   .row
@@ -163,5 +163,19 @@
     .col.s12.center-align
       %h2.home-text-title= 'The Team'
   .row.mt-0
-    .col.s12.center-align
-      = image_tag 'the_team.jpg', width: '100%', alt: 'Team image of the Dead Artists AI team'
+    .col.s4.center-align
+      = image_tag 'team_n.gif', width: '100%', alt: 'Dead Artists AI team member: Loretta', class: 'team-member-image'
+    .col.s4.center-align
+      = image_tag 'team_l.gif', width: '100%', alt: 'Dead Artists AI team member: Lucca', class: 'team-member-image'
+    .col.s4.center-align
+      = image_tag 'team_j.gif', width: '100%', alt: 'Dead Artists AI team member: Jascha', class: 'team-member-image'
+  .row.mt-0
+    .col.s4.center-align{style: 'margin-top: -10px;'}
+      %p.home-text-subtitle Loretta
+      %p.home-text-paragraph "Art History Expert"
+    .col.s4.center-align{style: 'margin-top: -10px;'}
+      %p.home-text-subtitle Lucca
+      %p.home-text-paragraph "AI Programmer"
+    .col.s4.center-align{style: 'margin-top: -10px;'}
+      %p.home-text-subtitle Yomi
+      %p.home-text-paragraph "Web Master"
