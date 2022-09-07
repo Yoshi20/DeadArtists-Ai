@@ -12,13 +12,13 @@
   .row
     .col.s4.center-align
       .artist-frame
-        = image_tag 'vincent_van_gogh.gif', alt: 'Vincent Van Gogh NFT GIF'
+        = video_tag 'vincent_van_gogh.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
     .col.s4.center-align
       .artist-frame
-        = image_tag 'pablo_picasso.gif', alt: 'Pablo Picasso NFT GIF'
+        = video_tag 'pablo_picasso.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
     .col.s4.center-align
       .artist-frame
-        = image_tag 'leonardo_da_vinci.gif', alt: 'Leonardo da Vinci NFT GIF'
+        = video_tag 'leonardo_da_vinci.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
 
   .row
     .col.s12.center-align
@@ -84,10 +84,10 @@
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
-        = image_tag 'twitter_logo.webp', alt: 'twitter logo'
+        = image_tag 'twitter_logo.webp', width: '150px', alt: 'twitter logo'
     .col.s6.m4.l3.center-align
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
-        = image_tag 'discord_logo.webp', alt: 'discord logo'
+        = image_tag 'discord_logo.webp', width: '150px', alt: 'discord logo'
     .col.m.m2.l.l3
 
   .row
@@ -160,11 +160,11 @@
       %h2.home-text-title= 'The Team'
   .row.mt-0
     .col.s4.center-align
-      = image_tag 'team_n.gif', width: '100%', alt: 'Dead Artists AI team member: Loretta', class: 'team-member-image'
+      = video_tag 'team_n.mp4', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
     .col.s4.center-align
-      = image_tag 'team_l.gif', width: '100%', alt: 'Dead Artists AI team member: Lucca', class: 'team-member-image'
+      = video_tag 'team_l.mp4', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
     .col.s4.center-align
-      = image_tag 'team_j.gif', width: '100%', alt: 'Dead Artists AI team member: Jascha', class: 'team-member-image'
+      = video_tag 'team_j.mp4', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
   .row.mt-0
     .col.s4.center-align{style: 'margin-top: -10px;'}
       %p.home-text-subtitle Loretta

@@ -10,17 +10,17 @@
     .col.s12.center-align
       .welcome-text-title= 'Welcome to Dead Artists AI'
 
-  .row
+  .row{data: { controller: 'welcome' }}
     .col.s12.center-align
-      .picasso-frame#visible-picasso-frame.center-align{onclick: "this.style.display = 'none'; document.getElementById('hidden-picasso-frame').style.display = 'inline-block'; setTimeout(() => {document.getElementById('enter-arrows').style.display = '';}, 5000);"}
+      .picasso-frame#visible-picasso-frame.center-align{data: { action: "click->welcome#start_picasso_frame" }}
         = image_tag 'pablo_picasso.webp', alt: 'Pablo Picasso image'
         %span.picasso-frame-text#picasso-frame-text1= 'Click me to turn me into a moving artwork'
         %span.picasso-frame-text#picasso-frame-text2= 'TRY IT!'
-      .picasso-frame#hidden-picasso-frame{onclick: "this.style.display = 'none'; document.getElementById('visible-picasso-frame').style.display = 'inline-block';"}
-        = image_tag 'pablo_picasso.gif', alt: 'Pablo Picasso NFT GIF'
+      .picasso-frame#hidden-picasso-frame{data: { action: "click->welcome#stop_picasso_frame" }}
+        = video_tag 'pablo_picasso.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: false
 
     #enter-arrows{style: 'display: none;'}
-    .col.s12.center-align{data: { controller: 'welcome' }}
+    .col.s12.center-align
       = link_to 'ENTER', '#', {id: 'brush-stroke', data: { action: 'click->welcome#enter' } }
 
   .row
@@ -35,8 +35,8 @@
     .col.m.m2.l.l3
     .col.s6.m4.l3.center-align
       = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
-        = image_tag 'twitter_logo.webp', alt: 'twitter logo'
+        = image_tag 'twitter_logo.webp', width: '150px', alt: 'twitter logo'
     .col.s6.m4.l3.center-align
       = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
-        = image_tag 'discord_logo.webp', alt: 'discord logo'
+        = image_tag 'discord_logo.webp', width: '150px', alt: 'discord logo'
     .col.m.m2.l.l3
