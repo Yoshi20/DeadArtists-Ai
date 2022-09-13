@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
   resources :users, only: [:index]#, :update, :destroy]
 
+  get 'imprint' => 'imprint#index'
+  get 'privacy_notice' => 'privacy_notice#index'
+  get 'terms' => 'terms#index'
+
   root "home#index"
 
 end

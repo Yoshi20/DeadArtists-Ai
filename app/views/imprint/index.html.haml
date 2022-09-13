@@ -1,0 +1,33 @@
+- set_meta_tags description: meta_tag_description('Imprint')
+.roadmap
+  .row.title-row#Imprint
+    .col.s12.center-align
+      %h1.roadmap-text-title= 'Imprint'
+  .row.mt-0
+    .col.s12
+      %p
+        %strong= 'Contact'
+      %p
+        = 'Jascha Haldemann<br>Bürglenstrasse 69<br>3006 Bern<br>Switzerland'.html_safe
+      %p
+        = 'admin@smashultimate.uk'
+      %br
+      %p
+        %strong= 'Disclaimer'
+      %p
+        = 'The author assumes no liability for the correctness, accuracy, timeliness, reliability and completeness of the information.'
+      %p
+        = 'Liability claims against the author for material or immaterial damage resulting from access to, use or non-use of the published information, misuse of the connection or technical faults are excluded.'
+      %p
+        = 'All offers are non-binding. The author expressly reserves the right to change, supplement or delete parts of the pages or the entire offer without prior notice or to discontinue publication temporarily or permanently.'
+      %br
+      %p
+        %strong= 'Disclaimer for Links'
+      %p
+        = "References and links to third-party websites are outside our area of responsibility. It rejected any responsibility for such websites. Access to and use of such websites is at the user's own risk."
+
+      <!--ACHTUNG: Wenn Sie die Quelle ohne Erlaubnis von SwissAnwalt entfernen, dann begehen Sie eine Urheberrechtsverletzung welche in jedem Fall geahndet wird.-->
+      %br
+      = t('imprint.source')
+      = link_to "SwissAnwalt", "https://www.swissanwalt.ch", target: "_blank", rel: "noopener", class: 'color-default'
+      <!--Bitte beachten Sie die AGB von SwissAnwalt betreffend allf&auml;llig anfallenden Kosten bei Weglassen der Quelle!-->

@@ -2,3 +2,11 @@
   .row
     .col.s12.center-align
       © Dead Artists AI 2022
+
+  .row.no-space.mt-0
+    .col.s12.center-align
+      = link_to 'Imprint', imprint_path, class: 'color-default'
+      %span{style: 'margin: 0 5px; '}= '|'
+      = link_to 'Privacy Notice', privacy_notice_path, class: 'color-default'
+      %span{style: 'margin: 0 5px; '}= '|'
+      = link_to 'Terms', terms_path, class: 'color-default'
