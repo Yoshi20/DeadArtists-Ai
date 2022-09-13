@@ -2,7 +2,7 @@
   .nfts
     .row
       .col.s12.center-align
-        %h1.nfts-text-title= @nft.name.gsub('vs.', '&')
+        %h1.page-title= @nft.name.gsub('vs.', '&')
     .row.mt-0.s
       .col.s6.center-align
         = link_to artist_path(artist_id: @nft.artist, nft_id: @nft.id) do

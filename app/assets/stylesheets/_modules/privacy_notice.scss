@@ -1,0 +1,17 @@
+.privacy-notice {
+  padding: 0px 10px;
+  color: $color-text;
+
+  .subtitle {
+    font-family: CarterOne;
+    font-size: 26px;
+    @media only screen and (min-width: $min-widths-m) {
+      padding: 0 30rem;
+    }
+  }
+
+  ul, ol {
+    margin-left: 15px;
+  }
+
+}

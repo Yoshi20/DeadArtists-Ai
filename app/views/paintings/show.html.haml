@@ -2,7 +2,7 @@
   .paintings
     .row
       .col.s12.center-align
-        %h1.paintings-text-title= @painting.name
+        %h1.page-title= @painting.name
     .row
       .col.s12.center-align
         %img.responsive{src: @painting.image_link, style: 'max-height: 265px !important; width: auto !important;'}
@@ -26,7 +26,7 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 .padding
-                  %h2.paintings-text-title= "Artist"
+                  %h2.page-title= "Artist"
             .row.no-space.mt-0
               .col.s12.center-align
                 - if artist.image_link.present?
@@ -39,7 +39,7 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 .padding
-                  %h2.paintings-text-title= "NFT"
+                  %h2.page-title= "NFT"
             .row.no-space.mt-0
               .col.s12.center-align
                 - if nft.image_link.present?

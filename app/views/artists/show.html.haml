@@ -2,7 +2,7 @@
   .artists
     .row
       .col.s12.center-align
-        %h1.artists-text-title= @artist.name
+        %h1.page-title= @artist.name
     .row
       .col.s12.center-align
         %img.responsive{src: @artist.image_link, style: 'max-height: 265px !important; width: auto !important;'}
@@ -22,7 +22,7 @@
       .row.mt-0
         .col.s12
           .padding
-            %h2.artists-text-title= "Painting#{paintings.count > 1 ? 's' : ''}"
+            %h2.page-title= "Painting#{paintings.count > 1 ? 's' : ''}"
       .row.mt-0
         - paintings.each do |painting|
           .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
