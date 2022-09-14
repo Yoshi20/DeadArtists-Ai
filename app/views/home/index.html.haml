@@ -6,17 +6,19 @@
       = video_tag 'home_title.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, id: 'home-title-video'
   .row.mt-0
     .col.s12.center-align{style: 'margin-top: -40rem;'}
-      %p.home-text-subtitle{style: 'transform: rotate(-1deg);'}
+      %p.m.l.home-text-subtitle{style: 'transform: rotate(-1deg);'}
         Yes, you should definitely own a famous dead artist like Van Gogh, Picasso or Da Vinci for yourself!
+      %p.s.home-text-subtitle{style: 'transform: rotate(-1deg);'}
+        Yes, you should definitely own a famous dead artist like Van Gogh or Da Vinci for yourself!
 
   .row
-    .col.s4.center-align
+    .col.s6.m4.center-align
       .artist-frame
         = video_tag 'vincent_van_gogh.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
-    .col.s4.center-align
+    .col.m.l.m4.center-align
       .artist-frame
         = video_tag 'pablo_picasso.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
-    .col.s4.center-align
+    .col.s6.m4.center-align
       .artist-frame
         = video_tag 'leonardo_da_vinci.mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
 
