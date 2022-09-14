@@ -8,8 +8,8 @@
     .col.s12.center-align
       %turbo-frame#random-nft
         = link_to '#', disabled: true do
-          = image_tag @randomNft.image_link, width: '265px', height: '265px', alt: 'Random Dead Artist NFT'
-          -# = video_tag @randomNft.image_link, width: '300px', height: '300px', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+          = image_tag @randomNft&.image_link.to_s, width: '265px', height: '265px', alt: 'Random Dead Artist NFT'
+          -# = video_tag @randomNft&.image_link.to_s, width: '300px', height: '300px', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
     .col.s12.center-align{style: 'padding-top: 0;'}
       %span (Note: A random Dead Artist NFT will be minted)
 
