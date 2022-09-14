@@ -65,10 +65,21 @@ const handleNumberOfNft = (n) => {
   document.getElementById('number-of-nft').value = n;
 }
 
+let randomNftInterval = 0;
+
 // Connects to -> data: { controller: 'mint' }
 export default class extends Controller {
 
+  disconnect() {
+    clearInterval(randomNftInterval);
+    randomNftInterval = 0;
+  }
+
   async connect() {
+    // Show random NFT
+    if (!randomNftInterval) {
+      randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 5000);
+    }
     // Set numberOfNft
     document.getElementById('number-of-nft').value = numberOfNft;
     // Wait until window.ethereum.selectedAddress is defined
@@ -183,4 +194,5 @@ export default class extends Controller {
     document.getElementById("set-field").style.pointerEvents = '';
     mintButtonText.innerHTML = 'Mint';
   }
+
 }
