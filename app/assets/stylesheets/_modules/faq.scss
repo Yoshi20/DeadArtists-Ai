@@ -2,11 +2,18 @@
   padding: 0px 10px;
   color: $color-text;
 
+  .row {
+    display: flex;
+    align-items: center;
+  }
+
   .faq-question {
     font: 18px / 1.2em Roboto;
   }
 
   .faq-answer {
+    margin-top: 0;
+    padding-right: 15%;
     padding-left: 10%;
     font: 16px / 1.2em Roboto;
   }
