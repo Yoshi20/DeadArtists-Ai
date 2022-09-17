@@ -39,6 +39,14 @@ const getUserNfts = async (userAddress) => {
   return user_nfts;
 }
 
+const getWhitelistAddresses = async () => {
+  let whitelist_addresses;
+  const response = await get(window.location.origin + '/whitelist_addresses')
+  if (response.ok) whitelist_addresses = (await response.text).split(' ');
+  else console.erro("Couldn't fetch whitelist_addresses!");
+  return whitelist_addresses;
+}
+
 const totalPrice = (n) => {
   return Math.round(n * pricePerNft * 1000) / 1000;
 }
@@ -89,7 +97,7 @@ export default class extends Controller {
     // Get provider, signer & contract
     window.provider = new ethers.providers.Web3Provider(window.ethereum);
     window.signer = window.provider.getSigner();
-    contractAddress =  await getContractAddress();
+    contractAddress = await getContractAddress();
     const abi = await getAbi();
     window.contract = new ethers.Contract(contractAddress, abi, window.signer);
     // Get & set user balance
@@ -160,16 +168,7 @@ export default class extends Controller {
     // Mint
     try {
       // Whitelist minting:
-      let whitelistAddresses = [
-        "0X5B38DA6A701C568545DCFCB03FCB875F56BEDDC4",
-        "0X5A641E5FB72A2FD9137312E7694D42996D689D99",
-        "0XDCAB482177A592E424D1C8318A464FC922E8DE40",
-        "0x583031D1113aD414F02576BD6afaBfb302140225",
-        "0X09BAAB19FC77C19898140DADD30C4685C597620B",
-        "0XCC4C29997177253376528C05D3DF91CF2D69061A",
-        "0xdD870fA1b7C4700F2BD7f44238821C26f7392148",
-        // "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
-      ];
+      let whitelistAddresses = await getWhitelistAddresses();
       whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
       if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
         const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));

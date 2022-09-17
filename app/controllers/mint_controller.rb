@@ -1,7 +1,7 @@
 class MintController < ApplicationController
   before_action { @section = 'mint' }
 
-  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :user_nfts]
+  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :user_nfts, :whitelist_addresses]
 
   # GET /mint
   def index
@@ -35,6 +35,10 @@ class MintController < ApplicationController
     end
     nfts = NFT.where(ipfs_token_id: token_ids).select(:image_link)
     render json: nfts
+  end
+
+  def whitelist_addresses
+    render json: ENV['WHITELIST_ADDRESSES']
   end
 
 end
