@@ -1,6 +1,7 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import { ethers } from "ethers";
-import { get } from '@rails/request.js'
+import { get } from '@rails/request.js';
+const { MerkleTree } = require('merkletreejs'); // for whitelist minting
 
 let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
 let userBalance = 0;
@@ -158,10 +159,36 @@ export default class extends Controller {
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
     try {
-      const response = await contract.mint(numberOfNft, {
-        value: ethStrToWei(totalPrice(numberOfNft).toString()),
-      });
-      console.log(response);
+      // Whitelist minting:
+      let whitelistAddresses = [
+        "0X5B38DA6A701C568545DCFCB03FCB875F56BEDDC4",
+        "0X5A641E5FB72A2FD9137312E7694D42996D689D99",
+        "0XDCAB482177A592E424D1C8318A464FC922E8DE40",
+        "0x583031D1113aD414F02576BD6afaBfb302140225",
+        "0X09BAAB19FC77C19898140DADD30C4685C597620B",
+        "0XCC4C29997177253376528C05D3DF91CF2D69061A",
+        "0xdD870fA1b7C4700F2BD7f44238821C26f7392148",
+        // "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
+      ];
+      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+        const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));
+        const DeadArtistsMerkleTree = new MerkleTree(leafNodes, ethers.utils.keccak256, {sortPairs: true});
+        const claimingAddress = ethers.utils.keccak256(window.ethereum.selectedAddress);
+        const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+        const response = await contract.mintWL(numberOfNft, hexProof, {
+          value: ethStrToWei(totalPrice(numberOfNft).toString()),
+        });
+        console.log(response);
+      } else {
+        throw new Error("NOT_ON_THE_WHITELIST", {cause: "😥 Sorry, you're not on the whitelist 😥"});
+      }
+      // ---------------------
+      //blup: Public minting:
+      // const response = await contract.mint(numberOfNft, {
+      //   value: ethStrToWei(totalPrice(numberOfNft).toString()),
+      // });
+      // console.log(response);
       // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
       // from: "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
       // gasLimit: Object { _hex: "0x0146c5", _isBigNumber: true }
@@ -172,7 +199,7 @@ export default class extends Controller {
       // nonce: 3
       // to: "0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756"
       // value: Object { _hex: "0x11c37937e08000", _isBigNumber: true }
-
+      // ---------------------
       // Show "Mint succeeded!"
       let url = 'https://goerli.etherscan.io/tx/' + response.hash; //blup: goerli for now
       let p = document.createElement("p");
@@ -182,9 +209,13 @@ export default class extends Controller {
       parent.appendChild(p);
       document.getElementById('mint-success-message-row').style.display = '';
     } catch(err) {
-      console.warn(err.code);
-      if (err.code != 'ACTION_REJECTED' && err.code != '4001') {
-        alert("😥 Something went wrong: " + err.code + " 😥");
+      if (err.code) {
+        console.warn(err.code);
+        if (err.code != 'ACTION_REJECTED' && err.code != '4001') {
+          alert("😥 Something went wrong: " + err.code + " 😥");
+        }
+      } else if (err.cause) {
+        alert(err.cause);
       }
     }
     // Reeable everything and hide spinner
@@ -192,7 +223,7 @@ export default class extends Controller {
     document.getElementById("sub-button").disabled = false;
     document.getElementById("add-button").disabled = false;
     document.getElementById("set-field").style.pointerEvents = '';
-    mintButtonText.innerHTML = 'Mint';
+    mintButtonText.innerHTML = 'Whitelist Mint'; //blup: 'Mint';
   }
 
 }
