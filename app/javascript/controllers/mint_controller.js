@@ -42,7 +42,7 @@ const getUserNfts = async (userAddress) => {
 const getWhitelistAddresses = async () => {
   let whitelist_addresses;
   const response = await get(window.location.origin + '/whitelist_addresses')
-  if (response.ok) whitelist_addresses = (await response.text).split(' ');
+  if (response.ok) whitelist_addresses = await response.text;
   else console.erro("Couldn't fetch whitelist_addresses!");
   return whitelist_addresses;
 }
@@ -169,6 +169,7 @@ export default class extends Controller {
     try {
       // Whitelist minting:
       let whitelistAddresses = await getWhitelistAddresses();
+      whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
       whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
       if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
         const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));
