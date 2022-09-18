@@ -195,12 +195,13 @@ export default class extends Controller {
       console.log('leafNodes = ', leafNodes);//blup
       const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
       console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract //blup
+      let response;
       if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
         const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
         console.log('claimingAddress = ', claimingAddress);//blup
         const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
         console.log('hexProof = ', hexProof);//blup
-        const response = await contract.mintWL(numberOfNft, hexProof, {
+        response = await contract.mintWL(numberOfNft, hexProof, {
           value: ethStrToWei(totalPrice(numberOfNft).toString()),
         });
         console.log('response = ', response);
