@@ -170,10 +170,11 @@ export default class extends Controller {
       // Whitelist minting:
       let whitelistAddresses = await getWhitelistAddresses();
       whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
-      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-        const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));
-        const DeadArtistsMerkleTree = new MerkleTree(leafNodes, ethers.utils.keccak256, {sortPairs: true});
+      const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));
+      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, ethers.utils.keccak256, {sortPairs: true});
+      //console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract
+      const whitelistAddressesLowerCase = whitelistAddresses.map(addr => addr.toLowerCase());
+      if (whitelistAddressesLowerCase.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
         const claimingAddress = ethers.utils.keccak256(window.ethereum.selectedAddress);
         const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
         const response = await contract.mintWL(numberOfNft, hexProof, {
