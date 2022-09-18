@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   get 'privacy_notice' => 'privacy_notice#index'
   get 'terms' => 'terms#index'
 
+  get 'health_check', to: proc { [200, {}, ['success']] }
+
   root "home#index"
 
 end
