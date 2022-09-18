@@ -59,6 +59,25 @@ const ethStrToWei = (ethStr) => {
   return ethers.utils.parseEther(ethStr);
 }
 
+const hexStrToBytes = (hex) => {
+  if (hex.slice(0, 2).toLowerCase() == '0x') hex = hex.slice(2);
+  let bytes = [];
+  for (let c = 0; c < hex.length; c += 2) {
+    bytes.push(parseInt(hex.substr(c, 2), 16));
+  }
+  return bytes;
+}
+
+const toHexString = (byteArray) => {
+  return Array.from(byteArray, (byte) => {
+    return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+  }).join('')
+}
+
+const myKeccak256 = (data) => {
+  return new Uint8Array(hexStrToBytes(ethers.utils.keccak256(data)));
+}
+
 const handleNumberOfNft = (n) => {
   document.getElementById('number-of-nft').value = n;
   let tp = totalPrice(n);
@@ -170,36 +189,40 @@ export default class extends Controller {
       // Whitelist minting:
       let whitelistAddresses = await getWhitelistAddresses();
       whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      const leafNodes = whitelistAddresses.map(addr => ethers.utils.keccak256(ethers.utils.toUtf8Bytes(addr)));
-      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, ethers.utils.keccak256, {sortPairs: true});
-      //console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract
-      const whitelistAddressesLowerCase = whitelistAddresses.map(addr => addr.toLowerCase());
-      if (whitelistAddressesLowerCase.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-        const claimingAddress = ethers.utils.keccak256(window.ethereum.selectedAddress);
+      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      console.log('whitelistAddresses = ', whitelistAddresses);//blup
+      const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
+      console.log('leafNodes = ', leafNodes);//blup
+      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
+      console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract //blup
+      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+        const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
+        console.log('claimingAddress = ', claimingAddress);//blup
         const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+        console.log('hexProof = ', hexProof);//blup
         const response = await contract.mintWL(numberOfNft, hexProof, {
           value: ethStrToWei(totalPrice(numberOfNft).toString()),
         });
-        console.log(response);
+        console.log('response = ', response);
       } else {
-        throw new Error("NOT_ON_THE_WHITELIST", {cause: "😥 Sorry, you're not on the whitelist 😥"});
+        throw new Error("😥 Sorry, you're not on the whitelist 😥");
       }
       // ---------------------
       //blup: Public minting:
       // const response = await contract.mint(numberOfNft, {
       //   value: ethStrToWei(totalPrice(numberOfNft).toString()),
       // });
-      // console.log(response);
-      // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
-      // from: "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
-      // gasLimit: Object { _hex: "0x0146c5", _isBigNumber: true }
-      // gasPrice: Object { _hex: "0x59682f0b", _isBigNumber: true }
-      // hash: "0x54228e71678b0fbec7236b825324299bfe55cf5f4acb758de582dfc54fae002b"
-      // maxFeePerGas: Object { _hex: "0x59682f0b", _isBigNumber: true }
-      // maxPriorityFeePerGas: Object { _hex: "0x59682f00", _isBigNumber: true }
-      // nonce: 3
-      // to: "0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756"
-      // value: Object { _hex: "0x11c37937e08000", _isBigNumber: true }
+      // console.log('response = ', response);
+      // // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
+      // // from: "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
+      // // gasLimit: Object { _hex: "0x0146c5", _isBigNumber: true }
+      // // gasPrice: Object { _hex: "0x59682f0b", _isBigNumber: true }
+      // // hash: "0x54228e71678b0fbec7236b825324299bfe55cf5f4acb758de582dfc54fae002b"
+      // // maxFeePerGas: Object { _hex: "0x59682f0b", _isBigNumber: true }
+      // // maxPriorityFeePerGas: Object { _hex: "0x59682f00", _isBigNumber: true }
+      // // nonce: 3
+      // // to: "0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756"
+      // // value: Object { _hex: "0x11c37937e08000", _isBigNumber: true }
       // ---------------------
       // Show "Mint succeeded!"
       let url = 'https://goerli.etherscan.io/tx/' + response.hash; //blup: goerli for now
@@ -210,13 +233,13 @@ export default class extends Controller {
       parent.appendChild(p);
       document.getElementById('mint-success-message-row').style.display = '';
     } catch(err) {
+      console.warn(err);
       if (err.code) {
-        console.warn(err.code);
         if (err.code != 'ACTION_REJECTED' && err.code != '4001') {
           alert("😥 Something went wrong: " + err.code + " 😥");
         }
-      } else if (err.cause) {
-        alert(err.cause);
+      } else {
+        alert(err.message);
       }
     }
     // Reeable everything and hide spinner

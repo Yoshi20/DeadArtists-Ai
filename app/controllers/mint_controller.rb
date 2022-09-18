@@ -38,7 +38,7 @@ class MintController < ApplicationController
   end
 
   def whitelist_addresses
-    render plain: 'Af' + Base64.encode64(ENV['WHITELIST_ADDRESSES'].to_s) # prefix a random string to make base64 decoding harder
+    render plain: 'Az' + Base64.encode64(ENV['WHITELIST_ADDRESSES'].to_s) # prefix a random string to make base64 decoding harder
   end
 
 end
