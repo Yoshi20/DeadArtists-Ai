@@ -6,7 +6,7 @@ const { MerkleTree } = require('merkletreejs'); // for whitelist minting
 let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
 let userBalance = 0;
 let pricePerNft = 0.04;
-let maxNumberOfMints = 10;
+let maxNumberOfMints = 50;
 let contractAddress = "";
 
 const selectedAddress = async () => {
@@ -132,7 +132,7 @@ export default class extends Controller {
     // Get & set maxNumberOfMints
     // const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
     // maxNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16) - userNumberOfMints;
-    maxNumberOfMints = 10 - userNumberOfMints;//blup: can be static
+    maxNumberOfMints = 50 - userNumberOfMints;//blup: can be static
     if (maxNumberOfMints < 0) maxNumberOfMints = 0;
     console.log('remaining maxNumberOfMints: ', maxNumberOfMints);//blup
     document.getElementById('max-number-of-mints').innerHTML = maxNumberOfMints + userNumberOfMints;
@@ -186,53 +186,72 @@ export default class extends Controller {
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
     try {
-      // Whitelist minting:
-      let whitelistAddresses = await getWhitelistAddresses();
-      whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
-      console.log('whitelistAddresses = ', whitelistAddresses);//blup
-      const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
-      console.log('leafNodes = ', leafNodes);//blup
-      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
-      console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract //blup
-      let response;
-      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-        const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
-        console.log('claimingAddress = ', claimingAddress);//blup
-        const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
-        console.log('hexProof = ', hexProof);//blup
-        response = await contract.mintWL(numberOfNft, hexProof, {
-          value: ethStrToWei(totalPrice(numberOfNft).toString()),
-        });
-        console.log('response = ', response);
-      } else {
-        throw new Error("😥 Sorry, you're not on the whitelist 😥");
-      }
-      // ---------------------
-      //blup: Public minting:
-      // const response = await contract.mint(numberOfNft, {
-      //   value: ethStrToWei(totalPrice(numberOfNft).toString()),
-      // });
-      // console.log('response = ', response);
-      // // data: "0xa0712d680000000000000000000000000000000000000000000000000000000000000001"
-      // // from: "0x07b8Eed7161Fbd77da9e0276Abea19b22fc168B6"
-      // // gasLimit: Object { _hex: "0x0146c5", _isBigNumber: true }
-      // // gasPrice: Object { _hex: "0x59682f0b", _isBigNumber: true }
-      // // hash: "0x54228e71678b0fbec7236b825324299bfe55cf5f4acb758de582dfc54fae002b"
-      // // maxFeePerGas: Object { _hex: "0x59682f0b", _isBigNumber: true }
-      // // maxPriorityFeePerGas: Object { _hex: "0x59682f00", _isBigNumber: true }
-      // // nonce: 3
-      // // to: "0x766d47c9991CbA47Adc5F7F8Da3b1E619540D756"
-      // // value: Object { _hex: "0x11c37937e08000", _isBigNumber: true }
-      // ---------------------
-      // Show "Mint succeeded!"
+      // // Whitelist minting: ---------------------
+      // let whitelistAddresses = await getWhitelistAddresses();
+      // whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
+      // whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      // console.log('whitelistAddresses = ', whitelistAddresses);//blup
+      // const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
+      // console.log('leafNodes = ', leafNodes);//blup
+      // const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
+      // console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract //blup
+      // let response;
+      // if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+      //   const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
+      //   console.log('claimingAddress = ', claimingAddress);//blup
+      //   const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+      //   console.log('hexProof = ', hexProof);//blup
+      //   response = await window.contract.mintWL(numberOfNft, hexProof, {
+      //     value: ethStrToWei(totalPrice(numberOfNft).toString()),
+      //   });
+      // } else {
+      //   throw new Error("😥 Sorry, you're not on the whitelist 😥");
+      // }
+      // Public minting: ---------------------------
+      const response = await window.contract.mint(numberOfNft, {
+        value: ethStrToWei(totalPrice(numberOfNft).toString()),
+      });
+      // -------------------------------------------
+      console.log('response = ', response);
+      // Show "Minting in progress..."
       let url = 'https://goerli.etherscan.io/tx/' + response.hash; //blup: goerli for now
       let p = document.createElement("p");
-      p.innerHTML = 'Check out your transaction on <a target=_blank class=color-default href=' + url + '>Etherscan</a>';
-      let parent = document.getElementById('mint-success-message-text').parentElement;
+      p.innerHTML = 'Please wait for your transaction on <a target=_blank class=color-default href=' + url + '>Etherscan</a> to complete';
+      let parent = document.getElementById('mint-in-progress-message-text').parentElement;
       if (parent.lastChild.tagName == "P") { parent.lastChild.remove(); }
       parent.appendChild(p);
+      document.getElementById('mint-success-message-row').style.display = 'none';
+      document.getElementById('mint-in-progress-message-row').style.display = '';
+
+      // Wait until minted: ------------------------
+      const rc = await response.wait();
+      console.log('rc = ', rc);
+      console.log('rc.events = ', rc.events);//blup
+      let nftIds = [];
+      rc.events.forEach((event) => {
+          console.log(event);//blup
+          if (event.event === 'Transfer') {
+            const [from, to, value] = event.args;
+            console.log(from, to, value);//blup
+            console.log(parseInt(value._hex, 16));//blup
+            nftIds.push(parseInt(value._hex, 16));
+          }
+      });
+      console.log('nftIds = ', nftIds);//blup
+      // Show "Mint succeeded!"
+      p = document.createElement("p");
+      p.innerHTML = 'Check out your transaction on <a target=_blank class=color-default href=' + url + '>Etherscan</a>';
+      parent = document.getElementById('mint-success-message-text').parentElement;
+      if (parent.lastChild.tagName == "P") { parent.lastChild.remove(); }
+      parent.appendChild(p);
+      document.getElementById('mint-in-progress-message-row').style.display = 'none';
       document.getElementById('mint-success-message-row').style.display = '';
+      // Show "Auction video modal"
+      ui('#modal');
+      const vid = document.getElementById('auction-video');
+      vid.currentTime = 0;
+      vid.play()
+      // -------------------------------------------
     } catch(err) {
       console.warn(err);
       if (err.code) {
@@ -243,12 +262,13 @@ export default class extends Controller {
         alert(err.message);
       }
     }
-    // Reeable everything and hide spinner
+    // Reenable everything and hide spinner
     document.getElementById("mint-button").disabled = false;
     document.getElementById("sub-button").disabled = false;
     document.getElementById("add-button").disabled = false;
     document.getElementById("set-field").style.pointerEvents = '';
-    mintButtonText.innerHTML = 'Whitelist Mint'; //blup: 'Mint';
+    // mintButtonText.innerHTML = 'Whitelist Mint'; //blup
+    mintButtonText.innerHTML = 'Mint'; //blup
   }
 
 }
