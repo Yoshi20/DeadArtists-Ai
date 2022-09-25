@@ -75,3 +75,18 @@
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align
       %p Invalid Network! Please change to the Ethereum Mainnet.
+
+
+
+  -# modal test
+  -# with js:
+  -#   ui('#modal');
+  %button{"data-ui": "#modal", onclick: "const vid = document.getElementById('auction-video'); vid.currentTime = 0; vid.play()"} Auction modal test
+  .modal#modal{style: 'border-radius: 12rem;'}
+    -# %h5.middle-align Mint succeeded!
+    .blup{style: 'position: relative;'}
+      = video_tag 'Auction_10s_Ready-1.mp4', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
+      = image_tag @randomNft&.image_link.to_s, style: 'border-radius: unset; position: absolute; right: 20.1%; top: 23.6%; width: 12%; height: 19%;', alt: 'Random Dead Artist NFT'
+    %nav.middle-align
+      %button.border{"data-ui": "#modal"} <<
+      %button{"data-ui": "#modal", style: 'margin-left: auto;'} >>
