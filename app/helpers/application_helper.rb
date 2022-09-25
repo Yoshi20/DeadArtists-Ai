@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def meta_tag_description(str)
-    "Dead Artists AI is a NFT art project on the blockchain. It brings dead artists back to life and let them join Web3. This is the #{str} page."
+    "Dead Artists AI is a NFT art project on the blockchain. It brings dead artists back to life and let them join Web3.#{str.present? ? " This is the \"#{str}\" page." : ""}"
   end
 
 end
