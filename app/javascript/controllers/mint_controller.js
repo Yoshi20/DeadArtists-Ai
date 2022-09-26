@@ -94,6 +94,7 @@ const handleNumberOfNft = (n) => {
 }
 
 let randomNftInterval = 0;
+let auctionNftTimeout = 0;
 
 // Connects to -> data: { controller: 'mint' }
 export default class extends Controller {
@@ -247,10 +248,7 @@ export default class extends Controller {
       document.getElementById('mint-in-progress-message-row').style.display = 'none';
       document.getElementById('mint-success-message-row').style.display = '';
       // Show "Auction video modal"
-      ui('#modal');
-      const vid = document.getElementById('auction-video');
-      vid.currentTime = 0;
-      vid.play()
+      this.auction_modal_show();
       // -------------------------------------------
     } catch(err) {
       console.warn(err);
@@ -269,6 +267,25 @@ export default class extends Controller {
     document.getElementById("set-field").style.pointerEvents = '';
     // mintButtonText.innerHTML = 'Whitelist Mint'; //blup
     mintButtonText.innerHTML = 'Mint'; //blup
+  }
+
+  auction_modal_show() {
+    ui('#auction-modal');
+    const auctionNft = document.getElementById('auction-nft');
+    auctionNft.style.display = 'none';
+    auctionNft.style.transition = 'opacity 0s';
+    auctionNft.style.opacity = 0;
+    const vid = document.getElementById('auction-video');
+    vid.currentTime = 0;
+    vid.play();
+    clearTimeout(auctionNftTimeout);
+    auctionNftTimeout = setTimeout(() => {
+      auctionNft.style.display = '';
+      auctionNft.style.transition = 'opacity 3s linear';
+      setTimeout(() => {
+        auctionNft.style.opacity = 1;
+      }, 100);
+    }, 11900);
   }
 
 }
