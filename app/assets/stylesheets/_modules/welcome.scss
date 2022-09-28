@@ -23,6 +23,12 @@
     letter-spacing: 0.2em;
   }
 
+  .welcome-text-paragraph-col {
+    @media only screen and (min-width: $min-widths-l) {
+      margin-top: 10px;
+    }
+  }
+
   .welcome-text-paragraph {
     font-family: Roboto;
     text-align: center;
@@ -36,14 +42,14 @@
     box-shadow: 0 1px 3px rgba(0,0,0,.5);
     border-width: 0px;
     overflow: hidden;
-    width: 360px;
-    height: 355px;
+    width: 310px;
+    height: 305px;
     padding-top: 5px;
     max-width: 100%;
     cursor: pointer;
     img, video {
-      width: 350px;
-      height: 350px;
+      width: 300px;
+      height: 300px;
       max-width: 97% !important;
     }
     &#visible-picasso-frame {
@@ -58,10 +64,10 @@
         &#picasso-frame-text1 {
           line-height: normal;
           margin: 62px auto 0px auto;
-          font-size: 32px;
+          font-size: 25px;
         }
         &#picasso-frame-text2 {
-          margin: 178px auto 0px auto;
+          margin: 160px auto 0px auto;
           font-size: 25px;
         }
       }
@@ -119,6 +125,12 @@
   @keyframes a3 {
     0%  {transform: scaleX(var(--s,1)) translate(-4px)}
     100%{transform: scaleX(var(--s,1)) translate( 4px)}
+  }
+
+  .welcome-social-media-buttons {
+    @media only screen and (min-width: 1400px) {
+      margin-top: -56px;
+    }
   }
 
 }

@@ -6,11 +6,11 @@
     .col.s12.center-align{style: 'margin-top: -10rem;'}
       %span.text-below-profile-pic= 'Art by Artificial Intelligence'
 
-  .row
+  .row.mt-0
     .col.s12.center-align
       .welcome-text-title= 'Welcome to Dead Artists AI'
 
-  .row{data: { controller: 'welcome' }}
+  .row.mt-0{data: { controller: 'welcome' }}
     .col.s12.center-align
       .picasso-frame#visible-picasso-frame.center-align{data: { action: "click->welcome#start_picasso_frame" }}
         = image_tag 'pablo_picasso.webp', alt: 'Pablo Picasso image'
@@ -24,19 +24,21 @@
       = link_to 'ENTER', '#', {id: 'brush-stroke', data: { action: 'click->welcome#enter' } }
 
   .row
-    .col.s12.center-align
+    .col.s12.center-align.welcome-text-paragraph-col
       %p.welcome-text-paragraph
         We bring dead artists back to life and let them join Web3
-    .col.s12.center-align
+    .col.s12.center-align{style: 'padding: 0;'}
       %p.welcome-text-paragraph
-        Follow us for updates:
+        Follow us for updates
 
   .row.mt-0
-    .col.m.m2.l.l3
-    .col.s6.m4.l3.center-align
-      = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
-        = image_tag 'twitter_logo.webp', width: '150px', alt: 'twitter logo'
-    .col.s6.m4.l3.center-align
-      = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
-        = image_tag 'discord_logo.webp', width: '150px', alt: 'discord logo'
-    .col.m.m2.l.l3
+    .col.s12.welcome-social-media-buttons
+      .row
+        .col.m.m2.l.l3
+        .col.s6.m4.l3.center-align
+          = link_to 'https://twitter.com/DeadArtistsAI', target: '_blank', class: 'social-media-button' do
+            = image_tag 'twitter_logo.webp', width: '150px', alt: 'twitter logo'
+        .col.s6.m4.l3.center-align
+          = link_to 'https://discord.gg/JN9Rhxmhgv', target: '_blank', class: 'social-media-button' do
+            = image_tag 'discord_logo.webp', width: '150px', alt: 'discord logo'
+        .col.m.m2.l.l3
