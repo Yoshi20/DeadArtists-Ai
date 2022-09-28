@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :csv_import do
 
-  # rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/Z_KuenstlerWorkWrite.csv\]
+  # rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/Z_KuenstlerWorkWrite_2.csv\]
   desc "Imports artists and paintings from given csv"
   task :artists_and_paintings, [:csv_path] => :environment do |t, args|
     args.with_defaults(csv_path: nil)
@@ -56,19 +56,31 @@ namespace :csv_import do
         invalid_paintings << data['painting_name'] + " -> " + painting.errors.full_messages.to_s
       end
       # Create or update nft
-      nft = Nft.find_by(name: data['nft_name'])
+      nft_name = data['nft_name'].present? ? data['nft_name'] : "#{artist.name} & #{painting.name}"
+      nft_description = data['nft_description'].present? ? data['nft_description'] : "A unique AI-generated drawing of #{artist.name} in combination with one of #{artist.gender.downcase == "female" ? 'her' : 'his'} most important works, #{painting.name}.\nEach piece of the DeadArtists collection is a mix of a traditional style painting with modern technology.\nIn honor of the great artists of the past." #blup
+      nft = Nft.find_by(artist_id: artist.id, painting_id: painting.id)
       nft = Nft.new unless nft.present?
       is_new_record = nft.new_record?
-      nft.name = data['nft_name']
-      nft.description = data['nft_description']
+      nft.name = nft_name
+      nft.description = nft_description
       nft.image_link = data['nft_image_link']
-      # blup traits...
       nft.artist = artist
       nft.painting = painting
+      nft.trait_artist = artist.name
+      nft.trait_painting = painting.name
+      nft.trait_main_style = painting.style
+      nft.trait_year_of_death = artist.year_of_death
+      nft.trait_gender = artist.gender
+      nft.trait_origin = artist.origin
+      nft.trait_movement_pattern = data['nft_movement_pattern']
+      nft.trait_rarity = painting.rarity
+      nft.ipfs_token_id = data['nft_ipfs_token_id']
+      nft.ipfs_token_uri = data['nft_ipfs_token_uri']
+      nft.ipfs_image_uri = data['nft_ipfs_image_uri']
       if nft.save
         puts "  -> Nft successfully #{is_new_record ? 'created' : 'updated'}: " + nft.name
       else
-        invalid_nfts << data['nft_name'] + " -> " + nft.errors.full_messages.to_s
+        invalid_nfts << nft_name + " -> " + nft.errors.full_messages.to_s
       end
     end
     puts "  -> Couldn't create the following Artists: " + invalid_artists.to_s if invalid_artists.any?
