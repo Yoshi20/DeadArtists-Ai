@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_04_193352) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_28_110016) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "timescaledb"
 
   create_table "artists", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_04_193352) do
     t.bigint "ipfs_token_id"
     t.string "ipfs_token_uri"
     t.string "ipfs_image_uri"
+    t.integer "trait_movement_pattern"
+    t.integer "trait_rarity"
   end
 
   create_table "paintings", force: :cascade do |t|

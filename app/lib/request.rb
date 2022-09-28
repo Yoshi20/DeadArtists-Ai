@@ -176,6 +176,8 @@ module Request
                   trait_year_of_death: traits_hash[:year_of_death],
                   trait_gender: traits_hash[:gender],
                   trait_origin: traits_hash[:origin],
+                  trait_movement_pattern: traits_hash[:movement_pattern],
+                  trait_rarity: traits_hash[:rarity],
                   artist_id: artist&.id,
                   painting_id: artist.present? ? artist.paintings.find_by(name: traits_hash[:painting])&.id : nil,
                 )
