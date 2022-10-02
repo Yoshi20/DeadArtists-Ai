@@ -107,7 +107,7 @@ export default class extends Controller {
   async connect() {
     // Show random NFT
     if (!randomNftInterval) {
-      randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 5000);
+      randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 10000);
     }
     // Set numberOfNft
     document.getElementById('number-of-nft').value = numberOfNft;

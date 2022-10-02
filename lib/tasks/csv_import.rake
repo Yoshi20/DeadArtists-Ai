@@ -2,7 +2,7 @@ require 'csv'
 
 namespace :csv_import do
 
-  # rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/Z_KuenstlerWorkWrite_2.csv\]
+  # rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/KuenstlerNFTData.csv\]
   desc "Imports artists and paintings from given csv"
   task :artists_and_paintings, [:csv_path] => :environment do |t, args|
     args.with_defaults(csv_path: nil)
@@ -64,6 +64,7 @@ namespace :csv_import do
       nft.name = nft_name
       nft.description = nft_description
       nft.image_link = data['nft_image_link']
+      nft.collectible_link = data['nft_collectible_link']
       nft.artist = artist
       nft.painting = painting
       nft.trait_artist = artist.name

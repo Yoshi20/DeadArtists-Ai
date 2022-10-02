@@ -6,10 +6,11 @@
 
   .row
     .col.s12.center-align
-      %turbo-frame#random-nft
-        = link_to '#', disabled: true do
-          = image_tag @randomNft&.image_link.to_s, width: '265px', height: '265px', alt: 'Random Dead Artist NFT'
-          -# = video_tag @randomNft&.image_link.to_s, width: '300px', height: '300px', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+      .random-nft-and-placeholder{style: 'display: flex; justify-content: center;'}
+        %turbo-frame#random-nft{style: 'z-index: 1;'}
+          = link_to '#', disabled: true do
+            = image_tag @randomNft&.image_link.to_s, width: '265px', height: '265px', alt: ''
+        = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artist NFT', style: 'position: absolute;'
     .col.s12.center-align{style: 'padding-top: 0;'}
       %span (Note: A random Dead Artist NFT will be minted)
 

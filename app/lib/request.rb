@@ -168,6 +168,7 @@ module Request
                   name: asset['name'],
                   description: asset['description'],
                   image_link: asset['image'],
+                  collectible_link: asset['collectible_link'],
                   # opensea_asset_id: asset['id'],
                   # opensea_permalink: asset['permalink'],
                   trait_artist: traits_hash[:artist],
