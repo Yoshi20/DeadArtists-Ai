@@ -99,6 +99,15 @@ let auctionNftTimeout = 0;
 // Connects to -> data: { controller: 'mint' }
 export default class extends Controller {
 
+  setRandomNftInterval() {
+    randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 10000);
+  }
+
+  resetRandomNftInterval() {
+    clearInterval(randomNftInterval);
+    this.setRandomNftInterval();
+  }
+
   disconnect() {
     clearInterval(randomNftInterval);
     randomNftInterval = 0;
@@ -107,7 +116,7 @@ export default class extends Controller {
   async connect() {
     // Show random NFT
     if (!randomNftInterval) {
-      randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 10000);
+      this.setRandomNftInterval();
     }
     // Set numberOfNft
     document.getElementById('number-of-nft').value = numberOfNft;
