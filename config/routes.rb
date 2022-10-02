@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :nfts
 
+  resources :user_nfts, only: [:index, :show]
+
   resources :settings, only: [:index]
 
   devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }

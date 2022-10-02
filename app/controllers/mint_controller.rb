@@ -33,8 +33,18 @@ class MintController < ApplicationController
     nftData.each do |nft|
       token_ids << nft['id']['tokenId'].to_i(16)
     end
-    nfts = NFT.where(ipfs_token_id: token_ids).select(:image_link)
-    render json: nfts
+    nfts = Nft.where(ipfs_token_id: token_ids)
+    render json: nfts.as_json(
+      only: [
+        :id,
+        :image_link,
+        :collectible_link,
+        :ipfs_token_id,
+        :ipfs_token_uri,
+        :ipfs_image_uri,
+        :trait_rarity,
+      ]
+    )
   end
 
   def whitelist_addresses

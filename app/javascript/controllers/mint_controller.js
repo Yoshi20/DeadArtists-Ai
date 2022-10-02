@@ -19,7 +19,7 @@ const getContractAddress = async () => {
   let address = "";
   const response = await get(window.location.origin + '/contract_address')
   if (response.ok) address = await response.text;
-  else console.erro("Couldn't fetch address!");
+  else console.error("Couldn't fetch address!");
   return address;
 }
 
@@ -27,7 +27,7 @@ const getAbi = async () => {
   let abi = "";
   const response = await get(window.location.origin + '/abi?contractAddress=' + contractAddress)
   if (response.ok) abi = await response.text;
-  else console.erro("Couldn't fetch abi!");
+  else console.error("Couldn't fetch abi!");
   return abi;
 }
 
@@ -35,7 +35,7 @@ const getUserNfts = async (userAddress) => {
   let user_nfts;
   const response = await get(window.location.origin + '/user_nfts?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
   if (response.ok) user_nfts = await response.text;
-  else console.erro("Couldn't fetch user_nfts!");
+  else console.error("Couldn't fetch user_nfts!");
   return user_nfts;
 }
 
@@ -43,7 +43,7 @@ const getWhitelistAddresses = async () => {
   let whitelist_addresses;
   const response = await get(window.location.origin + '/whitelist_addresses')
   if (response.ok) whitelist_addresses = await response.text;
-  else console.erro("Couldn't fetch whitelist_addresses!");
+  else console.error("Couldn't fetch whitelist_addresses!");
   return whitelist_addresses;
 }
 
@@ -162,7 +162,10 @@ export default class extends Controller {
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
     // Get user NFTs
-    //const user_nfts = await getUserNfts(window.ethereum.selectedAddress); //blup: WIP
+    // const user_nfts = await getUserNfts(window.ethereum.selectedAddress);
+    const userNfts = document.getElementById('user-nfts');
+    userNfts.src = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
+    userNfts.reload();
   }
 
   add() {
