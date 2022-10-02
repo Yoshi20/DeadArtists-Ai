@@ -8,7 +8,7 @@ class NftsController < ApplicationController
   def index
     @artists = Artist.all.select(:id, :name).order(:name)
     @paintings = Painting.all.select(:id, :name).order(:name)
-    @nfts = Nft.includes(:artist, :painting).all.limit(30)
+    @nfts = Nft.includes(:artist, :painting).all.limit(50)
     @nfts = @nfts.where(artist_id: params[:artist_id]) if params[:artist_id].present?
     @nfts = @nfts.where(painting_id: params[:painting_id]) if params[:painting_id].present?
   end

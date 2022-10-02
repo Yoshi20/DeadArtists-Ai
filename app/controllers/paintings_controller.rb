@@ -7,7 +7,7 @@ class PaintingsController < ApplicationController
 
   def index
     @artists = Artist.all.select(:id, :name)
-    @paintings = Painting.includes(:artist).all.limit(30)
+    @paintings = Painting.includes(:artist).all.limit(50)
     @paintings = @paintings.where(artist_id: params[:artist_id]) if params[:artist_id].present?
   end
 
