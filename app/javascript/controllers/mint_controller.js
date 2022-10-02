@@ -33,8 +33,8 @@ const getAbi = async () => {
 
 const getUserNfts = async (userAddress) => {
   let user_nfts;
-  const response = await get(window.location.origin + '/user_nfts?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
-  if (response.ok) user_nfts = await response.text;
+  const response = await get(window.location.origin + '/user_nfts.json?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
+  if (response.ok) user_nfts = await response.json;
   else console.error("Couldn't fetch user_nfts!");
   return user_nfts;
 }
@@ -161,10 +161,11 @@ export default class extends Controller {
     const totalSupply =  parseInt((await window.contract.totalSupply())._hex, 16);
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
+    //blup: TODO -> handle when maxSupply - totalSupply < maxNumberOfMints
     // Get user NFTs
-    // const user_nfts = await getUserNfts(window.ethereum.selectedAddress);
     const userNfts = document.getElementById('user-nfts');
     userNfts.src = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
+    console.log('userNfts.src: ', userNfts.src);//blup
     userNfts.reload();
   }
 
@@ -240,17 +241,17 @@ export default class extends Controller {
       const rc = await response.wait();
       console.log('rc = ', rc);
       console.log('rc.events = ', rc.events);//blup
-      let nftIds = [];
+      this.mintedNftIds = [];
       rc.events.forEach((event) => {
-          console.log(event);//blup
-          if (event.event === 'Transfer') {
-            const [from, to, value] = event.args;
-            console.log(from, to, value);//blup
-            console.log(parseInt(value._hex, 16));//blup
-            nftIds.push(parseInt(value._hex, 16));
-          }
+        console.log(event);//blup
+        if (event.event === 'Transfer') {
+          const [from, to, value] = event.args;
+          console.log(from, to, value);//blup
+          console.log(parseInt(value._hex, 16));//blup
+          this.mintedNftIds.push(parseInt(value._hex, 16));
+        }
       });
-      console.log('nftIds = ', nftIds);//blup
+      console.log('this.mintedNftIds = ', this.mintedNftIds);//blup
       // Show "Mint succeeded!"
       p = document.createElement("p");
       p.innerHTML = 'Check out your transaction on <a target=_blank class=color-default href=' + url + '>Etherscan</a>';
@@ -260,7 +261,7 @@ export default class extends Controller {
       document.getElementById('mint-in-progress-message-row').style.display = 'none';
       document.getElementById('mint-success-message-row').style.display = '';
       // Show "Auction video modal"
-      this.auction_modal_show();
+      this.auction_modal_show(this.mintedNftIds);
       // -------------------------------------------
     } catch(err) {
       console.warn(err);
@@ -281,12 +282,22 @@ export default class extends Controller {
     mintButtonText.innerHTML = 'Mint'; //blup
   }
 
-  auction_modal_show() {
+  //blup: only for testing
+  auction_modal_demo() {
+    this.mintedNftIds = [1,2,3];
+    this.auction_modal_show(this.mintedNftIds);
+  }
+
+  async auction_modal_show(nftIds) {
     ui('#auction-modal');
     const auctionNft = document.getElementById('auction-nft');
     auctionNft.style.display = 'none';
     auctionNft.style.transition = 'opacity 0s';
     auctionNft.style.opacity = 0;
+    const nextButton = document.getElementById('next-auction-nft-button');
+    nextButton.style.display = 'none';
+    const finishButton = document.getElementById('finish-auction-nft-button');
+    finishButton.style.display = 'none';
     const vid = document.getElementById('auction-video');
     vid.currentTime = 0;
     vid.play();
@@ -297,7 +308,71 @@ export default class extends Controller {
       setTimeout(() => {
         auctionNft.style.opacity = 1;
       }, 100);
+      // show next button if there are more than 1
+      setTimeout(() => {
+        if (nftIds.length > 1) {
+          nextButton.style.display = '';
+        } else {
+          finishButton.style.display = '';
+        }
+      }, 5100);
     }, 11900);
+    // During video: Check if first minted NFT is valid and update auction-nft
+    this.user_nfts_json = await getUserNfts(window.ethereum.selectedAddress);
+    console.log('user_nfts_json = ', this.user_nfts_json);//blup
+    let nftValid = false;
+    this.next_user_nft_index = 0;
+    let i = 0;
+    this.user_nfts_json.forEach((nft) => {
+      if (nft.ipfs_token_id == nftIds[0]) {
+        nftValid = true;
+        this.next_user_nft_index = i;
+      }
+      i++;
+    });
+    if (nftValid) {
+      auctionNft.src = this.user_nfts_json[this.next_user_nft_index].image_link
+    }
+  }
+
+  next_user_nft() {
+    const auctionNft = document.getElementById('auction-nft');
+    auctionNft.style.display = 'none';
+    auctionNft.style.transition = 'opacity 0s';
+    auctionNft.style.opacity = 0;
+    const nextButton = document.getElementById('next-auction-nft-button');
+    nextButton.style.display = 'none';
+    const finishButton = document.getElementById('finish-auction-nft-button');
+    finishButton.style.display = 'none';
+    this.mintedNftIds.shift(); // removes first item of the array
+    console.log('this.mintedNftIds = ',this.mintedNftIds);//blup
+    let i = 0;
+    this.user_nfts_json.forEach((nft) => {
+      if (nft.ipfs_token_id == this.mintedNftIds[0]) {
+        this.next_user_nft_index = i;
+      }
+      i++;
+    });
+    auctionNft.src = this.user_nfts_json[this.next_user_nft_index].image_link;
+    setTimeout(() => {
+      auctionNft.style.display = '';
+      auctionNft.style.transition = 'opacity 3s linear';
+      setTimeout(() => {
+        auctionNft.style.opacity = 1;
+      }, 100);
+    }, 100);
+    // show next button if there are still more than 1
+    setTimeout(() => {
+      if (this.mintedNftIds.length > 1) {
+        nextButton.style.display = '';
+      } else {
+        finishButton.style.display = '';
+      }
+    }, 5100);
+  }
+
+  finish_user_nft() {
+    location.reload();
   }
 
 }

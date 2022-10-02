@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   get 'mint' => 'mint#index'
   get 'contract_address' => 'mint#contract_address'
   get 'abi' => 'mint#abi'
-  get 'user_nfts' => 'mint#user_nfts'
   get 'whitelist_addresses' => 'mint#whitelist_addresses'
 
   get 'faq' => 'faq#index'

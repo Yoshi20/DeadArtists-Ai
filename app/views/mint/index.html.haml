@@ -82,14 +82,13 @@
       %p Invalid Network! Please change to the Ethereum Mainnet.
 
   .auction
-    %button{data: {action: "click->mint#auction_modal_show" }} Auction modal test
+    %button{data: {action: "click->mint#auction_modal_demo" }} Auction modal test
     .modal#auction-modal{style: 'border-radius: 12rem;'}
       .modal-content{style: 'position: relative;'}
-        -# %h5.center-align Mint succeeded!
         = video_tag 'auction.mp4', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
-        = image_tag @randomNft&.image_link.to_s, id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Random Dead Artist NFT'
-      %nav.middle-align
-        %button.border{"data-ui": "#auction-modal"} <<
-        %button{"data-ui": "#auction-modal", style: 'margin-left: auto;'} >>
+        = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artist NFT'
+      %nav{style: 'position: absolute; right: 0px; bottom: 0px;'}
+        %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>
+        %button#finish-auction-nft-button{data: {action: "click->mint#finish_user_nft"}, style: 'display: none;'} Finish
 
   %turbo-frame#user-nfts

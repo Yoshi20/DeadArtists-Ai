@@ -24,6 +24,11 @@ class UserNftsController < ApplicationController
     #   :ipfs_image_uri,
     #   :trait_rarity,
     # )
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @userNfts.as_json(only: [:image_link, :ipfs_token_id]) }
+    end
+
   end
 
   def show
