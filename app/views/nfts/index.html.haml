@@ -18,20 +18,15 @@
           - @paintings.each do |painting|
             %option{value: painting.id.to_s, selected: (params[:painting_id] == painting.id.to_s)}= painting.name
 
-  -# - if params[:artist_id].present? || params[:painting_id].present?
-  -#   .row.mt-0
-  -#     .col.s12.center-align{style: 'margin-top: -30px;'}
-  -#       = link_to nfts_path do
-  -#         %button.border.round.small
-  -#           %span Reset filter
-
   %turbo-frame#database-view
     .row
       - if @nfts.any?
         - @nfts.each do |nft|
           .col.s6.m4.center-align{class: "#{@nfts.count == 1 ? 's12 m12' : ''} #{@nfts.count == 2 ? 's6 m6' : ''}"}
-            = link_to nft_path(nft) do
-              %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important;'}
+            = link_to nft_path(nft, page: params[:page]) do
+              %img.responsive{src: nft.collectible_link, width: '265px', style: 'max-height: 265px !important;'}
+        .col.s12
+          = render 'paginator', nfts: @nfts
       - else
         %p No nfts found...
 

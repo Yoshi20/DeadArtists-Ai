@@ -130,6 +130,25 @@
   color: $color-text;
 }
 
+.pagination {
+  text-align: center;
+  justify-content: center;
+  font-size: 24px;
+  text-indent: 5px;
+  li {
+    display: inline-block;
+    &.active {
+      font-weight: bold;
+      a {
+        text-decoration: underline;
+      }
+    }
+    a:hover {
+      color: $color-default;
+    }
+  }
+}
+
 // beercss colors
 body.dark {
   --primary: #B0903D; // = $color-default;

@@ -5,7 +5,7 @@
         %h1.page-title= @artist.name
     .row
       .col.s12.center-align
-        %img.responsive{src: @artist.image_link, style: 'max-width: 265px !important; max-height: 265px !important;'}
+        %img.responsive{src: @artist.image_link}
     .row.mt-0
       .col.s12
         .padding
@@ -26,7 +26,7 @@
       .row.mt-0
         - paintings.each do |painting|
           .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
-            = link_to painting do
+            = link_to painting_path(painting, page: params[:page]), "data-turbo-frame": "_top" do
               %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
 
     - if current_user.present? && current_user.admin?
@@ -40,7 +40,7 @@
 
     -# back arrows
     - if params[:nft_id].present?
-      = link_to nft_path(params[:nft_id]), class: 'back-arrow back-arrow-top color-default' do
+      = link_to nft_path(params[:nft_id], page: params[:page]), class: 'back-arrow back-arrow-top color-default' do
         %i keyboard_backspace
-      = link_to nft_path(params[:nft_id]), class: 'back-arrow color-default' do
+      = link_to nft_path(params[:nft_id], page: params[:page]), class: 'back-arrow color-default' do
         %i keyboard_backspace

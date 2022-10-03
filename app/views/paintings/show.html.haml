@@ -5,7 +5,7 @@
         %h1.page-title= @painting.name
     .row
       .col.s12.center-align
-        %img.responsive{src: @painting.image_link, style: 'max-width: 265px !important; max-height: 265px !important;'}
+        %img.responsive{src: @painting.image_link}
     .row.mt-0
       .col.s12
         .padding
@@ -30,10 +30,10 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 - if artist.image_link.present?
-                  = link_to artist_path(artist, nft_id: nft&.id) do
+                  = link_to artist_path(artist, nft_id: nft&.id, page: params[:page]), "data-turbo-frame": "_top" do
                     %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
                 - else
-                  = link_to artist.name, artist_path(artist, nft_id: nft&.id), class: 'color-default'
+                  = link_to artist.name, artist_path(artist, nft_id: nft&.id, page: params[:page]), class: 'color-default', "data-turbo-frame": "_top"
         - if nft.present?
           .col.s6
             .row.no-space.mt-0
@@ -43,10 +43,10 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 - if nft.image_link.present?
-                  = link_to nft do
+                  = link_to nft_path(nft, page: params[:page]), "data-turbo-frame": "_top" do
                     %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
                 - else
-                  = link_to nft.name, nft, class: 'color-default'
+                  = link_to nft.name, nft_path(nft, page: params[:page]), class: 'color-default', "data-turbo-frame": "_top"
 
     - if current_user.present? && current_user.admin?
       .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
@@ -59,7 +59,7 @@
 
     -# back arrows
     - if nft.present?
-      = link_to nft, class: 'back-arrow back-arrow-top color-default' do
+      = link_to nft_path(nft, page: params[:page]), class: 'back-arrow back-arrow-top color-default' do
         %i keyboard_backspace
-      = link_to nft, class: 'back-arrow color-default' do
+      = link_to nft_path(nft, page: params[:page]), class: 'back-arrow color-default' do
         %i keyboard_backspace

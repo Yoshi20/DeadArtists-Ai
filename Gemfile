@@ -104,6 +104,9 @@ gem 'rails-i18n', '~> 7.0.0' # (rails locale data collection)
 # See https://github.com/kpumuk/meta-tags
 gem 'meta-tags'
 
+# See https://github.com/mislav/will_paginate
+gem 'will_paginate', '~> 3.3'
+
 group :development do
   gem 'better_errors'
   gem 'brakeman' # https://github.com/presidentbeef/brakeman

@@ -5,19 +5,19 @@
         %h1.page-title= @nft.name.gsub('vs.', '&')
     .row.mt-0.s
       .col.s6.center-align
-        = link_to artist_path(artist_id: @nft.artist, nft_id: @nft.id) do
+        = link_to artist_path(@nft.artist, nft_id: @nft.id, page: params[:page]), "data-turbo-frame": "_top" do
           %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important;'}
       .col.s6.center-align
-        = link_to @nft.painting do
+        = link_to painting_path(@nft.painting, page: params[:page]), "data-turbo-frame": "_top" do
           %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important;'}
     .row{style: 'display: flex;'}
       .col.m.m4.l.center-align.middle-align
-        = link_to artist_path(@nft.artist, nft_id: @nft.id) do
+        = link_to artist_path(@nft.artist, nft_id: @nft.id, page: params[:page]), "data-turbo-frame": "_top" do
           %img.responsive{src: @nft.artist.image_link, style: 'max-height: 200px !important;'}
       .col.s12.m3.center-align.middle-align
         %img.responsive{src: @nft.image_link, width: '265px', style: 'max-width: 265px !important; max-height: 265px !important;'}
       .col.m.m4.l.center-align.middle-align
-        = link_to @nft.painting do
+        = link_to painting_path(@nft.painting, page: params[:page]), "data-turbo-frame": "_top" do
           %img.responsive{src: @nft.painting.image_link, style: 'max-height: 200px !important;'}
     .row.mt-0
       .col.s12
@@ -34,7 +34,8 @@
             %i delete
 
     -# back arrows
-    = link_to nfts_path, class: 'back-arrow back-arrow-top color-default' do
+    = params #blup
+    = link_to nfts_path(page: params[:page]), class: 'back-arrow back-arrow-top color-default' do
       %i keyboard_backspace
-    = link_to nfts_path, class: 'back-arrow color-default' do
+    = link_to nfts_path(page: params[:page]), class: 'back-arrow color-default' do
       %i keyboard_backspace

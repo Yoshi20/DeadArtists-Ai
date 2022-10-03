@@ -36,7 +36,7 @@ namespace :csv_import do
         invalid_artists << data['artist_name'] + " -> " + artist.errors.full_messages.to_s
       end
       # Create or update painting
-      painting = Painting.find_by(name: data['painting_name'])
+      painting = Painting.find_by(name: data['painting_name'], artist_id: artist.id)
       painting = Painting.new unless painting.present?
       is_new_record = painting.new_record?
       painting.name = data['painting_name']
