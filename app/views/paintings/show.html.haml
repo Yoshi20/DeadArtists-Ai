@@ -30,10 +30,10 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 - if artist.image_link.present?
-                  = link_to artist_path(artist, nft_id: nft&.id, page: params[:page]), "data-turbo-frame": "_top" do
+                  = link_to artist_path(artist, nft_id: nft&.id, page: params[:page]), onclick: 'window.scrollTo({top: 0});' do
                     %img.responsive{src: artist.image_link, style: 'max-height: 200px !important;'}
                 - else
-                  = link_to artist.name, artist_path(artist, nft_id: nft&.id, page: params[:page]), class: 'color-default', "data-turbo-frame": "_top"
+                  = link_to artist.name, artist_path(artist, nft_id: nft&.id, page: params[:page]), class: 'color-default', onclick: 'window.scrollTo({top: 0});'
         - if nft.present?
           .col.s6
             .row.no-space.mt-0
@@ -43,10 +43,10 @@
             .row.no-space.mt-0
               .col.s12.center-align
                 - if nft.image_link.present?
-                  = link_to nft_path(nft, page: params[:page]), "data-turbo-frame": "_top" do
+                  = link_to nft_path(nft, page: params[:page]), onclick: 'window.scrollTo({top: 0});' do
                     %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
                 - else
-                  = link_to nft.name, nft_path(nft, page: params[:page]), class: 'color-default', "data-turbo-frame": "_top"
+                  = link_to nft.name, nft_path(nft, page: params[:page]), class: 'color-default', onclick: 'window.scrollTo({top: 0});'
 
     - if current_user.present? && current_user.admin?
       .edit-icon{style: 'position: absolute; right: 5px; top: 5px;'}
