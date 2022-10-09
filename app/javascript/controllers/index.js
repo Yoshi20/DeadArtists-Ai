@@ -18,3 +18,6 @@ application.register("mint", MintController)
 
 import WelcomeController from "./welcome_controller"
 application.register("welcome", WelcomeController)
+
+import HideBackArrowsController from "./hide_back_arrows_controller"
+application.register("hide-back-arrows", HideBackArrowsController)
