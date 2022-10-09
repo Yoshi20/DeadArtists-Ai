@@ -24,6 +24,12 @@ class UserNftsController < ApplicationController
     #   :ipfs_image_uri,
     #   :trait_rarity,
     # )
+    # find or create & update holder
+    if @userNfts.any?
+      holder = Holder.find_or_create_by(wallet_address: userAddress)
+      holder.last_time_seen = DateTime.now
+      holder.save(touch: false)
+    end
     respond_to do |format|
       format.html { }
       format.json { render json: @userNfts.as_json(only: [:image_link, :ipfs_token_id]) }
