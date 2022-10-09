@@ -19,13 +19,14 @@
 
     - paintings = @artist.paintings
     - if paintings.any?
+      - paintings_count = paintings.count
       .row.mt-0
         .col.s12
           .padding
-            %h2.page-title= "Painting#{paintings.count > 1 ? 's' : ''}"
+            %h2.page-title= "Painting#{paintings_count > 1 ? 's' : ''}"
       .row.mt-0
         - paintings.each do |painting|
-          .col.s4.center-align{class: "#{paintings.count == 1 ? 's12' : ''} #{paintings.count == 2 ? 's6' : ''}"}
+          .col.s4.center-align{class: "#{paintings_count == 1 ? 's12' : ''} #{paintings_count == 2 ? 's6' : ''}"}
             = link_to painting_path(painting, page: params[:page]), onclick: 'window.scrollTo({top: 0});' do
               %img.responsive{src: painting.image_link, style: 'max-height: 265px !important;'}
 

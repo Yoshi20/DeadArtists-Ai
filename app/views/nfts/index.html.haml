@@ -18,8 +18,9 @@
   %turbo-frame#database-view
     .row
       - if @nfts.any?
+        - nfts_count = @nfts.count
         - @nfts.each do |nft|
-          .col.s6.m4.center-align{class: "#{@nfts.count == 1 ? 's12 m12' : ''} #{@nfts.count == 2 ? 's6 m6' : ''}"}
+          .col.s6.m4.center-align{class: "#{nfts_count == 1 ? 's12 m12' : ''} #{nfts_count == 2 ? 's6 m6' : ''}"}
             = link_to nft_path(nft, page: params[:page]) do
               %img.responsive{src: nft.collectible_link, width: '265px', style: 'max-height: 265px !important;'}
               -# %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important; z-index: 1;'}

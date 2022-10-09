@@ -6,9 +6,10 @@
 
     .row
       - if @userNfts.any?
-        #user-nfts-data{data: {ctr: @userNfts.count, ids: @userNfts.map{|nft| nft.ipfs_token_id}}}
+        - userNfts_count = @userNfts.count
+        #user-nfts-data{data: {ctr: userNfts_count, ids: @userNfts.map{|nft| nft.ipfs_token_id}}}
         - @userNfts.each do |nft|
-          .col.s6.m4.center-align{class: "#{@userNfts.count == 1 ? 's12 m12' : ''} #{@userNfts.count == 2 ? 's6 m6' : ''}"}
+          .col.s6.m4.center-align{class: "#{userNfts_count == 1 ? 's12 m12' : ''} #{userNfts_count == 2 ? 's6 m6' : ''}"}
             = link_to user_nft_path(nft), data: { turbo_frame: "nft_#{nft.id}" }, onclick: "ui('#user-nft-modal-#{nft.id}');" do
               %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important;'}
 
