@@ -6,17 +6,14 @@
 
   .row
     .col.s12.center-align
-      .field.suffix.border{style: 'margin-bottom: 5px;'}
-        %select#select-artist{autocomplete: "off", placeholder: "Search for an artist...", data: { controller: 'tom-select', resource: 'artists' }}
-          %option{value: ""} Search for an artist...
-          - @artists.each do |artist|
-            %option{value: artist.id.to_s, selected: (params[:artist_id] == artist.id.to_s)}= artist.name
-
       .field.suffix.border
-        %select#select-painting{autocomplete: "off", placeholder: "Search for a painting...", data: { controller: 'tom-select', resource: 'paintings' }}
-          %option{value: ""} Search for a painting...
+        %select#select-artist-or-painting{autocomplete: "off", placeholder: "Search for an artist or painting...", data: { controller: 'tom-select', resource: 'artist_or_painting' }}
+          %option{value: ""} Search for an artist or painting...
+          - @artists.each do |artist|
+            %option{value: 'artist_'+artist.id.to_s, selected: (params[:artist_id] == artist.id.to_s)}= artist.name
           - @paintings.each do |painting|
-            %option{value: painting.id.to_s, selected: (params[:painting_id] == painting.id.to_s)}= painting.name
+            %option{value: 'painting_'+painting.id.to_s, selected: (params[:painting_id] == painting.id.to_s)}= painting.name
+
 
   %turbo-frame#database-view
     .row

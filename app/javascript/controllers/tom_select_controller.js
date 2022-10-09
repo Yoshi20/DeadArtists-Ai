@@ -7,10 +7,13 @@ export default class extends Controller {
   connect() {
     let eventHandler = function(name, element) {
       return function() {
-        if (element.dataset.resource == 'artists') {
-          Turbo.visit('/nfts?artist_id=' + arguments[0], { action: "replace" });
+        let type_and_value = arguments[0].split('_');
+        if (type_and_value[0] == 'artist') {
+          Turbo.visit('/nfts?artist_id=' + type_and_value[1], { action: "replace" });
+        } else if (type_and_value[0] == 'painting') {
+          Turbo.visit('/nfts?painting_id=' + type_and_value[1], { action: "replace" });
         } else {
-          Turbo.visit('/nfts?painting_id=' + arguments[0], { action: "replace" });
+          Turbo.visit('/nfts', { action: "replace" });
         }
       };
     };
@@ -18,6 +21,7 @@ export default class extends Controller {
     new TomSelect(this.element, {
       allowEmptyOption: true,
       onChange: eventHandler('onChange', this.element),
+      maxOptions: null,
     });
   }
 }
