@@ -149,6 +149,15 @@
   }
 }
 
+.image-footer {
+  color: $color-default;
+  position: absolute;
+  bottom: -20px;
+  &.nft {
+    bottom: -12px;
+  }
+}
+
 // beercss colors
 body.dark {
   --primary: #B0903D; // = $color-default;
