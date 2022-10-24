@@ -1,6 +1,6 @@
 # Dead Artists AI
 
-Dead Artist NFT web application.
+Dead Artists NFT web application.
 
 ## Start rails server (puma) with esbuild and cssbundling
 

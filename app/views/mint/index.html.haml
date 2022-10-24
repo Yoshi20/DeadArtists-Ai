@@ -2,7 +2,7 @@
 .mint{data: { controller: "mint" }}
   .row.title-row#Mint
     .col.s12.center-align
-      %h1.page-title= 'Mint Dead Artist NFT'
+      %h1.page-title= 'Mint Dead Artists NFT'
 
   .row
     .col.s12.center-align
@@ -10,9 +10,9 @@
         %turbo-frame#random-nft{style: 'z-index: 1;'}
           = link_to '#', disabled: true, data: { action: "click->mint#resetRandomNftInterval" } do
             = image_tag @randomNft&.image_link.to_s, width: '265px', height: '265px', alt: ''
-        = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artist NFT', style: 'position: absolute;'
+        = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artists NFT', style: 'position: absolute;'
     .col.s12.center-align{style: 'padding-top: 0;'}
-      %span (Note: A random Dead Artist NFT will be minted)
+      %span (Note: A random Dead Artists NFT will be minted)
 
   .row
     .col.s12.center-align{data: { controller: "wallet" }}
@@ -86,7 +86,7 @@
     .modal#auction-modal{style: 'border-radius: 12rem;'}
       .modal-content{style: 'position: relative;'}
         = video_tag 'auction.webm', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
-        = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artist NFT'
+        = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artists NFT'
       %nav{style: 'position: absolute; right: 0px; bottom: 0px;'}
         %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>
         %button#finish-auction-nft-button{data: {action: "click->mint#finish_user_nft"}, style: 'display: none;'} Finish
