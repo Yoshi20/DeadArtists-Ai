@@ -57,14 +57,14 @@ namespace :csv_import do
       end
       # Create or update nft
       nft_name = data['nft_name'].present? ? data['nft_name'] : "#{artist.name} & #{painting.name}"
-      nft_description = data['nft_description'].present? ? data['nft_description'] : "A unique AI-generated drawing of #{artist.name} in combination with one of #{artist.gender.downcase == "female" ? 'her' : 'his'} most important works, #{painting.name}.\nEach piece of the DeadArtists collection is a mix of a traditional style painting with modern technology.\nIn honor of the great artists of the past." #blup
       nft = Nft.find_by(artist_id: artist.id, painting_id: painting.id)
       nft = Nft.new unless nft.present?
       is_new_record = nft.new_record?
       nft.name = nft_name
-      nft.description = nft_description
+      nft.description = data['nft_description']
       nft.image_link = data['nft_image_link']
       nft.collectible_link = data['nft_collectible_link']
+      nft.gif_link = data['nft_gif_link']
       nft.artist = artist
       nft.painting = painting
       nft.trait_artist = artist.name
@@ -78,6 +78,9 @@ namespace :csv_import do
       nft.ipfs_token_id = data['nft_ipfs_token_id']
       nft.ipfs_token_uri = data['nft_ipfs_token_uri']
       nft.ipfs_image_uri = data['nft_ipfs_image_uri']
+      nft.color_code = data['nft_color_code']
+      nft.rarity_rank = data['nft_rarity_rank']
+      nft.opensea_permalink = data['nft_opensea_link']
       if nft.save
         puts "  -> Nft successfully #{is_new_record ? 'created' : 'updated'}: " + nft.name
       else

@@ -43,6 +43,9 @@ class MintController < ApplicationController
         :ipfs_token_uri,
         :ipfs_image_uri,
         :trait_rarity,
+        :gif_link,
+        :color_code,
+        :rarity_rank,
       ]
     )
   end
