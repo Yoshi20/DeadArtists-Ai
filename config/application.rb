@@ -23,7 +23,7 @@ module DeadArtistsAI
 
     config.time_zone = 'Bern'
 
-    config.i18n.available_locales = %w(en) #blup: only en for now
+    config.i18n.available_locales = %w(en) # only en for now
 
   end
 end

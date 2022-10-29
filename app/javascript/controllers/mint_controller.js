@@ -204,31 +204,31 @@ export default class extends Controller {
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
     try {
-      // // Whitelist minting: ---------------------
-      // let whitelistAddresses = await getWhitelistAddresses();
-      // whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      // whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
-      // console.log('whitelistAddresses = ', whitelistAddresses);//blup
-      // const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
-      // console.log('leafNodes = ', leafNodes);//blup
-      // const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
-      // console.log(DeadArtistsMerkleTree.toString()); // shows a required info for the SmartContract //blup
-      // let response;
-      // if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-      //   const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
-      //   console.log('claimingAddress = ', claimingAddress);//blup
-      //   const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
-      //   console.log('hexProof = ', hexProof);//blup
-      //   response = await window.contract.mintWL(numberOfNft, hexProof, {
-      //     value: ethStrToWei(totalPrice(numberOfNft).toString()),
-      //   });
-      // } else {
-      //   throw new Error("😥 Sorry, you're not on the whitelist 😥");
-      // }
-      // Public minting: ---------------------------
-      const response = await window.contract.mint(numberOfNft, {
-        value: ethStrToWei(totalPrice(numberOfNft).toString()),
-      });
+      // Whitelist minting: ---------------------
+      let whitelistAddresses = await getWhitelistAddresses();
+      whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
+      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      console.log('whitelistAddresses = ', whitelistAddresses);//blup
+      const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
+      console.log('leafNodes = ', leafNodes);//blup
+      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
+      console.log('DeadArtistsMerkleTree:\n', DeadArtistsMerkleTree.toString()); //blup: shows a required info for the SmartContract
+      let response;
+      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+        const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
+        console.log('claimingAddress = ', claimingAddress);//blup
+        const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+        console.log('hexProof = ', hexProof);//blup
+        response = await window.contract.mintWL(numberOfNft, hexProof, {
+          value: ethStrToWei(totalPrice(numberOfNft).toString()),
+        });
+      } else {
+        throw new Error("😥 Sorry, you're not on the whitelist 😥");
+      }
+      // // Public minting: ---------------------------
+      // const response = await window.contract.mint(numberOfNft, {
+      //   value: ethStrToWei(totalPrice(numberOfNft).toString()),
+      // });
       // -------------------------------------------
       console.log('response = ', response);
       // Show "Minting in progress..."
@@ -282,8 +282,8 @@ export default class extends Controller {
     document.getElementById("sub-button").disabled = false;
     document.getElementById("add-button").disabled = false;
     document.getElementById("set-field").style.pointerEvents = '';
-    // mintButtonText.innerHTML = 'Whitelist Mint'; //blup
-    mintButtonText.innerHTML = 'Mint'; //blup
+    mintButtonText.innerHTML = 'Whitelist Mint'; //blup
+    //blup mintButtonText.innerHTML = 'Mint';
   }
 
   //blup: only for testing
