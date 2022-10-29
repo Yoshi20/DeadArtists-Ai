@@ -46,6 +46,8 @@ class MintController < ApplicationController
         :gif_link,
         :color_code,
         :rarity_rank,
+        :image_link_low_quali,
+        :nft_gif_link_no_id,
       ]
     )
   end

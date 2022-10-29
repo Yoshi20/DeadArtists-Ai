@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_114815) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_145415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_114815) do
     t.string "gif_link"
     t.string "color_code"
     t.integer "rarity_rank"
+    t.string "image_link_low_quali"
+    t.string "gif_link_no_id"
   end
 
   create_table "paintings", force: :cascade do |t|

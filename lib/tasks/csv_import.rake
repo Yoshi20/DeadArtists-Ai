@@ -80,7 +80,9 @@ namespace :csv_import do
       nft.ipfs_image_uri = data['nft_ipfs_image_uri']
       nft.color_code = data['nft_color_code']
       nft.rarity_rank = data['nft_rarity_rank']
-      nft.opensea_permalink = data['nft_opensea_link']
+      nft.opensea_permalink = data['nft_opensea_permalink']
+      nft.image_link_low_quali = data['nft_image_link_low_quali']
+      nft.gif_link_no_id = data['nft_gif_link_no_id']
       if nft.save
         puts "  -> Nft successfully #{is_new_record ? 'created' : 'updated'}: " + nft.name
       else
