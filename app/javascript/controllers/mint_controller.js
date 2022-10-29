@@ -162,11 +162,15 @@ export default class extends Controller {
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
     //blup: TODO -> handle when maxSupply - totalSupply < maxNumberOfMints
-    // Get user NFTs
-    const userNfts = document.getElementById('user-nfts');
-    userNfts.src = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
-    console.log('userNfts.src: ', userNfts.src);//blup
-    userNfts.reload();
+    // // Get user NFTs
+    // const userNfts = document.getElementById('user-nfts');
+    // userNfts.src = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
+    // console.log('userNfts.src: ', userNfts.src);//blup
+    // userNfts.reload();
+    // Update members section button href
+    const membersSectionBtn = document.getElementById('members_section_button');
+    membersSectionBtn.href = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
+    if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
   }
 
   add() {

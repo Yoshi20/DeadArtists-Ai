@@ -77,6 +77,15 @@
           %span /
           %span#max-supply ?
 
+    -# Members section button
+    .row
+      .col.s12.center-align{style: 'margin-top: 20px;'}
+        = link_to user_nfts_path, id: 'members_section_button' do
+          %button.round.large{disabled: true}
+            %i.mirrored chevron_left
+            %span Go to the members section
+            %i chevron_left
+
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align
       %p Invalid Network! Please change to the Ethereum Mainnet.
@@ -91,4 +100,4 @@
         %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>
         %button#finish-auction-nft-button{data: {action: "click->mint#finish_user_nft"}, style: 'display: none;'} Finish
 
-  %turbo-frame#user-nfts
+  -# %turbo-frame#user-nfts
