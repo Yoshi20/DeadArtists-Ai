@@ -1,10 +1,16 @@
 class UserNftsController < ApplicationController
   before_action { @section = 'mint' }
 
-  skip_before_action :authenticate_user!, only: [:index, :get_user_nfts, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :get_user_nfts]
 
   # GET /user_nfts
   def index
+  end
+
+  # GET /user_nfts/1
+  def show
+    nft = Nft.find(params[:id])
+    render partial: "show", locals: {nft: nft}
   end
 
   # GET /get_user_nfts
@@ -19,13 +25,8 @@ class UserNftsController < ApplicationController
     holder.save(touch: false)
     respond_to do |format|
       format.html { render partial: "user_nfts", locals: {userNfts: userNfts} }
-      format.json { render json: @userNfts.as_json(only: [:image_link, :ipfs_token_id]) }
+      format.json { render json: userNfts.as_json(only: [:gif_link, :ipfs_token_id]) }
     end
-  end
-
-  def show
-    nft = Nft.find(params[:id])
-    render partial: "show", locals: {nft: nft}
   end
 
 end

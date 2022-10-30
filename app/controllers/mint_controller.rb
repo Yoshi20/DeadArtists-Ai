@@ -1,7 +1,7 @@
 class MintController < ApplicationController
   before_action { @section = 'mint' }
 
-  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :user_nfts, :whitelist_addresses]
+  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :whitelist_addresses]
 
   # GET /mint
   def index
@@ -22,35 +22,6 @@ class MintController < ApplicationController
       Request.eatherscan_get_abi(contractAddress)
     end
     render plain: abi
-  end
-
-  #blup
-  def user_nfts
-    contractAddress = params[:contractAddress]
-    contractAddress = ENV['CONTRACT_ADDRESS'] if contractAddress.nil?
-    userAddress = params[:userAddress]
-    nftData = Request.alchemy_get_NFTs(contractAddress, userAddress, false)
-    token_ids = []
-    nftData.each do |nft|
-      token_ids << nft['id']['tokenId'].to_i(16)
-    end
-    nfts = Nft.where(ipfs_token_id: token_ids)
-    render json: nfts.as_json(
-      only: [
-        :id,
-        :image_link,
-        :collectible_link,
-        :ipfs_token_id,
-        :ipfs_token_uri,
-        :ipfs_image_uri,
-        :trait_rarity,
-        :gif_link,
-        :color_code,
-        :rarity_rank,
-        :image_link_low_quali,
-        :nft_gif_link_no_id,
-      ]
-    )
   end
 
   def whitelist_addresses

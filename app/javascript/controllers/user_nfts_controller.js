@@ -7,14 +7,6 @@ const selectedAddress = async () => {
   }
 }
 
-const getUserNfts = async (userAddress) => {
-  let user_nfts;
-  const response = await get(window.location.origin + '/user_nfts.json?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
-  if (response.ok) user_nfts = await response.json;
-  else console.error("Couldn't fetch user_nfts!");
-  return user_nfts;
-}
-
 // Connects to -> data: { controller: 'user-nfts' }
 export default class extends Controller {
 

@@ -33,7 +33,7 @@ const getAbi = async () => {
 
 const getUserNfts = async (userAddress) => {
   let user_nfts;
-  const response = await get(window.location.origin + '/user_nfts.json?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
+  const response = await get(window.location.origin + '/get_user_nfts.json?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
   if (response.ok) user_nfts = await response.json;
   else console.error("Couldn't fetch user_nfts!");
   return user_nfts;
@@ -334,7 +334,7 @@ export default class extends Controller {
       i++;
     });
     if (nftValid) {
-      auctionNft.src = this.user_nfts_json[this.next_user_nft_index].image_link
+      auctionNft.src = this.user_nfts_json[this.next_user_nft_index].gif_link;
     }
   }
 
@@ -356,7 +356,7 @@ export default class extends Controller {
       }
       i++;
     });
-    auctionNft.src = this.user_nfts_json[this.next_user_nft_index].image_link;
+    auctionNft.src = this.user_nfts_json[this.next_user_nft_index].gif_link;
     setTimeout(() => {
       auctionNft.style.display = '';
       auctionNft.style.transition = 'opacity 3s linear';
