@@ -3,3 +3,11 @@
   color: $color-text;
 
 }
+
+.user-nfts {
+  .download-link a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

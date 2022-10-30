@@ -10,12 +10,43 @@
         #user-nfts-data{data: {ctr: userNfts_count, ids: userNfts.map{|nft| nft.ipfs_token_id}}}
         - userNfts.each do |nft|
           .col.s6.m4.center-align{class: "#{userNfts_count == 1 ? 's12 m12' : ''} #{userNfts_count == 2 ? 's6 m6' : ''}"}
-            = link_to user_nft_path(nft), data: { turbo_frame: "nft_#{nft.id}" }, onclick: "ui('#user-nft-modal-#{nft.id}');" do
-              %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important;'}
+            .row
+              .col.s12.center-align
+                = link_to user_nft_path(nft), data: { turbo_frame: "nft_#{nft.id}" }, onclick: "ui('#user-nft-modal-#{nft.id}');" do
+                  %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important;'}
 
-            .modal{id: "user-nft-modal-#{nft.id}", style: 'border-radius: 12rem;'}
-              .modal-content{style: 'position: relative;'}
-                = turbo_frame_tag nft
+                .modal{id: "user-nft-modal-#{nft.id}", style: 'border-radius: 12rem;'}
+                  .modal-content{style: 'position: relative;'}
+                    = turbo_frame_tag nft
+            .row.mt-0
+              .col.s12.center-align.mt-0
+                %p.mt-0 Download links:
+                .download-link.color-default
+                  = link_to nft.gif_link, target: '_blank', download: "#{nft.name}_720x720" do
+                    %span GIF: 720x720
+                .download-link.color-default
+                  = link_to nft.gif_link_no_id, target: '_blank', download: "#{nft.name}_no-ID_720x720" do
+                    %span GIF: 720x720 (no ID)
+                .download-link.color-default
+                  = link_to nft.image_link, target: '_blank', download: "#{nft.name}_1080x1080" do
+                    %span PNG: 1080x1080
+                .download-link.color-default
+                  = link_to nft.image_link_low_quali, target: '_blank', download: "#{nft.name}_720x720" do
+                    %span JPG: 720x720
+                .download-link.color-default
+                  = link_to nft.collectible_link, target: '_blank', download: "#{nft.name}_collectible" do
+                    %span Collectible (JPG)
+                .download-link.color-default
+                  = link_to nft.opensea_permalink, target: '_blank' do
+                    %span Opensea permalink
+                .download-link.color-default
+                  = link_to nft.ipfs_token_uri, target: '_blank' do
+                    %span IPFS token link
+                .download-link.color-default
+                  = link_to nft.ipfs_image_uri, target: '_blank' do
+                    %span IPFS image link
+                .download-link.color-default
+                  %span= "Color code: #{nft.color_code}"
 
       - else
         .col.s12.center-align
