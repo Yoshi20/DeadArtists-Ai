@@ -29,7 +29,8 @@
         .col.s12
           = render 'paginator', nfts: @nfts
       - else
-        %p No nfts found...
+        .col.s12.center-align
+          %p No NFTs found...
 
   - if current_user.present? && current_user.admin?
     .row

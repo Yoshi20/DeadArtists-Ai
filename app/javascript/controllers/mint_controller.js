@@ -169,7 +169,6 @@ export default class extends Controller {
     // userNfts.reload();
     // Update members section button href
     const membersSectionBtn = document.getElementById('members_section_button');
-    membersSectionBtn.href = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
     if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
   }
 

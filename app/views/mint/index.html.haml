@@ -12,7 +12,7 @@
             = image_tag @randomNft&.image_link.to_s, width: '265px', height: '265px', alt: ''
         = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artists NFT', style: 'position: absolute;'
     .col.s12.center-align{style: 'padding-top: 0;'}
-      %span (Note: A random Dead Artists NFT will be minted)
+      %span{style: 'font-size: 12rem;'} (Note: Not shown but a random Dead Artists NFT is minted)
 
   .row
     .col.s12.center-align{data: { controller: "wallet" }}
@@ -83,8 +83,10 @@
         = link_to user_nfts_path, id: 'members_section_button' do
           %button.round.large{disabled: true}
             %i.mirrored chevron_left
-            %span Go to the members section
+            %span= "Go to the <strong>Members</strong> section".html_safe
             %i chevron_left
+      .col.s12.center-align{style: 'padding-top: 0;'}
+        %span{style: 'font-size: 12rem;'} (Note: You must own a Dead Artists NFT to become a member)
 
   .row#invalid-network{style: 'display: none;'}
     .col.s12.center-align

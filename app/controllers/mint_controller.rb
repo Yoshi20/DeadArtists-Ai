@@ -24,6 +24,7 @@ class MintController < ApplicationController
     render plain: abi
   end
 
+  #blup
   def user_nfts
     contractAddress = params[:contractAddress]
     contractAddress = ENV['CONTRACT_ADDRESS'] if contractAddress.nil?

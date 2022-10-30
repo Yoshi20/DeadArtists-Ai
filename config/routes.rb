@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :nfts
 
   resources :user_nfts, only: [:index, :show]
+  get 'get_user_nfts' => 'user_nfts#get_user_nfts'
 
   resources :settings, only: [:index]
 
