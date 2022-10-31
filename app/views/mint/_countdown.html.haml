@@ -1,20 +1,20 @@
-- if true #blup: no longer show this if endDate reached
-  .row{data: { controller: 'countdown' }}
-    .col.s12.center-align
-      .countdown-container
-        %h2.subtitle.center-align#headline Public Minting starts in:
-        #public-minting-start-date{style: 'display: none;'}= ENV['PUBLIC_MINTING_START_DATE']
-        #countdown
-          %ul
-            %li
-              %span#days>
-              days
-            %li
-              %span#hours>
-              Hours
-            %li
-              %span#minutes>
-              Minutes
-            %li
-              %span#seconds>
-              Seconds
+.row{data: { controller: 'countdown' }}
+  .col.s12.center-align
+    .countdown-container
+      %h2.subtitle.center-align#headline= title
+      #new-headline.hidden= new_title
+      #countdown-end-date.hidden= end_date
+      #countdown
+        %ul
+          %li
+            %span#days>
+            days
+          %li
+            %span#hours>
+            Hours
+          %li
+            %span#minutes>
+            Minutes
+          %li
+            %span#seconds>
+            Seconds
