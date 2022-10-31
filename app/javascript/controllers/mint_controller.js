@@ -6,7 +6,7 @@ const { MerkleTree } = require('merkletreejs'); // for whitelist minting
 let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
 let userBalance = 0;
 let pricePerNft = 0.04;
-let maxNumberOfMints = 50;
+let remainingNumberOfMints = 50;
 let contractAddress = "";
 
 const selectedAddress = async () => {
@@ -139,13 +139,18 @@ export default class extends Controller {
     const userNumberOfMints = parseInt(userTokenBalance._hex, 16);
     console.log('userNumberOfMints: ', userNumberOfMints);//blup
     document.getElementById('user-number-of-mints').innerHTML = userNumberOfMints;
-    // Get & set maxNumberOfMints
+    // Enable members section button when minted > 0
+    const membersSectionBtn = document.getElementById('members_section_button');
+    if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
+    // Get maxMintAmountPerTx & set remainingNumberOfMints (blup: Public only)
     // const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
-    // maxNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16) - userNumberOfMints;
-    maxNumberOfMints = 50 - userNumberOfMints;//blup: can be static
-    if (maxNumberOfMints < 0) maxNumberOfMints = 0;
-    console.log('remaining maxNumberOfMints: ', maxNumberOfMints);//blup
-    document.getElementById('max-number-of-mints').innerHTML = maxNumberOfMints + userNumberOfMints;
+    // remainingNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16);
+    // Get maxMintWL & set remainingNumberOfMints (blup: WL only)
+    const maxMintWL = await window.contract.maxMintWL();
+    remainingNumberOfMints = parseInt(maxMintWL._hex, 16) - userNumberOfMints;
+    if (remainingNumberOfMints < 0) remainingNumberOfMints = 0;
+    console.log('remainingNumberOfMints: ', remainingNumberOfMints);//blup
+    document.getElementById('max-number-of-mints').innerHTML = remainingNumberOfMints + userNumberOfMints;
     // Get & set pricePerNft
     const cost = await window.contract.cost();
     pricePerNft = hexWeiToEth(cost._hex);
@@ -161,34 +166,29 @@ export default class extends Controller {
     const totalSupply =  parseInt((await window.contract.totalSupply())._hex, 16);
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
-    //blup: TODO -> handle when maxSupply - totalSupply < maxNumberOfMints
-    // // Get user NFTs
-    // const userNfts = document.getElementById('user-nfts');
-    // userNfts.src = '/user_nfts?userAddress=' + window.ethereum.selectedAddress
-    // console.log('userNfts.src: ', userNfts.src);//blup
-    // userNfts.reload();
-    // Update members section button href
-    const membersSectionBtn = document.getElementById('members_section_button');
-    if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
+    // Handle special case when maxSupply - totalSupply < remainingNumberOfMints
+    if (maxSupply - totalSupply < remainingNumberOfMints) {
+      remainingNumberOfMints = maxSupply - totalSupply;
+    }
   }
 
   add() {
     numberOfNft++;
-    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints;
+    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints;
     handleNumberOfNft(numberOfNft);
   }
 
   sub() {
     numberOfNft--;
     if (numberOfNft < 1) numberOfNft = 1;
-    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints; // in case max is 0
+    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints; // in case max is 0
     handleNumberOfNft(numberOfNft);
   }
 
   set() {
     numberOfNft = document.getElementById('number-of-nft').value;
     if (numberOfNft < 1) numberOfNft = 1;
-    if (numberOfNft > maxNumberOfMints) numberOfNft = maxNumberOfMints;
+    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints;
     handleNumberOfNft(numberOfNft);
   }
 
