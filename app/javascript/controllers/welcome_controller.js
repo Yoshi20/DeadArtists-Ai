@@ -11,7 +11,6 @@ export default class extends Controller {
     e.preventDefault();
     document.getElementById('primary').style.display= '';
     document.getElementById('overlay').style.display= 'none';
-    document.getElementById('home-title-video').currentTime = 0;
     window.scrollTo(0, 0);
   }
 
