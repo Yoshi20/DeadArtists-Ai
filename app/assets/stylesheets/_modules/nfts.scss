@@ -2,6 +2,17 @@
   padding: 0px 10px;
   color: $color-text;
 
+  .subtitle {
+    font-family: CarterOne;
+    font-size: 24px;
+  }
+
+  .trait-badge {
+    color: $color-black;
+    background: $color-default;
+    padding: 0 6rem;
+  }
+
 }
 
 .user-nfts {

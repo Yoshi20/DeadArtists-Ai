@@ -39,4 +39,14 @@ module ApplicationHelper
     "Dead Artists AI is a NFT art project on the blockchain. It brings dead artists back to life and let them join Web3.#{str.present? ? " This is the \"#{str}\" page." : ""}"
   end
 
+  def rarity_text(i)
+    return "Unknown" if i.nil?
+    ["Legendary", "Epic", "Rare", "Uncommon", "Common"][i-1]
+  end
+
+  #blup: nötig und so korrekt?
+  def all_movement_patterns
+    ["Blink slow", "Blink fast", "Nod", "Smile", "Eyes closed smile", "Sad", "Nod fast", "Nod smile", "Sad blink", "Eyes closed sad", "Open mouth", "Eyes closed open mouth", "Open mouth wink", "Kiss", "Eyes closed kiss", "Kiss wink", "Smile Sad", "Shake head", "Eyes closed Shake head", "Wink shake head", "Look left", "Look right", "Eyes closed look left", "Eyes closed look right", "Nod mouth open", "Shake head mouth open"]
+  end
+
 end
