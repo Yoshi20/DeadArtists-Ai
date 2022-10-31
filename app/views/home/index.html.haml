@@ -50,8 +50,10 @@
         Your <span class='highlighted'>Dead Artists NFT</span> comes with an unlockable "print out version" with a QR Code that links to its related <a href="https://www.opensea.io/" target="_blank" class="color-default">OpenSea</a> page.
   .row
     .col.s12.center-align{style: 'margin-top: -10px;'}
-      = video_tag 'how_it_works.webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
-      = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
+      = image_tag @demo_nft.gif_link_no_id, width: '300px', alt: 'NFT demo image'
+      -# = video_tag 'how_it_works.webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
+      -# = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
+  = render partial: '/nfts/traits', locals: {nft: @demo_nft}
 
   .row
     .col.s6.center-align
