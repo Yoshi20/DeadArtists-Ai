@@ -22,6 +22,7 @@ export default class extends Controller {
     hidden_picasso_frame.style.display = 'inline-block';
     hidden_picasso_frame.getElementsByTagName('video')[0].currentTime = 0;
     hidden_picasso_frame.getElementsByTagName('video')[0].play();
+    document.getElementById('click-me-arrows').style.display = 'none';
     setTimeout(() => {document.getElementById('enter-arrows').style.display = '';}, 5000);
   }
 

@@ -25,12 +25,12 @@
   .row
     .col.s12.center-align
       %p.home-text-paragraph
-        Thanks to <span class='highlighted'>Dead Artists AI</span> its possible to obtain a limited number of the 5000 unique artworks:
+        Obtain a limited number of the 5000 animated artworks right here:
   .row
     .col.s12.center-align
       = link_to mint_path do
         %button.round.large
-          %span= "Click here to go to the <strong>Mint</strong> page".html_safe
+          %span= "Go to the <strong>Mint</strong> page".html_safe
           %i auto_awesome
 
   .row
@@ -43,11 +43,11 @@
   .row.mt-0
     .col.s12.left-align
       %p.home-text-paragraph
-        <span class='highlighted'>Dead Artists AI</span> consist of 5000 unique artworks. Each <span class='highlighted'>Dead Artists NFT</span> has its own style and is based on a painting, selected under supervision of our art history expert Loretta.
+        Each <span class='highlighted'>Dead Artists NFT</span> is based on a famous dead artist and one of his/her most famous paintings.
       %p.home-text-paragraph
-        With our one of a kind rarity system, that is also very easy to understand, you can see your NFTs rarity directly as a NFT trait! (Check FAQs for more details).
+        Since our rarity system originated from recent auction results, you can directly see the <span class='highlighted'>Dead Artists NFT</span> rarity as one of its NFT traits!
         %br
-        Your <span class='highlighted'>Dead Artists NFT</span> comes with an unlockable "Print out version" with a QR Code that is directly claimable on our Website.
+        Your <span class='highlighted'>Dead Artists NFT</span> comes with an unlockable "print out version" with a QR Code that links to its related <a href="https://www.opensea.io/" target="_blank" class="color-default">OpenSea</a> page.
   .row
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = video_tag 'how_it_works.webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
@@ -59,7 +59,7 @@
         .col.s12.center-align
           = link_to faq_path do
             %button.border.round.large
-              %span.m.l= "Click here to go to the <strong>FAQs</strong> page".html_safe
+              %span.m.l= "Go to the <strong>FAQs</strong> page".html_safe
               %span.s
                 %strong FAQs
               %i live_help
@@ -68,7 +68,7 @@
         .col.s12.center-align
           = link_to roadmap_path do
             %button.border.round.large
-              %span.m.l= "Click here to go to the <strong>Roadmap</strong> page".html_safe
+              %span.m.l= "Go to the <strong>Roadmap</strong> page".html_safe
               %span.s
                 %strong Roadmap
               %i map
@@ -100,7 +100,7 @@
     .col.s12.center-align
       = link_to roadmap_path do
         %button.border.round.large
-          %span= "Click here to go to the <strong>Roadmap</strong> page".html_safe
+          %span= "Go to the <strong>Roadmap</strong> page".html_safe
           %i map
 
   .row
@@ -170,7 +170,7 @@
         .col.s12.center-align{style: 'margin-top: 20px;'}
           = link_to nfts_path do
             %button.border.round.large
-              %span= "Click here to go to the <strong>Database</strong> page".html_safe
+              %span= "Go to the <strong>Database</strong> page".html_safe
               %i filter
       .row.middle-align
         .col.s4.center-align
@@ -188,7 +188,7 @@
     .col.s12.center-align
       = link_to nfts_path do
         %button.border.round.large
-          %span= "Click here to go to the <strong>Database</strong> page".html_safe
+          %span= "Go to the <strong>Database</strong> page".html_safe
           %i filter
 
   .row
