@@ -133,6 +133,9 @@
 
 .footer {
   color: $color-text;
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .pagination {

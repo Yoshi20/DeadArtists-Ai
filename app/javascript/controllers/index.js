@@ -24,3 +24,6 @@ application.register("hide-back-arrows", HideBackArrowsController)
 
 import UserNftsController from "./user_nfts_controller"
 application.register("user-nfts", UserNftsController)
+
+import CountdownController from "./countdown_controller"
+application.register("countdown", CountdownController)
