@@ -66,6 +66,7 @@
   }
 
   #how-it-works-video {
+    max-width: 94% !important;
     border: solid 1px $color-default;
     border-radius: 30px;
   }
@@ -126,6 +127,12 @@
     @media only screen and (min-width: $min-widths-l) {
       border: 6px solid $color-default;
     }
+  }
+
+  #shop-demo-image {
+    max-width: 94% !important;
+    border: solid 1px $color-default;
+    border-radius: 30px;
   }
 
 }
