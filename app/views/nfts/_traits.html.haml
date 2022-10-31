@@ -15,7 +15,7 @@
         %span.trait-badge.round= nft.trait_year_of_death || '?'
       %span.trait
         %span{style: 'margin-left: 10px;'}= "Movement pattern:"
-        %span.trait-badge.round= nft.trait_movement_pattern || '?'
+        %span.trait-badge.round= movement_pattern_text(nft.trait_movement_pattern)
       %span.trait
         %span{style: 'margin-left: 10px;'}= "Rarity:"
         %span.trait-badge.round= rarity_text(nft.trait_rarity)
