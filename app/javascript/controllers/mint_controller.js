@@ -375,7 +375,8 @@ export default class extends Controller {
   }
 
   finish_user_nft() {
-    location.reload();
+    // location.reload();
+    window.location.href = window.location.origin + '/user_nfts';
   }
 
 }

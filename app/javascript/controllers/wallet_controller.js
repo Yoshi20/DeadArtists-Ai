@@ -13,11 +13,13 @@ const showWalletConnectedButton = (userAddress) => {
 }
 
 const showWalletConnected = () => {
-  document.getElementById('wallet-connected').style.display = '';
+  const wallet_connected = document.getElementById('wallet-connected');
+  if (wallet_connected) wallet_connected.style.display = '';
 }
 
 const showInvalidNetwork = () => {
-  document.getElementById('invalid-network').style.display = '';
+  const invalid_network = document.getElementById('invalid-network');
+  if (invalid_network) invalid_network.style.display = '';
 }
 
 // Connects to -> data: { controller: 'wallet' }
