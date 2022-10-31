@@ -1,0 +1,15 @@
+.row
+  .col.s12.center-align{data: { controller: "wallet" }}
+    -# connect wallet button
+    %button.round.large#connect-wallet-button{data: { action: "click->wallet#connect_wallet" }}
+      %span Connect your Wallet
+      = image_tag 'metamask_fox.svg', width: '20px', alt: 'Metamask fox icon'
+    -# wallet connected button
+    %button.round.large#wallet-connected-button{disabled: true, style: 'display: none;'}
+      %span
+      = image_tag 'metamask_fox.svg', width: '20px', alt: 'Metamask fox icon'
+    -# download metamask button
+    = link_to 'https://metamask.io/download.html', target: '_blank', class: 'color-default', id: 'download-metamask-button', style: 'display: none;' do
+      %button.round.large
+        %span No Wallet found -> Go get MetaMask!
+        = image_tag 'metamask_fox.svg', width: '20px', alt: 'Metamask fox icon'

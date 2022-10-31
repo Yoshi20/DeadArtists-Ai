@@ -3,6 +3,9 @@
     .row
       .col.s12.center-align
         %h1.page-title= 'My Dead Artist NFTs'
-  .row
-    .col.s12.center-align
-      %p You must connect your wallet and own a DeadArtists NFT to see this page
+
+    = render partial: "/wallet/connect_button"
+
+    .row
+      .col.s12.center-align
+        %p You must connect your wallet and own a DeadArtists NFT to see this page

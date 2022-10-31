@@ -4,6 +4,8 @@
       .col.s12.center-align
         %h1.page-title= 'My Dead Artist NFTs'
 
+    = render partial: "/wallet/connect_button"
+
     .row
       - if userNfts.any?
         - userNfts_count = userNfts.count
