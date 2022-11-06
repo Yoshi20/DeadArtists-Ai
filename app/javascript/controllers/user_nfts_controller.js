@@ -43,7 +43,7 @@ export default class extends Controller {
       // Read userNftIds
       const userNftsData = document.getElementById("user-nfts-data");
       if (userNftsData) {
-        const userNftIds = userNftsData.dataset.ids.substring(1, userNftIds.length-1).split(', ').map(function(item) {
+        const userNftIds = userNftsData.dataset.ids.substring(1, userNftsData.dataset.ids.length-1).split(', ').map(function(item) {
           return parseInt(item, 10);
         });
         console.log("userNftIds = ", userNftIds);//blup
@@ -59,9 +59,9 @@ export default class extends Controller {
         const stakedTokens = await window.stakingContract.tokensOfOwner(window.ethereum.selectedAddress);
         console.log("stakedTokens = ", stakedTokens);
 
-        // Get earnings
-        const earnings = await window.stakingContract.earningInfo(window.ethereum.selectedAddress, userNftIds);
-        console.log("earnings = ", earnings);
+        // // Get earnings
+        // const earnings = await window.stakingContract.earningInfo(window.ethereum.selectedAddress, userNftIds);
+        // console.log("earnings = ", earnings);
 
         // Write
         // Stake = Token Staken Funktion braucht verknüpfung mit Wallet + TokenIDS als uint256[]
@@ -75,9 +75,7 @@ export default class extends Controller {
 
 
 
-        // let response = await window.stakingContract.stake([1], {
-          //     value: ethStrToWei(totalPrice(_numberOfNft).toString()),
-          //   });
+          // let response = await window.stakingContract.stake([7]);
           // let response = await window.stakingContract.stake([1]);
 
       }
