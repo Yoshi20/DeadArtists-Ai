@@ -3,11 +3,11 @@ import { ethers } from "ethers";
 import { get } from '@rails/request.js';
 const { MerkleTree } = require('merkletreejs'); // for whitelist minting
 
-let numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
-let userBalance = 0;
-let pricePerNft = 0.04;
-let remainingNumberOfMints = 50;
-let contractAddress = "";
+let _numberOfNft = document.getElementById('number-of-nft') ? document.getElementById('number-of-nft').value : 1;
+let _userBalance = 0;
+let _pricePerNft = 0.04;
+let _remainingNumberOfMints = 50;
+let _contractAddress = "";
 
 const selectedAddress = async () => {
   while(!window.ethereum.selectedAddress) {
@@ -23,7 +23,15 @@ const getContractAddress = async () => {
   return address;
 }
 
-const getAbi = async () => {
+const getStakingContractAddress = async () => {
+  let address = "";
+  const response = await get(window.location.origin + '/staking_contract_address')
+  if (response.ok) address = await response.text;
+  else console.error("Couldn't fetch staking address!");
+  return address;
+}
+
+const getAbi = async (contractAddress) => {
   let abi = "";
   const response = await get(window.location.origin + '/abi?contractAddress=' + contractAddress)
   if (response.ok) abi = await response.text;
@@ -31,7 +39,7 @@ const getAbi = async () => {
   return abi;
 }
 
-const getUserNfts = async (userAddress) => {
+const getUserNfts = async (userAddress, contractAddress) => {
   let user_nfts;
   const response = await get(window.location.origin + '/get_user_nfts.json?contractAddress=' + contractAddress + '&userAddress=' + userAddress)
   if (response.ok) user_nfts = await response.json;
@@ -48,7 +56,7 @@ const getWhitelistAddresses = async () => {
 }
 
 const totalPrice = (n) => {
-  return Math.round(n * pricePerNft * 1000) / 1000;
+  return Math.round(n * _pricePerNft * 1000) / 1000;
 }
 
 const hexWeiToEth =  (hexWei) => {
@@ -83,7 +91,7 @@ const handleNumberOfNft = (n) => {
   let tp = totalPrice(n);
   document.getElementById('total-price').innerHTML = tp;
   let mintErrorMessage = document.getElementById('mint-error-message');
-  if (tp > userBalance) {
+  if (tp > _userBalance) {
     mintErrorMessage.style.display = '';
     document.getElementById('mint-button').disabled = true;
   } else {
@@ -118,22 +126,22 @@ export default class extends Controller {
     if (!randomNftInterval) {
       this.setRandomNftInterval();
     }
-    // Set numberOfNft
-    document.getElementById('number-of-nft').value = numberOfNft;
+    // Set _numberOfNft
+    document.getElementById('number-of-nft').value = _numberOfNft;
     // Wait until window.ethereum.selectedAddress is defined
     await selectedAddress();
     console.log('userAddress: ', window.ethereum.selectedAddress);//blup
     // Get provider, signer & contract
     window.provider = new ethers.providers.Web3Provider(window.ethereum);
     window.signer = window.provider.getSigner();
-    contractAddress = await getContractAddress();
-    const abi = await getAbi();
-    window.contract = new ethers.Contract(contractAddress, abi, window.signer);
+    _contractAddress = await getContractAddress();
+    const abi = await getAbi(_contractAddress);
+    window.contract = new ethers.Contract(_contractAddress, abi, window.signer);
     // Get & set user balance
     const balance = await window.signer.getBalance();
-    userBalance = hexWeiToEth(balance._hex);
-    console.log('userBalance: ', userBalance);//blup
-    document.getElementById('user-balance').innerHTML = userBalance;
+    _userBalance = hexWeiToEth(balance._hex);
+    console.log('_userBalance: ', _userBalance);//blup
+    document.getElementById('user-balance').innerHTML = _userBalance;
     // Get & set userNumberOfMints
     const userTokenBalance = await window.contract.balanceOf(window.ethereum.selectedAddress);
     const userNumberOfMints = parseInt(userTokenBalance._hex, 16);
@@ -142,19 +150,19 @@ export default class extends Controller {
     // Enable members section button when minted > 0
     const membersSectionBtn = document.getElementById('members_section_button');
     if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
-    // Get maxMintAmountPerTx & set remainingNumberOfMints (blup: Public only)
-    // const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
-    // remainingNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16);
-    // Get maxMintWL & set remainingNumberOfMints (blup: WL only)
-    const maxMintWL = await window.contract.maxMintWL();
-    remainingNumberOfMints = parseInt(maxMintWL._hex, 16) - userNumberOfMints;
-    if (remainingNumberOfMints < 0) remainingNumberOfMints = 0;
-    console.log('remainingNumberOfMints: ', remainingNumberOfMints);//blup
-    document.getElementById('max-number-of-mints').innerHTML = remainingNumberOfMints + userNumberOfMints;
-    // Get & set pricePerNft
+    // Get maxMintAmountPerTx & set _remainingNumberOfMints (blup: Public only)
+    const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
+    _remainingNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16);
+    // // Get maxMintWL & set _remainingNumberOfMints (blup: WL only)
+    // const maxMintWL = await window.contract.maxMintWL();
+    // _remainingNumberOfMints = parseInt(maxMintWL._hex, 16) - userNumberOfMints;
+    // if (_remainingNumberOfMints < 0) _remainingNumberOfMints = 0;
+    // console.log('_remainingNumberOfMints: ', _remainingNumberOfMints);//blup
+    // document.getElementById('max-number-of-mints').innerHTML = _remainingNumberOfMints + userNumberOfMints;
+    // Get & set _pricePerNft
     const cost = await window.contract.cost();
-    pricePerNft = hexWeiToEth(cost._hex);
-    console.log('pricePerNft: ', pricePerNft);//blup
+    _pricePerNft = hexWeiToEth(cost._hex);
+    console.log('_pricePerNft: ', _pricePerNft);//blup
     handleNumberOfNft(document.getElementById('number-of-nft').value);
     // Minting may be enabled from here on -------------------------------------
     // Get & set maxSupply
@@ -166,30 +174,30 @@ export default class extends Controller {
     const totalSupply =  parseInt((await window.contract.totalSupply())._hex, 16);
     console.log('totalSupply: ', totalSupply);//blup
     document.getElementById('total-supply').innerHTML = totalSupply;
-    // Handle special case when maxSupply - totalSupply < remainingNumberOfMints
-    if (maxSupply - totalSupply < remainingNumberOfMints) {
-      remainingNumberOfMints = maxSupply - totalSupply;
+    // Handle special case when maxSupply - totalSupply < _remainingNumberOfMints
+    if (maxSupply - totalSupply < _remainingNumberOfMints) {
+      _remainingNumberOfMints = maxSupply - totalSupply;
     }
   }
 
   add() {
-    numberOfNft++;
-    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints;
-    handleNumberOfNft(numberOfNft);
+    _numberOfNft++;
+    if (_numberOfNft > _remainingNumberOfMints) _numberOfNft = _remainingNumberOfMints;
+    handleNumberOfNft(_numberOfNft);
   }
 
   sub() {
-    numberOfNft--;
-    if (numberOfNft < 1) numberOfNft = 1;
-    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints; // in case max is 0
-    handleNumberOfNft(numberOfNft);
+    _numberOfNft--;
+    if (_numberOfNft < 1) _numberOfNft = 1;
+    if (_numberOfNft > _remainingNumberOfMints) _numberOfNft = _remainingNumberOfMints; // in case max is 0
+    handleNumberOfNft(_numberOfNft);
   }
 
   set() {
-    numberOfNft = document.getElementById('number-of-nft').value;
-    if (numberOfNft < 1) numberOfNft = 1;
-    if (numberOfNft > remainingNumberOfMints) numberOfNft = remainingNumberOfMints;
-    handleNumberOfNft(numberOfNft);
+    _numberOfNft = document.getElementById('number-of-nft').value;
+    if (_numberOfNft < 1) _numberOfNft = 1;
+    if (_numberOfNft > _remainingNumberOfMints) _numberOfNft = _remainingNumberOfMints;
+    handleNumberOfNft(_numberOfNft);
   }
 
   async mint() {
@@ -203,31 +211,31 @@ export default class extends Controller {
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
     try {
-      // Whitelist minting: ---------------------
-      let whitelistAddresses = await getWhitelistAddresses();
-      whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
-      console.log('whitelistAddresses = ', whitelistAddresses);//blup
-      const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
-      console.log('leafNodes = ', leafNodes);//blup
-      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
-      console.log('DeadArtistsMerkleTree:\n', DeadArtistsMerkleTree.toString()); //blup: shows a required info for the SmartContract
-      let response;
-      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-        const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
-        console.log('claimingAddress = ', claimingAddress);//blup
-        const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
-        console.log('hexProof = ', hexProof);//blup
-        response = await window.contract.mintWL(numberOfNft, hexProof, {
-          value: ethStrToWei(totalPrice(numberOfNft).toString()),
-        });
-      } else {
-        throw new Error("😥 Sorry, you're not on the whitelist 😥");
-      }
-      // // Public minting: ---------------------------
-      // const response = await window.contract.mint(numberOfNft, {
-      //   value: ethStrToWei(totalPrice(numberOfNft).toString()),
-      // });
+      // // Whitelist minting: --------------------- (blup: WL only)
+      // let whitelistAddresses = await getWhitelistAddresses();
+      // whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
+      // whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      // console.log('whitelistAddresses = ', whitelistAddresses);//blup
+      // const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
+      // console.log('leafNodes = ', leafNodes);//blup
+      // const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
+      // console.log('DeadArtistsMerkleTree:\n', DeadArtistsMerkleTree.toString()); //blup: shows a required info for the SmartContract
+      // let response;
+      // if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+      //   const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
+      //   console.log('claimingAddress = ', claimingAddress);//blup
+      //   const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+      //   console.log('hexProof = ', hexProof);//blup
+      //   response = await window.contract.mintWL(_numberOfNft, hexProof, {
+      //     value: ethStrToWei(totalPrice(_numberOfNft).toString()),
+      //   });
+      // } else {
+      //   throw new Error("😥 Sorry, you're not on the whitelist 😥");
+      // }
+      // Public minting: --------------------------- (blup: Public only)
+      const response = await window.contract.mint(_numberOfNft, {
+        value: ethStrToWei(totalPrice(_numberOfNft).toString()),
+      });
       // -------------------------------------------
       console.log('response = ', response);
       // Show "Minting in progress..."
@@ -281,8 +289,8 @@ export default class extends Controller {
     document.getElementById("sub-button").disabled = false;
     document.getElementById("add-button").disabled = false;
     document.getElementById("set-field").style.pointerEvents = '';
-    mintButtonText.innerHTML = 'Whitelist Mint'; //blup
-    //blup mintButtonText.innerHTML = 'Mint';
+    // mintButtonText.innerHTML = 'Whitelist Mint'; // (blup: WL only)
+    mintButtonText.innerHTML = 'Mint'; // (blup: Public only)
   }
 
   //blup: only for testing
@@ -321,7 +329,7 @@ export default class extends Controller {
       }, 5100);
     }, 11900);
     // During video: Check if first minted NFT is valid and update auction-nft
-    this.user_nfts_json = await getUserNfts(window.ethereum.selectedAddress);
+    this.user_nfts_json = await getUserNfts(window.ethereum.selectedAddress, _contractAddress);
     console.log('user_nfts_json = ', this.user_nfts_json);//blup
     let nftValid = false;
     this.next_user_nft_index = 0;

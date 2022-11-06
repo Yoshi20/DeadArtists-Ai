@@ -1,7 +1,7 @@
 class MintController < ApplicationController
   before_action { @section = 'mint' }
 
-  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :whitelist_addresses]
+  skip_before_action :authenticate_user!, only: [:index, :abi, :contract_address, :staking_contract_address, :whitelist_addresses]
 
   # GET /mint
   def index
@@ -13,6 +13,10 @@ class MintController < ApplicationController
 
   def contract_address
     render plain: ENV['CONTRACT_ADDRESS']
+  end
+
+  def staking_contract_address
+    render plain: ENV['CONTRACT_ADDRESS_STAKING']
   end
 
   def abi

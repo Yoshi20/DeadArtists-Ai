@@ -35,8 +35,8 @@
           .number-of-mints
             %strong Minted:
             %span#user-number-of-mints ?
-            %span= '/' #blup: WL only
-            %span#max-number-of-mints= '?' #blup: WL only
+            %span= '/' # (blup: WL only)
+            %span#max-number-of-mints= '?' # (blup: WL only)
           .balance
             %strong My balance:
             %span#user-balance ?
@@ -57,8 +57,8 @@
         .col.s12.center-align
           %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }}
             %i.mirrored{style: 'margin-right: 10px;'} auto_awesome
-            -#blup %span#mint-button-text Mint
-            %span#mint-button-text Whitelist Mint
+            %span#mint-button-text= 'Mint' # (blup: Public only)
+            -# %span#mint-button-text= 'Whitelist Mint' # (blup: WL only)
             %i{style: 'margin-left: 10px;'} auto_awesome
 
       .row.mt-0#mint-in-progress-message-row{style: "display: none;"}

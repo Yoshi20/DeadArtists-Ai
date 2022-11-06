@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'mint' => 'mint#index'
   get 'contract_address' => 'mint#contract_address'
+  get 'staking_contract_address' => 'mint#staking_contract_address'
   get 'abi' => 'mint#abi'
   get 'whitelist_addresses' => 'mint#whitelist_addresses'
 
