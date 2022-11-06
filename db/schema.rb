@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_145415) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_06_191941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_145415) do
     t.bigint "ipfs_token_id"
     t.string "ipfs_token_uri"
     t.string "ipfs_image_uri"
-    t.integer "trait_movement_pattern"
+    t.string "trait_movement_pattern"
     t.integer "trait_rarity"
     t.string "collectible_link"
     t.string "gif_link"

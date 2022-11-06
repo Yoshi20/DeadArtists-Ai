@@ -44,9 +44,4 @@ module ApplicationHelper
     ["Legendary", "Epic", "Rare", "Uncommon", "Common"][i-1]
   end
 
-  def movement_pattern_text(i)
-    return "Unknown" if (i.nil? || i < 11 || i > 36)
-    ["Blink slow", "Blink fast", "Nod", "Smile", "Eyes closed smile", "Sad", "Nod fast", "Nod smile", "Sad blink", "Eyes closed sad", "Open mouth", "Eyes closed open mouth", "Open mouth wink", "Kiss", "Eyes closed kiss", "Kiss wink", "Smile Sad", "Shake head", "Eyes closed Shake head", "Wink shake head", "Look left", "Look right", "Eyes closed look left", "Eyes closed look right", "Nod mouth open", "Shake head mouth open"][i-11]
-  end
-
 end
