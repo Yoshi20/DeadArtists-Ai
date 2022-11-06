@@ -56,11 +56,11 @@ const getWhitelistAddresses = async () => {
 }
 
 const totalPrice = (n) => {
-  return Math.round(n * _pricePerNft * 1000) / 1000;
+  return (n * _pricePerNft);
 }
 
-const hexWeiToEth =  (hexWei) => {
-  return Math.round(parseInt(hexWei, 16) / 1000000000000000000 * 1000) / 1000;
+const hexWeiToEth = (hexWei) => {
+  return (parseInt(hexWei, 16) / 1000000000000000000);
 }
 
 const ethStrToWei = (ethStr) => {
@@ -89,7 +89,7 @@ const myKeccak256 = (data) => {
 const handleNumberOfNft = (n) => {
   document.getElementById('number-of-nft').value = n;
   let tp = totalPrice(n);
-  document.getElementById('total-price').innerHTML = tp;
+  document.getElementById('total-price').innerHTML = Math.round(tp*1000)/1000;
   let mintErrorMessage = document.getElementById('mint-error-message');
   if (tp > _userBalance) {
     mintErrorMessage.style.display = '';
@@ -141,7 +141,7 @@ export default class extends Controller {
     const balance = await window.signer.getBalance();
     _userBalance = hexWeiToEth(balance._hex);
     console.log('_userBalance: ', _userBalance);//blup
-    document.getElementById('user-balance').innerHTML = _userBalance;
+    document.getElementById('user-balance').innerHTML = Math.round(_userBalance*1000)/1000;
     // Get & set userNumberOfMints
     const userTokenBalance = await window.contract.balanceOf(window.ethereum.selectedAddress);
     const userNumberOfMints = parseInt(userTokenBalance._hex, 16);
@@ -227,14 +227,14 @@ export default class extends Controller {
       //   const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
       //   console.log('hexProof = ', hexProof);//blup
       //   response = await window.contract.mintWL(_numberOfNft, hexProof, {
-      //     value: ethStrToWei(totalPrice(_numberOfNft).toString()),
+      //     value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
       //   });
       // } else {
       //   throw new Error("😥 Sorry, you're not on the whitelist 😥");
       // }
       // Public minting: --------------------------- (blup: Public only)
       const response = await window.contract.mint(_numberOfNft, {
-        value: ethStrToWei(totalPrice(_numberOfNft).toString()),
+        value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
       });
       // -------------------------------------------
       console.log('response = ', response);
