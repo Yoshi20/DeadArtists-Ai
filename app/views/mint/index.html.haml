@@ -107,7 +107,7 @@
     -# %button{data: {action: "click->mint#auction_modal_demo" }} Auction modal test
     .modal#auction-modal{style: 'border-radius: 12rem;'}
       .modal-content{style: 'position: relative;'}
-        = video_tag 'auction.webm', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
+        = video_tag 'auction.webm', type: 'video/webm', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
         = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artists NFT'
       %nav{style: 'position: absolute; right: 0px; bottom: 0px;'}
         %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>

@@ -14,13 +14,13 @@
   .row
     .col.s6.m4.center-align
       .artist-frame
-        = video_tag 'vincent_van_gogh.webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+        = video_tag 'vincent_van_gogh.webm', type: 'video/webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
     .col.m.l.m4.center-align
       .artist-frame
-        = video_tag 'pablo_picasso.webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+        = video_tag 'pablo_picasso.webm', type: 'video/webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
     .col.s6.m4.center-align
       .artist-frame
-        = video_tag 'leonardo_da_vinci.webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+        = video_tag 'leonardo_da_vinci.webm', type: 'video/webm', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
 
   .row
     .col.s12.center-align
@@ -51,7 +51,7 @@
   .row
     .col.s12.center-align{style: 'margin-top: -10px;'}
       = image_tag @demo_nft.gif_link_no_id, width: '300px', alt: 'NFT demo image'
-      -# = video_tag 'how_it_works.webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
+      -# = video_tag 'how_it_works.webm', type: 'video/webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
       -# = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
   = render partial: '/nfts/traits', locals: {nft: @demo_nft}
 
@@ -202,11 +202,11 @@
       %h2.page-title= 'The Team'
   .row.mt-0
     .col.s4.center-align
-      = video_tag 'team_n.webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
+      = video_tag 'team_n.webm', type: 'video/webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
     .col.s4.center-align
-      = video_tag 'team_l.webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
+      = video_tag 'team_l.webm', type: 'video/webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
     .col.s4.center-align
-      = video_tag 'team_j.webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
+      = video_tag 'team_j.webm', type: 'video/webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
   .row.mt-0
     .col.s4.center-align{style: 'margin-top: -10px;'}
       %p.home-text-subtitle Loretta
@@ -219,7 +219,7 @@
       %p.home-text-paragraph "Web Master"
   .row.mt-0
     .col.s4.center-align
-      = video_tag 'team_b.webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
+      = video_tag 'team_b.webm', type: 'video/webm', width: '100%', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, class: 'team-member-video'
   .row.mt-0
     .col.s4.center-align{style: 'margin-top: -10px;'}
       %p.home-text-subtitle Basti
