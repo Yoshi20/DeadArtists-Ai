@@ -150,15 +150,15 @@ export default class extends Controller {
     // Enable members section button when minted > 0
     const membersSectionBtn = document.getElementById('members_section_button');
     if (userNumberOfMints > 0) membersSectionBtn.firstChild.removeAttribute("disabled");
-    // Get maxMintAmountPerTx & set _remainingNumberOfMints (blup: Public only)
-    const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
-    _remainingNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16);
-    // // Get maxMintWL & set _remainingNumberOfMints (blup: WL only)
-    // const maxMintWL = await window.contract.maxMintWL();
-    // _remainingNumberOfMints = parseInt(maxMintWL._hex, 16) - userNumberOfMints;
-    // if (_remainingNumberOfMints < 0) _remainingNumberOfMints = 0;
-    // console.log('_remainingNumberOfMints: ', _remainingNumberOfMints);//blup
-    // document.getElementById('max-number-of-mints').innerHTML = _remainingNumberOfMints + userNumberOfMints;
+    // // Get maxMintAmountPerTx & set _remainingNumberOfMints (blup: Public only)
+    // const maxMintAmountPerTx = await window.contract.maxMintAmountPerTx();
+    // _remainingNumberOfMints = parseInt(maxMintAmountPerTx._hex, 16);
+    // Get maxMintWL & set _remainingNumberOfMints (blup: WL only)
+    const maxMintWL = await window.contract.maxMintWL();
+    _remainingNumberOfMints = parseInt(maxMintWL._hex, 16) - userNumberOfMints;
+    if (_remainingNumberOfMints < 0) _remainingNumberOfMints = 0;
+    console.log('_remainingNumberOfMints: ', _remainingNumberOfMints);//blup
+    document.getElementById('max-number-of-mints').innerHTML = _remainingNumberOfMints + userNumberOfMints;
     // Get & set _pricePerNft
     const cost = await window.contract.cost();
     _pricePerNft = hexWeiToEth(cost._hex);
@@ -211,31 +211,31 @@ export default class extends Controller {
     mintButtonText.innerHTML = '<div class="dot-windmill"></div>';
     // Mint
     try {
-      // // Whitelist minting: --------------------- (blup: WL only)
-      // let whitelistAddresses = await getWhitelistAddresses();
-      // whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
-      // whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
-      // console.log('whitelistAddresses = ', whitelistAddresses);//blup
-      // const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
-      // console.log('leafNodes = ', leafNodes);//blup
-      // const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
-      // console.log('DeadArtistsMerkleTree:\n', DeadArtistsMerkleTree.toString()); //blup: shows a required info for the SmartContract
-      // let response;
-      // if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
-      //   const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
-      //   console.log('claimingAddress = ', claimingAddress);//blup
-      //   const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
-      //   console.log('hexProof = ', hexProof);//blup
-      //   response = await window.contract.mintWL(_numberOfNft, hexProof, {
-      //     value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
-      //   });
-      // } else {
-      //   throw new Error("😥 Sorry, you're not on the whitelist 😥");
-      // }
-      // Public minting: --------------------------- (blup: Public only)
-      const response = await window.contract.mint(_numberOfNft, {
-        value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
-      });
+      // Whitelist minting: --------------------- (blup: WL only)
+      let whitelistAddresses = await getWhitelistAddresses();
+      whitelistAddresses = atob(whitelistAddresses.slice(2)).split(' ');
+      whitelistAddresses = whitelistAddresses.map(addr => addr.toLowerCase());
+      console.log('whitelistAddresses = ', whitelistAddresses);//blup
+      const leafNodes = whitelistAddresses.map(addr => myKeccak256(addr));
+      console.log('leafNodes = ', leafNodes);//blup
+      const DeadArtistsMerkleTree = new MerkleTree(leafNodes, myKeccak256, {sortPairs: true});
+      console.log('DeadArtistsMerkleTree:\n', DeadArtistsMerkleTree.toString()); //blup: shows a required info for the SmartContract
+      let response;
+      if (whitelistAddresses.indexOf(window.ethereum.selectedAddress.toLowerCase()) >= 0) {
+        const claimingAddress = myKeccak256(window.ethereum.selectedAddress.toLowerCase());
+        console.log('claimingAddress = ', claimingAddress);//blup
+        const hexProof = DeadArtistsMerkleTree.getHexProof(claimingAddress);
+        console.log('hexProof = ', hexProof);//blup
+        response = await window.contract.mintWL(_numberOfNft, hexProof, {
+          value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
+        });
+      } else {
+        throw new Error("😥 Sorry, you're not on the whitelist 😥");
+      }
+      // // Public minting: --------------------------- (blup: Public only)
+      // const response = await window.contract.mint(_numberOfNft, {
+      //   value: ethStrToWei(totalPrice(_numberOfNft).toLocaleString('fullwide', {useGrouping: false, maximumSignificantDigits:21})),
+      // });
       // -------------------------------------------
       console.log('response = ', response);
       // Show "Minting in progress..."
@@ -289,8 +289,8 @@ export default class extends Controller {
     document.getElementById("sub-button").disabled = false;
     document.getElementById("add-button").disabled = false;
     document.getElementById("set-field").style.pointerEvents = '';
-    // mintButtonText.innerHTML = 'Whitelist Mint'; // (blup: WL only)
-    mintButtonText.innerHTML = 'Mint'; // (blup: Public only)
+    mintButtonText.innerHTML = 'Whitelist Mint'; // (blup: WL only)
+    // mintButtonText.innerHTML = 'Mint'; // (blup: Public only)
   }
 
   //blup: only for testing
