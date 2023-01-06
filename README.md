@@ -8,7 +8,23 @@ Dead Artists NFT web application.
 bin/dev
 ```
 
-## Railway commands
+## Pull prod DB - Import NFTs - Push prod DB
+
+```
+dropdb dead_artists_ai_development
+# backup db auf heroku
+heroku pg:pull postgresql-curved-21331 deadartists_backup_20230106 --app deadartists-ai
+heroku pg:pull postgresql-curved-21331 dead_artists_ai_development --app deadartists-ai
+
+Nft.destroy_all
+Painting.destroy_all
+Artist.destroy_all
+rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/KuenstlerNFTData.csv\]
+
+heroku pg:push dead_artists_ai_development postgresql-curved-21331 --app deadartists-ai
+```
+
+## (Railway commands)
 
 ```
 railway login

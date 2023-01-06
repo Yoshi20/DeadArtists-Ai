@@ -8,7 +8,7 @@ class MintController < ApplicationController
     count = Rails.cache.fetch("nft_count", expires_in: 24.hours) do
       Nft.count
     end
-    @randomNft = Nft.select(:image_link).offset(rand(count)).first
+    @randomNft = Nft.select(:gif_link_no_id).offset(rand(count)).first
   end
 
   def contract_address

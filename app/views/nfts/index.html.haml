@@ -22,8 +22,8 @@
         - @nfts.each do |nft|
           .col.s6.m4.center-align{class: "#{nfts_count == 1 ? 's12 m12' : ''} #{nfts_count == 2 ? 's6 m6' : ''}"}
             = link_to nft_path(nft, page: params[:page]) do
-              %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important;'}
-              -# %img.responsive{src: nft.image_link, width: '265px', style: 'max-height: 265px !important; z-index: 1;'}
+              %img.responsive{src: nft.image_link_low_quali, width: '265px', style: 'max-height: 265px !important;'}
+              -# %img.responsive{src: nft.image_link_low_quali, width: '265px', style: 'max-height: 265px !important; z-index: 1;'}
               -# = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artists NFT', class: 'responsive', style: 'position: absolute;'
 
         .col.s12

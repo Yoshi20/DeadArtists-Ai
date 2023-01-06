@@ -19,7 +19,7 @@
           .image-footer= 'Artist'
       .col.s12.m3.center-align.middle-align
         = link_to 'javascript:;', onclick: "ui('#nft-modal-#{@nft.id}');" do
-          %img.responsive{src: @nft.image_link, width: '265px', style: 'max-width: 265px !important; max-height: 265px !important;'}
+          %img.responsive{src: @nft.image_link_low_quali, width: '265px', style: 'max-width: 265px !important; max-height: 265px !important;'}
           .image-footer= 'NFT'
       .col.m.m4.l.center-align.middle-align
         = link_to painting_path(@nft.painting, page: params[:page]), onclick: 'window.scrollTo({top: 0});' do
@@ -54,4 +54,4 @@
     -# nft modal
     .modal{id: "nft-modal-#{@nft.id}", style: 'border-radius: 12rem;'}
       .modal-content{style: 'position: relative;'}
-        %img.responsive{src: @nft.gif_link, width: '100%', height: '100%'}
+        %img.responsive{src: @nft.gif_link_no_id, width: '100%', height: '100%'}

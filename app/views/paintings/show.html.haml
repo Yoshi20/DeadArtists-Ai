@@ -42,9 +42,9 @@
                   %h2.page-title= "NFT"
             .row.no-space.mt-0
               .col.s12.center-align
-                - if nft.image_link.present?
+                - if nft.image_link_low_quali.present?
                   = link_to nft_path(nft, page: params[:page]), onclick: 'window.scrollTo({top: 0});' do
-                    %img.responsive{src: nft.image_link, style: 'max-height: 200px !important;'}
+                    %img.responsive{src: nft.image_link_low_quali, style: 'max-height: 200px !important;'}
                 - else
                   = link_to nft.name, nft_path(nft, page: params[:page]), class: 'color-default', onclick: 'window.scrollTo({top: 0});'
 
