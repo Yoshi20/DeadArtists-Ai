@@ -21,7 +21,9 @@ Painting.destroy_all
 Artist.destroy_all
 rake csv_import:artists_and_paintings\[/Users/jascha/Downloads/KuenstlerNFTData.csv\]
 
+heroku pg:reset --confirm deadartists-ai
 heroku pg:push dead_artists_ai_development postgresql-curved-21331 --app deadartists-ai
+heroku restart
 ```
 
 ## (Railway commands)
