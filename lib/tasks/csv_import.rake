@@ -48,7 +48,7 @@ namespace :csv_import do
       painting.content = data['painting_content']
       painting.medium = data['painting_medium']
       painting.turnover = data['painting_turnover']
-      painting.rarity = data['painting_rarity']
+      painting.rarity_rank = data['painting_rarity_rank']
       painting.artist = artist
       if painting.save
         puts "  -> Painting successfully #{is_new_record ? 'created' : 'updated'}: " + painting.name
@@ -74,12 +74,12 @@ namespace :csv_import do
       nft.trait_gender = artist.gender
       nft.trait_origin = artist.origin
       nft.trait_movement_pattern = data['nft_movement_pattern']
-      nft.trait_rarity = painting.rarity
+      nft.trait_rarity = data['nft_rarity']
       nft.ipfs_token_id = data['nft_ipfs_token_id']
       nft.ipfs_token_uri = data['nft_ipfs_token_uri']
       nft.ipfs_image_uri = data['nft_ipfs_image_uri']
       nft.color_code = data['nft_color_code']
-      nft.rarity_rank = data['nft_rarity_rank']
+      nft.rarity_rank = painting.rarity_rank
       nft.opensea_permalink = data['nft_opensea_permalink']
       nft.image_link_low_quali = data['nft_image_link_low_quali']
       nft.gif_link_no_id = data['nft_gif_link_no_id']
