@@ -48,11 +48,34 @@
         Since our rarity system originated from recent auction results, you can directly see the <span class='highlighted'>Dead Artists NFT</span> rarity as one of its NFT traits!
         %br
         Your <span class='highlighted'>Dead Artists NFT</span> comes with an unlockable "print out version" with a QR Code that links to its related <a href="https://www.opensea.io/" target="_blank" class="color-default">OpenSea</a> page.
-  .row
-    .col.s12.center-align{style: 'margin-top: -10px;'}
-      = image_tag @demo_nft.gif_link_no_id, width: '300px', alt: 'NFT demo image'
-      -# = video_tag 'how_it_works.webm', type: 'video/webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
-      -# = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
+  -# .row
+  -#   .col.s12.center-align{style: 'margin-top: -10px;'}
+  -#     = image_tag @demo_nft.gif_link_no_id, width: '300px', alt: 'NFT demo image'
+  -#     -# = video_tag 'how_it_works.webm', type: 'video/webm', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false, id: 'how-it-works-video', onclick: "this.pause(); document.getElementById('play-svg').style.display = 'block';", width: '100%;'
+  -#     -# = image_tag 'play.svg', id: 'play-svg', width: '50%', onclick: "this.style.display = 'none'; document.getElementById('how-it-works-video').play();", alt: 'how it works video play icon'
+  .row.s
+    .col.s6.center-align
+      %a{style: 'cursor: default;'}
+        %img.responsive{src: @demo_nft.artist.image_link, style: 'max-height: 200px !important;'}
+          .image-footer= 'Artist'
+    .col.s6.center-align
+      %a{style: 'cursor: default;'}
+        %img.responsive{src: @demo_nft.painting.image_link, style: 'max-height: 200px !important;'}
+          .image-footer= 'Painting'
+  .row{style: 'display: flex;'}
+    .col.m.m4.l.center-align.middle-align
+      %a{style: 'cursor: default;'}
+        %img.responsive{src: @demo_nft.artist.image_link, style: 'max-height: 200px !important;'}
+          .image-footer= 'Artist'
+    .col.s12.m3.center-align.middle-align
+      %a{style: 'cursor: default;'}
+        %img.responsive{src: @demo_nft.gif_link_no_id, width: '265px', style: 'max-width: 265px !important; max-height: 265px !important;'}
+          .image-footer= 'NFT'
+    .col.m.m4.l.center-align.middle-align
+      %a{style: 'cursor: default;'}
+        %img.responsive{src: @demo_nft.painting.image_link, style: 'max-height: 200px !important;'}
+          .image-footer= 'Painting'
+  %br
   = render partial: '/nfts/traits', locals: {nft: @demo_nft}
 
   .row
