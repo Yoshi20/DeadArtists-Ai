@@ -13,7 +13,7 @@ bin/dev
 ```
 dropdb dead_artists_ai_development
 # backup db auf heroku
-heroku pg:pull postgresql-curved-21331 deadartists_backup_20230106 --app deadartists-ai
+heroku pg:pull postgresql-curved-21331 deadartists_backup_2023XXYY --app deadartists-ai
 heroku pg:pull postgresql-curved-21331 dead_artists_ai_development --app deadartists-ai
 
 Nft.destroy_all

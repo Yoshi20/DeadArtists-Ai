@@ -26,7 +26,11 @@ namespace :csv_import do
       artist.description = data['artist_description']
       artist.image_link = data['artist_image_link']
       artist.wiki_link = data['artist_wiki_link']
-      artist.wikiart_link = data['artist_wikiart_link'].present? ? data['artist_wikiart_link'] : data['painting_wikiart_link'].split('/')[0..-2].join('/')
+      if data['artist_wikiart_link'].present?
+        artist.wikiart_link = data['artist_wikiart_link']
+      elsif data['painting_wikiart_link'].present?
+        artist.wikiart_link = data['painting_wikiart_link'].split('/')[0..-2].join('/')
+      end
       artist.year_of_death = data['artist_year_of_death']
       artist.gender = data['artist_gender']
       artist.origin = data['artist_origin']
