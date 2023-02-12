@@ -1,26 +1,24 @@
-- if nfts.any? && nfts.try(:total_pages).present?
+- if nfts.any? && nfts.total_pages.present?
   %nav.pagination
     %ul
-      %li= hidden_field_tag 'total_pages', nfts.total_pages
-      %li.left-arrow
-        - if nfts.current_page.present? && nfts.current_page > 1
+      - if nfts.current_page.present? && nfts.current_page > 1
+        %li.left-arrow{style: 'margin-left: -10px;'}
           = link_to nfts_path(page: nfts.current_page-1), aria: {label: "Previous"}, "data-turbo-frame": "_top" do
             %span{"aria-hidden"=> "true"}
               &laquo;
-        - else
-          %a
-            %span{"aria-hidden"=> "true"}
-              &laquo;
 
-      - (1..nfts.total_pages).each do |page|
+      - offset = 2
+      - from = nfts.current_page.to_i-offset < 1 ? 1 : nfts.current_page-offset
+      - to = nfts.current_page.to_i+offset > nfts.total_pages ? nfts.total_pages : nfts.current_page+offset
+      - (from.. to).each do |page|
         %li{class: "#{"active" if page == nfts.current_page}"}
           = link_to page.to_s, nfts_path(page: page), value: page, "data-turbo-frame": "_top"
-      %li.right-arrow
-        - if nfts.try(:current_page).present? && nfts.current_page < nfts.total_pages
+
+      - if nfts.current_page.present? && nfts.current_page < nfts.total_pages
+        %li.right-arrow
           = link_to nfts_path(page: nfts.current_page+1), aria: {label: "Next"}, "data-turbo-frame": "_top" do
             %span{"aria-hidden"=> "true"}
               &raquo;
-        - else
-          %a
-            %span{"aria-hidden"=> "true"}
-              &raquo;
+  .row.mt-0
+    .col.s12.center-align
+      = "#{nfts.current_page.to_s}/#{nfts.total_pages.to_s}"
