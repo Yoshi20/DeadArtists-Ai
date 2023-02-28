@@ -91,7 +91,12 @@ const handleNumberOfNft = (n) => {
   let tp = totalPrice(n);
   document.getElementById('total-price').innerHTML = Math.round(tp*1000)/1000;
   let mintErrorMessage = document.getElementById('mint-error-message');
-  if (tp > _userBalance) {
+  if (_remainingNumberOfMints == 0) {
+    mintErrorMessage.innerHTML = "already claimed";
+    mintErrorMessage.style.display = '';
+    document.getElementById('mint-button').disabled = true;
+  } else if (tp > _userBalance) {
+    mintErrorMessage.innerHTML = "insufficient funds";
     mintErrorMessage.style.display = '';
     document.getElementById('mint-button').disabled = true;
   } else {
