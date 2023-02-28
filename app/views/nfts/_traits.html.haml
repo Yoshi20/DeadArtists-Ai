@@ -2,17 +2,23 @@
   .row.mt-0
     .col.s12.center-align
       %span.trait
+        %span{style: 'margin-left: 10px;'}= "Artist:"
+        %span.trait-badge.round= nft.trait_artist || '?'
+      %span.trait
         %span{style: 'margin-left: 10px;'}= "Gender:"
         %span.trait-badge.round= nft.trait_gender || '?'
       %span.trait
         %span{style: 'margin-left: 10px;'}= "Origin:"
         %span.trait-badge.round= nft.trait_origin || '?'
       %span.trait
-        %span{style: 'margin-left: 10px;'}= "Style:"
-        %span.trait-badge.round= nft.trait_main_style || '?'
-      %span.trait
         %span{style: 'margin-left: 10px;'}= "Year of death:"
         %span.trait-badge.round= nft.trait_year_of_death || '?'
+      %span.trait
+        %span{style: 'margin-left: 10px;'}= "Painting:"
+        %span.trait-badge.round= nft.trait_painting || '?'
+      %span.trait
+        %span{style: 'margin-left: 10px;'}= "Style:"
+        %span.trait-badge.round= nft.trait_main_style || '?'
       %span.trait
         %span{style: 'margin-left: 10px;'}= "Movement pattern:"
         %span.trait-badge.round= nft.trait_movement_pattern || '?'
