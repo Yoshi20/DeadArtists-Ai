@@ -101,31 +101,12 @@ const handleNumberOfNft = (n) => {
   document.getElementById('number-of-nft').value = n;
 }
 
-let randomNftInterval = 0;
 let auctionNftTimeout = 0;
 
 // Connects to -> data: { controller: 'mint' }
 export default class extends Controller {
 
-  setRandomNftInterval() {
-    randomNftInterval = setInterval(() => {document.getElementById('random-nft').firstElementChild.click();}, 10000);
-  }
-
-  resetRandomNftInterval() {
-    clearInterval(randomNftInterval);
-    this.setRandomNftInterval();
-  }
-
-  disconnect() {
-    clearInterval(randomNftInterval);
-    randomNftInterval = 0;
-  }
-
   async connect() {
-    // Show random NFT
-    if (!randomNftInterval) {
-      this.setRandomNftInterval();
-    }
     // Set _numberOfNft
     document.getElementById('number-of-nft').value = _numberOfNft;
     // Wait until window.ethereum.selectedAddress is defined
