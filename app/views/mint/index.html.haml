@@ -8,101 +8,100 @@
     .col.s12.center-align
       = video_tag 'dead_artists_ai.mp4', id: 'mint-video', type: 'video/mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, poster: 'placeholder.jpg'
 
-  - if true #blup: no longer show this if endDate reached
-    = render partial: "countdown", locals: {title: 'Public Minting starts in:', new_title: 'Public Minting has started!', end_date: ENV['PUBLIC_MINTING_START_DATE']}
+  - is_whitelist_minting = true #blup: ENV['WL_MINTING_START_DATE'].present? && DateTime.now < DateTime.strptime(ENV['WL_MINTING_START_DATE'], '%m/%d/%Y %H:%M')
+  - is_public_minting = true #blup: ENV['PUBLIC_MINTING_START_DATE'].present? && DateTime.now < DateTime.strptime(ENV['PUBLIC_MINTING_START_DATE'], '%m/%d/%Y %H:%M')
+  - if is_whitelist_minting
+    = render partial: "countdown", locals: {title: 'Whitelist Minting starts in:', new_title: 'Whitelist Minting has started!', end_date: ENV['WL_MINTING_START_DATE']}
 
-  .row
-    .col.s12.center-align
-      = render "/home/text_band", text: nil
-
-  -# Whitelist Minting
-  .row
-    .col.s12.center-align{style: 'margin-bottom: -20px;'}
-      %h2.subtitle.center-align#headline Whitelist Minting
-
-  = render partial: "/wallet/connect_button"
-
-  .row#wallet-connected{style: 'display: none;'}
-    .col.s12.center-align
-      .row
-        .col.s12.center-align
-          .number-of-mints
-            %strong Minted:
-            %span#user-number-of-mints ?
-            %span= '/' # (blup: WL only)
-            %span#max-number-of-mints= '?' # (blup: WL only)
-          .balance
-            %strong My balance:
-            %span#user-balance ?
-            %span ETH
-          .price
-            %strong Total price:
-            %span#total-price ?
-            %span ETH
-          .number-of-nft-selection
-            %button#sub-button{data: { action: "click->mint#sub" }} -
-            .field.border#set-field
-              = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft'}
-            %button#add-button{data: { action: "click->mint#add" }} +
-
-            #mint-error-message{style: "display: none;"} insufficient funds
-
-      .row.mt-0
-        .col.s12.center-align
-          %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }}
-            %i.mirrored{style: 'margin-right: 10px;'} auto_awesome
-            -# %span#mint-button-text= 'Mint' # (blup: Public only)
-            %span#mint-button-text= 'Whitelist Mint' # (blup: WL only)
-            %i{style: 'margin-left: 10px;'} auto_awesome
-
-      .row.mt-0#mint-in-progress-message-row{style: "display: none;"}
-        .col.s12.center-align
-          #mint-in-progress-message-text Minting in progress...
-
-      .row.mt-0#mint-success-message-row{style: "display: none;"}
-        .col.s12.center-align
-          #mint-success-message-text Mint succeeded!
-
-      .row.mt-0
-        .col.s12.center-align
-          %span#total-supply ?
-          %span /
-          %span#max-supply ?
-
-    - if true #blup: no longer show this if endDate reached
-      = render partial: "countdown", locals: {title: 'Whitelist Minting ends in:', new_title: 'Whitelist Minting has ended!', end_date: ENV['WL_MINTING_END_DATE']}
-
-
-    .row
-      .col.s12.center-align
-        = render "/home/text_band", text: nil
-
-    -# Members section
+  - if is_whitelist_minting || is_public_minting
+    -# Minting
     .row
       .col.s12.center-align{style: 'margin-bottom: -20px;'}
-        %h2.subtitle.center-align#headline Members section
+        %h2.subtitle.center-align#headline= "Whitelist Minting" if is_whitelist_minting
+        %h2.subtitle.center-align#headline= "Public Minting" if is_public_minting && !is_whitelist_minting
 
-    -# Members section button
-    .row
+    = render partial: "/wallet/connect_button"
+
+    .row#wallet-connected{style: 'display: none;'}
       .col.s12.center-align
-        = link_to user_nfts_path, id: 'members_section_button' do
-          %button.round.large{disabled: true}
-            %i.mirrored chevron_left
-            %span= "Go to the <strong>Members</strong> section".html_safe
-            %i chevron_left
-      .col.s12.center-align{style: 'padding-top: 0;'}
-        %span{style: 'font-size: 12rem;'} (Note: You must own a Dead Artists NFT to become a member)
+        .row
+          .col.s12.center-align
+            .number-of-mints
+              %strong Minted:
+              %span#user-number-of-mints ?
+              %span= '/' # (blup: WL only)
+              %span#max-number-of-mints= '?' # (blup: WL only)
+            .balance
+              %strong My balance:
+              %span#user-balance ?
+              %span ETH
+            .price
+              %strong Total price:
+              %span#total-price ?
+              %span ETH
+            .number-of-nft-selection
+              %button#sub-button{data: { action: "click->mint#sub" }} -
+              .field.border#set-field
+                = text_field_tag 'number-of-nft', 1, {data: { action: "change->mint#set" }, class: 'color-default center-align', id: 'number-of-nft'}
+              %button#add-button{data: { action: "click->mint#add" }} +
 
-  .row#invalid-network{style: 'display: none;'}
-    .col.s12.center-align
-      %p Invalid Network! Please change to the Ethereum Mainnet.
+              #mint-error-message{style: "display: none;"} insufficient funds
 
-  .auction
-    -# %button{data: {action: "click->mint#auction_modal_demo" }} Auction modal test
-    .modal#auction-modal{style: 'border-radius: 12rem;'}
-      .modal-content{style: 'position: relative;'}
-        = video_tag 'auction.webm', type: 'video/webm', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
-        = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artists NFT'
-      %nav{style: 'position: absolute; right: 0px; bottom: 0px;'}
-        %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>
-        %button#finish-auction-nft-button{data: {action: "click->mint#finish_user_nft"}, style: 'display: none;'} Finish
+        .row.mt-0
+          .col.s12.center-align
+            %button.large#mint-button{disabled: true, data: { action: "click->mint#mint" }}
+              %i.mirrored{style: 'margin-right: 10px;'} auto_awesome
+              -# %span#mint-button-text= 'Mint' # (blup: Public only)
+              %span#mint-button-text= 'Whitelist Mint' # (blup: WL only)
+              %i{style: 'margin-left: 10px;'} auto_awesome
+
+        .row.mt-0#mint-in-progress-message-row{style: "display: none;"}
+          .col.s12.center-align
+            #mint-in-progress-message-text Minting in progress...
+
+        .row.mt-0#mint-success-message-row{style: "display: none;"}
+          .col.s12.center-align
+            #mint-success-message-text Mint succeeded!
+
+        .row.mt-0
+          .col.s12.center-align
+            %span#total-supply ?
+            %span /
+            %span#max-supply ?
+
+      - if is_public_minting
+        = render partial: "countdown", locals: {title: 'Public Minting starts in:', new_title: 'Public Minting has started!', end_date: ENV['PUBLIC_MINTING_START_DATE']}
+
+      .row
+        .col.s12.center-align
+          = render "/home/text_band", text: nil
+
+      -# Members section
+      .row
+        .col.s12.center-align{style: 'margin-bottom: -20px;'}
+          %h2.subtitle.center-align#headline Members section
+
+      -# Members section button
+      .row
+        .col.s12.center-align
+          = link_to user_nfts_path, id: 'members_section_button' do
+            %button.round.large{disabled: true}
+              %i.mirrored chevron_left
+              %span= "Go to the <strong>Members</strong> section".html_safe
+              %i chevron_left
+        .col.s12.center-align{style: 'padding-top: 0;'}
+          %span{style: 'font-size: 12rem;'} (Note: You must own a Dead Artists NFT to become a member)
+
+    .row#invalid-network{style: 'display: none;'}
+      .col.s12.center-align
+        %p Invalid Network! Please change to the Ethereum Mainnet.
+
+    .auction
+      -# %button{data: {action: "click->mint#auction_modal_demo" }} Auction modal test
+      .modal#auction-modal{style: 'border-radius: 12rem;'}
+        .modal-content{style: 'position: relative;'}
+          = video_tag 'auction.webm', type: 'video/webm', id: 'auction-video', width: '100%', height: '100%', controls: false, muted: true, loop: false, tabindex: "-1", autoplay: false
+          = image_tag 'placeholder.jpg', id: 'auction-nft', style: 'border-radius: unset; position: absolute; right: 34.6%; top: 23.2%; width: 28.3%; height: 50%;', alt: 'Minted Dead Artists NFT'
+        %nav{style: 'position: absolute; right: 0px; bottom: 0px;'}
+          %button#next-auction-nft-button{data: {action: "click->mint#next_user_nft"}, style: 'display: none;'} >>
+          %button#finish-auction-nft-button{data: {action: "click->mint#finish_user_nft"}, style: 'display: none;'} Finish
