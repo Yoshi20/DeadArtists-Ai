@@ -6,13 +6,7 @@
 
   .row
     .col.s12.center-align
-      .random-nft-and-placeholder{style: 'display: flex; justify-content: center;'}
-        %turbo-frame#random-nft{style: 'z-index: 1;'}
-          = link_to '#', disabled: true, data: { action: "click->mint#resetRandomNftInterval" } do
-            = image_tag @randomNft&.gif_link_no_id.to_s, width: '265px', height: '265px', alt: ''
-        = image_tag 'placeholder.jpg', width: '265px', height: '265px', alt: 'Placeholder Dead Artists NFT', style: 'position: absolute;'
-    .col.s12.center-align{style: 'padding-top: 0;'}
-      %span{style: 'font-size: 12rem;'} (Note: Not shown but a random Dead Artists NFT is minted)
+      = video_tag 'dead_artists_ai.mp4', id: 'mint-video', type: 'video/mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
 
   - if true #blup: no longer show this if endDate reached
     = render partial: "countdown", locals: {title: 'Public Minting starts in:', new_title: 'Public Minting has started!', end_date: ENV['PUBLIC_MINTING_START_DATE']}

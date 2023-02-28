@@ -7,6 +7,19 @@
     font-size: 24px;
   }
 
+  #mint-video {
+    width: 265px;
+    height: 265px;
+    @media only screen and (min-width: $min-widths-m) {
+      width: 318px;
+      height: 318px;
+    }
+    @media only screen and (min-width: $min-widths-l) {
+      width: 371px;
+      height: 371px;
+    }
+  }
+
   .mint-iframe {
     width: 600px;
     height: 600px;
