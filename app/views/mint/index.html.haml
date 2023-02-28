@@ -6,7 +6,7 @@
 
   .row
     .col.s12.center-align
-      = video_tag 'dead_artists_ai.mp4', id: 'mint-video', type: 'video/mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true
+      = video_tag 'dead_artists_ai.mp4', id: 'mint-video', type: 'video/mp4', controls: false, muted: true, loop: true, tabindex: "-1", autoplay: true, poster: 'placeholder.jpg'
 
   - if true #blup: no longer show this if endDate reached
     = render partial: "countdown", locals: {title: 'Public Minting starts in:', new_title: 'Public Minting has started!', end_date: ENV['PUBLIC_MINTING_START_DATE']}
