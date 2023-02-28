@@ -5,10 +5,14 @@ class HomeController < ApplicationController
 
   # GET /home
   def index
-    count = Rails.cache.fetch("nft_count", expires_in: 24.hours) do
-      Nft.count
+    demo_nft_ids = [5121, 2760, 4948, 4826, 5157, 4468, 3970]
+    @demo_nft = Nft.find(demo_nft_ids.sample)
+    unless @demo_nft.present?
+      count = Rails.cache.fetch("nft_count", expires_in: 24.hours) do
+        Nft.count
+      end
+      @demo_nft = Nft.offset(rand(count)).first
     end
-    @demo_nft = Nft.offset(rand(count)).first
   end
 
 end
