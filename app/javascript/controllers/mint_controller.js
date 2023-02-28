@@ -259,7 +259,7 @@ export default class extends Controller {
       console.warn(err);
       if (err.code) {
         if (err.code != 'ACTION_REJECTED' && err.code != '4001') {
-          alert("😥 Something went wrong: " + err.code + " 😥");
+          alert("😥 Something went wrong: \"" + (err.reason ? err.reason : err.code) + "\" 😥");
         }
       } else {
         alert(err.message);
